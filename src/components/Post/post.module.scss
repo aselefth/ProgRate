@@ -1,0 +1,76 @@
+.postWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    background-color: rgb(126, 126, 209);
+    width: 700px;
+    border-radius: 1rem;
+    padding: .8rem 1.2rem;
+    color: white;
+    box-shadow: 0 0 15px rgba(126, 126, 209, .4);
+    animation: ease-in .32s openPost;
+
+    .postHeader {
+        display: flex;
+        flex-direction: row;
+        font-size: 1.5rem;
+        align-items: center;
+        gap: 1rem;
+
+        span {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background-color: purple;
+            display: inline-block;
+        }
+
+        .postTitle {
+            display: flex;
+            flex-direction: column;
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            h2 {
+                font-size: 1rem;
+                font-style: italic;
+                opacity: .65;
+            }
+        }
+    }
+
+    .postPlot {
+        font-size: 1.25rem;
+    }
+
+    .postBottom {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+
+        .buttonSection {
+            display: flex;
+            align-items: baseline;
+            font-size: 1.5rem;
+            gap: .5rem;
+    
+            img {
+                cursor: pointer;
+            }
+        }
+
+    }
+}
+
+
+@keyframes openPost {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}

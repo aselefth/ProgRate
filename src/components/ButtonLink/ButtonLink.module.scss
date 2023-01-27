@@ -1,0 +1,19 @@
+.buttonLink {
+  background-color: rgb(219, 234, 254);
+  height: 2rem;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.6rem;
+  transition: all 0.2s;
+
+  a {
+    padding: 0 1rem;
+  }
+
+  &:hover {
+    border-radius: 0.45rem;
+    background-color: rgb(231, 241, 254);
+  }
+}

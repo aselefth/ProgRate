@@ -1,0 +1,17 @@
+.button {
+  cursor: pointer;
+  background-color: rgb(219, 234, 254);
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.6rem;
+  transition: all 0.2s;
+  padding: .2rem 1rem;
+  font-weight: 400;
+
+  &:hover {
+    border-radius: 0.45rem;
+    background-color: rgb(231, 241, 254);
+  }
+}

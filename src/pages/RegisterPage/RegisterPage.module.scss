@@ -1,0 +1,26 @@
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+
+    input {
+        background-color: rgb(126, 126, 209);
+        color: white;
+        outline: none;
+        padding: 0 .5rem;
+        height: 3rem;
+        width: 20rem;
+        font-size: 1.5rem;
+        border-radius: .6rem;
+        
+        &::placeholder {
+            color: rgba(255, 255, 255, .6);
+        }
+    }
+
+    .buttons {
+        display: flex;
+        gap: 2rem;
+    }
+}

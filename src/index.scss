@@ -1,0 +1,35 @@
+
+/* @import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@200;300;400;500;600;700&display=swap'); */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+	font-family: Yanone Kaffeesatz;
+	src: url('./assets//fonts/YanoneKaffeesatz-VariableFont_wght.ttf');
+}
+
+html {
+    min-height: 100%;
+	font-family: 'Yanone Kaffeesatz' ;
+}
+
+body {
+    min-height: 100%;
+}
+
+*, *::before, *::after {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Yanone Kaffeesatz' ;
+}
+
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+button, input {
+	border: none;
+}
