@@ -7,13 +7,13 @@ const postsSlice = apiSlice.injectEndpoints({
             query: () => ({
                 url: "/post/selectall",
             }),
-            providesTags: [{ type: "App"}],
+            providesTags: [{ type: "App" }],
         }),
         getPostById: build.query<IPost, number>({
             query: (postId) => ({
-                url: `/post/selectbyid/?postId=${postId}`
+                url: `/post/selectbyid/?postId=${postId}`,
             }),
-            providesTags: [{type: 'App'}]
+            providesTags: [{ type: "App", id: "Post" }],
         }),
         createPost: build.mutation<ICreatePost, ICreatePost>({
             query: (body) => ({
@@ -21,26 +21,26 @@ const postsSlice = apiSlice.injectEndpoints({
                 method: "POST",
                 body,
             }),
-            invalidatesTags: [{ type: "App"}],
+            invalidatesTags: [{ type: "App", id: "Post" }],
         }),
         likePost: build.mutation<string, number>({
             query: (postid: number) => ({
                 url: `/like/likeaction/?postId=${postid}`,
                 method: "POST",
             }),
-            invalidatesTags: [{ type: "App"}],
+            invalidatesTags: [{ type: "App", id: "Post" }],
         }),
         checkLike: build.query({
             query: (postId: number) => ({
                 url: `/like/isliked/?postId=${postId}`,
             }),
-            providesTags: [{ type: "App"}],
+            providesTags: [{ type: "App" }],
         }),
         getComments: build.query<IComment[], number>({
             query: (postId) => ({
                 url: `/comment/getpostcomments/?postId=${postId}`,
             }),
-            providesTags: [{ type: "App" }],
+            providesTags: [{ type: "App", id: "Comments" }],
         }),
         addComment: build.mutation<IComment, ICreateComment>({
             query: (body) => ({
@@ -48,7 +48,7 @@ const postsSlice = apiSlice.injectEndpoints({
                 body: body.comment,
                 method: "POST",
             }),
-            invalidatesTags: [{ type: "App" }],
+            invalidatesTags: [{ type: "App", id: "Comments" }],
         }),
     }),
 })
