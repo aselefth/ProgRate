@@ -18,12 +18,16 @@ const CreatePostModal: FC = () => {
     async function handleCreatePost(post: ICreatePost) {
         await createPost(post)
         dispatch(toggleModal())
+        setTitle("")
+        setPlot("")
     }
 
     return (
         <div
             onClick={() => {
                 dispatch(toggleModal())
+                setTitle("")
+                setPlot("")
             }}
             className={`${
                 isModalOpened
@@ -53,7 +57,9 @@ const CreatePostModal: FC = () => {
                     value={plot}
                     onChange={(e) => setPlot(e.target.value)}
                 />
-                <Button type='submit' fontSize="1.5rem">create post</Button>
+                <Button type="submit" fontSize="1.5rem">
+                    create post
+                </Button>
             </form>
         </div>
     )

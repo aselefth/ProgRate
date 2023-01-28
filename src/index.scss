@@ -8,6 +8,12 @@
 	src: url('./assets//fonts/YanoneKaffeesatz-VariableFont_wght.ttf');
 }
 
+:root {
+	--primary: rgb(126, 126, 209);
+	--secondary: rgb(216, 180, 254);
+	--primaryDark: rgb(175, 175, 214);
+}
+
 html {
     min-height: 100%;
 	font-family: 'Yanone Kaffeesatz' ;

@@ -10,20 +10,31 @@ import {
 } from "../../store/Api/postsSlice"
 import { FC } from "react"
 import { useNavigate } from "react-router-dom"
+import { useAppSelector } from "../../hooks/redux"
 
 export interface PostProps {
     post: IPost
 }
 
 export const Post: FC<PostProps> = ({ post }) => {
+    const isLogged = useAppSelector((state) => state.authSlice.isLogged)
+    const router = useNavigate()
     const [likePost] = useLikePostMutation()
     const { data: user } = useGetUserByIdQuery(post.userId)
-    const { data: isLiked } = useCheckLikeQuery(post.postId)
-
-    const router = useNavigate()
+    const { data: isLiked } = useCheckLikeQuery(post.postId, {
+        skip: !isLogged,
+    })
 
     async function handleLikePost(likeid: number) {
-        const res = await likePost(likeid)
+        try {
+            if (isLogged) {
+                const res = await likePost(likeid)
+            } else {
+                router('/login')
+            }
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     return (
@@ -46,7 +57,14 @@ export const Post: FC<PostProps> = ({ post }) => {
                         onClick={() => handleLikePost(post.postId)}
                     />
                 </div>
-                <img src={comment} width="24" alt="comment" onClick={() => router(`/comments/${post.postId}`)}/>
+                <div className={styles.buttonSection}>
+                    <img
+                        src={comment}
+                        width="24"
+                        alt="comment"
+                        onClick={() => router(`/comments/${post.postId}`)}
+                    />
+                </div>
             </div>
         </div>
     )

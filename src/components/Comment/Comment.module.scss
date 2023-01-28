@@ -1,15 +1,32 @@
 .commentWrapper {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1rem;
     font-size: 1.25rem;
-    background-color: rgb(126, 126, 209);
+    background-color: var(--primaryDark);
     width: 700px;
     border-radius: 1rem;
     padding: .8rem 1.2rem;
     color: white;
     box-shadow: 0 0 15px rgba(126, 126, 209, .4);
-    animation: ease-in .32s openComment;
+    animation: ease-in .25s openComment;
+
+    .commentTop {
+        display: flex;
+        align-items: center;
+        gap: .75rem;
+        span {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background-color: purple;
+            display: inline-block;
+        }
+
+        p {
+            font-style: italic;
+        }
+    }
 
 }
 

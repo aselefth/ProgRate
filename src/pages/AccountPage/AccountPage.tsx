@@ -12,6 +12,7 @@ const AccountPage: FC = () => {
         useGetUserQuery(undefined)
     const dispatch = useAppDispatch()
     const router = useNavigate()
+    
 
     const logout = () => {
         localStorage.removeItem("token")

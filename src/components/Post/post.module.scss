@@ -8,7 +8,7 @@
     padding: .8rem 1.2rem;
     color: white;
     box-shadow: 0 0 15px rgba(126, 126, 209, .4);
-    animation: ease-in .32s openPost;
+    animation: ease-in .2s openPost;
 
     .postHeader {
         display: flex;
@@ -31,6 +31,8 @@
 
             h1 {
                 font-size: 1.75rem;
+                padding: 0;
+                margin: 0;
             }
 
             h2 {
