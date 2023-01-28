@@ -8,10 +8,10 @@ import { useNavigate } from "react-router-dom"
 import { FC } from "react"
 
 const AccountPage: FC = () => {
-    const { data: user, isError: isUserFetchingError } =
-        useGetUserQuery(undefined)
+    const { data: user } = useGetUserQuery(undefined)
     const dispatch = useAppDispatch()
     const router = useNavigate()
+    console.log(user);
     
 
     const logout = () => {
@@ -28,7 +28,10 @@ const AccountPage: FC = () => {
                 </h1>
             </div>
             <div className={styles.postsLink}>
-                <ButtonLink route={`users/${user?.userName}/posts`} fontSize='1.5rem'>
+                <ButtonLink
+                    route={`users/${user?.userName}/posts`}
+                    fontSize="1.5rem"
+                >
                     my posts
                 </ButtonLink>
             </div>
@@ -53,7 +56,7 @@ const AccountPage: FC = () => {
                 </table>
             </div>
             <Button
-            fontSize="1.5rem"
+                fontSize="1.5rem"
                 onclick={() => {
                     logout()
                 }}

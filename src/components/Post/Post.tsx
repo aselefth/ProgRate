@@ -9,7 +9,7 @@ import {
     useLikePostMutation,
 } from "../../store/Api/postsSlice"
 import { FC } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useAppSelector } from "../../hooks/redux"
 
 export interface PostProps {
@@ -43,7 +43,7 @@ export const Post: FC<PostProps> = ({ post }) => {
                 <span></span>
                 <div className={styles.postTitle}>
                     <h1>{post.title}</h1>
-                    <h2>@{user?.userName}</h2>
+                    <Link to={`/users/${post.userId}/posts`}>@{user?.userName}</Link>
                 </div>
             </div>
             <div className={styles.postPlot}>{post.plot}</div>

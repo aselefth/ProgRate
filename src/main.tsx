@@ -8,6 +8,7 @@ import CommentsPage from "./pages/CommentsPage/CommentsPage"
 import HomePage from "./pages/HomePage/HomePage"
 import LoginPage from "./pages/LoginPage/LoginPage"
 import RegisterPage from "./pages/RegisterPage/RegisterPage"
+import UserPostsPage from "./pages/UserPostsPage/UserPostsPage"
 import store from "./store/store"
 
 const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             {
                 path: '/comments/:postId',
                 element: <CommentsPage />
+            },
+            {
+                path: '/users/:userId/posts',
+                element: <UserPostsPage />
             }
         ],
     },

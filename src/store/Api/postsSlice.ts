@@ -9,6 +9,12 @@ const postsSlice = apiSlice.injectEndpoints({
             }),
             providesTags: [{ type: "App" }],
         }),
+        getUserPosts: build.query<IPost[], string>({
+            query: (userId) => ({
+                url: `/post/selectuserposts/?userId=${userId}`
+            }),
+            providesTags: [{ type: "App", id: "Post" }],
+        }),
         getPostById: build.query<IPost, number>({
             query: (postId) => ({
                 url: `/post/selectbyid/?postId=${postId}`,
@@ -61,4 +67,5 @@ export const {
     useCheckLikeQuery,
     useGetCommentsQuery,
     useAddCommentMutation,
+    useGetUserPostsQuery
 } = postsSlice

@@ -1,0 +1,26 @@
+.pageWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: normal;
+
+            span {
+                font-weight: bold;
+                font-style: italic;
+            }
+        }
+
+        h2 {
+            font-weight: normal;
+        }
+    }
+}
