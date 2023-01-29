@@ -2,10 +2,12 @@ import { IPost } from "../../types/types"
 import dislike from "../../assets/like.svg"
 import like from "../../assets/likePressed.svg"
 import comment from "../../assets/comment.svg"
+import trash from '../../assets/trash.svg'
 import styles from "./post.module.scss"
-import { useGetUserByIdQuery } from "../../store/Api/userApislice"
+import { useGetUserByIdQuery, useGetUserQuery } from "../../store/Api/userApislice"
 import {
     useCheckLikeQuery,
+    useDeletePostMutation,
     useLikePostMutation,
 } from "../../store/Api/postsSlice"
 import { FC } from "react"
@@ -20,11 +22,14 @@ export const Post: FC<PostProps> = ({ post }) => {
     const isLogged = useAppSelector((state) => state.authSlice.isLogged)
     const router = useNavigate()
     const [likePost] = useLikePostMutation()
-    const { data: user } = useGetUserByIdQuery(post.userId)
+    const [deletePost] = useDeletePostMutation()
+    const { data: user } = useGetUserByIdQuery(post.userId)    
     
     const { data: isLiked } = useCheckLikeQuery(post.postId, {
         skip: !isLogged,
     })
+
+    const {data: currentUser} = useGetUserQuery(undefined)
 
     async function handleLikePost(likeid: number) {
         try {
@@ -35,6 +40,17 @@ export const Post: FC<PostProps> = ({ post }) => {
             }
         } catch (e) {
             console.log(e)
+        }
+    }
+
+    async function handleDeletePost(postId: number) {
+        try {
+            if (confirm('delete post?'))
+            await deletePost(postId)
+            router('/')
+        } catch (e) {
+            console.log(e);
+            
         }
     }
 
@@ -66,6 +82,14 @@ export const Post: FC<PostProps> = ({ post }) => {
                         onClick={() => router(`/comments/${post.postId}`)}
                     />
                 </div>
+                {currentUser?.userName === user?.userName && <div className={styles.buttonSection}>
+                    <img
+                        src={trash}
+                        width="24"
+                        alt="comment"
+                        onClick={() => {handleDeletePost(post.postId)}}
+                    />
+                </div>}
             </div>
         </div>
     )

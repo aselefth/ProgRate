@@ -7,19 +7,19 @@ const postsSlice = apiSlice.injectEndpoints({
             query: (pageNum) => ({
                 url: `/post/selectall/?pageNum=${pageNum}`,
             }),
-            providesTags: [{ type: "App", id: 'Post' }],
+            providesTags: ["App"],
         }),
         getUserPosts: build.query<IPost[], string>({
             query: (userId) => ({
                 url: `/post/selectuserposts/?userId=${userId}`
             }),
-            providesTags: [{ type: "App", id: "Post" }],
+            providesTags: ["App"],
         }),
         getPostById: build.query<IPost, number>({
             query: (postId) => ({
                 url: `/post/selectbyid/?postId=${postId}`,
             }),
-            providesTags: [{ type: "App", id: "Post" }],
+            providesTags: ["App"],
         }),
         createPost: build.mutation<ICreatePost, ICreatePost>({
             query: (body) => ({
@@ -27,26 +27,26 @@ const postsSlice = apiSlice.injectEndpoints({
                 method: "POST",
                 body,
             }),
-            invalidatesTags: [{ type: "App", id: "Post" }],
+            invalidatesTags: ["App"],
         }),
         likePost: build.mutation<string, number>({
             query: (postid: number) => ({
                 url: `/like/likeaction/?postId=${postid}`,
                 method: "POST",
             }),
-            invalidatesTags: [{ type: "App", id: "Post" }],
+            invalidatesTags: ["App"],
         }),
         checkLike: build.query({
             query: (postId: number) => ({
                 url: `/like/isliked/?postId=${postId}`,
             }),
-            providesTags: [{ type: "App", id: 'Post' }],
+            providesTags: ["App"],
         }),
         getComments: build.query<IComment[], number>({
             query: (postId) => ({
                 url: `/comment/getpostcomments/?postId=${postId}`,
             }),
-            providesTags: [{ type: "App", id: "Comments" }],
+            providesTags: ["App"],
         }),
         addComment: build.mutation<IComment, ICreateComment>({
             query: (body) => ({
@@ -54,8 +54,15 @@ const postsSlice = apiSlice.injectEndpoints({
                 body: body.comment,
                 method: "POST",
             }),
-            invalidatesTags: [{ type: "App", id: "Comments" }],
+            invalidatesTags: ["App"],
         }),
+        deletePost: build.mutation({
+            query: (postId: number) => ({
+                url: `post/deletepost/?postId=${postId}`,
+                method: 'POST'
+            }),
+            invalidatesTags: ["App"],
+        })
     }),
 })
 
@@ -67,5 +74,6 @@ export const {
     useCheckLikeQuery,
     useGetCommentsQuery,
     useAddCommentMutation,
-    useGetUserPostsQuery
+    useGetUserPostsQuery,
+    useDeletePostMutation
 } = postsSlice

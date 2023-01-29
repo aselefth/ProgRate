@@ -6,12 +6,14 @@ const userApiSlice = apiSlice.injectEndpoints({
         getUser: build.query<{fullName: string, userName: string, email: string, userId: string}, undefined>({
             query: () => ({
                 url: '/user/getuser'
-            })
+            }),
+            providesTags: ["App"]
         }),
         getUserById: build.query<IUser, string>({
             query: (id: string) => ({
                 url: `/user/getuserbyid/?Id=${id}`
-            })
+            }),
+            providesTags: ["App"]
         }),
         registerUser: build.mutation({
             query: (body: IUserLogin) => ({
