@@ -4,40 +4,19 @@ import styles from "./HomePage.module.scss"
 import { IPost } from "../../types/types"
 import { FC, useEffect, useState } from "react"
 import Button from "../../components/Button/Button"
+import { data } from "autoprefixer"
+import Pagination from "../../components/Pagination/Pagination"
 
 const HomePage: FC = () => {
-    const [posts, setPosts] = useState<IPost[]>([])
     const [pageNum, setPageNum] = useState(1)
     const [isFetching, setIsFetching] = useState(true)
-    const { data, isLoading } = useGetAllPostsQuery(pageNum)
-
-    useEffect(() => {
-        if (data) {
-            setPosts([...posts, ...data.page])
-        }
-    }, [data])
-
-    const handlePagination = () => {
-        if (data && data.pages > pageNum) {
-            setPageNum((prev) => prev + 1)
-        }
-    }
+    const { data } = useGetAllPostsQuery(pageNum)
 
     return (
         <div className={styles.homePageWrapper}>
             {data &&
-                posts.map((post) => <Post key={post.postId} post={post} />)}
-            {data && data.pages > pageNum && (
-                <Button
-                    fontSize="1.5rem"
-                    width="7rem"
-                    onclick={() => {
-                        handlePagination()
-                    }}
-                >
-                    load more
-                </Button>
-            )}
+                data.page.map((post) => <Post key={post.postId} post={post} />)}
+            <Pagination totalPages={Number(data?.pages)} currentPage={pageNum} setPageNumber={setPageNum}/>
         </div>
     )
 }

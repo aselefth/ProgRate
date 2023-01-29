@@ -40,7 +40,7 @@ const postsSlice = apiSlice.injectEndpoints({
             query: (postId: number) => ({
                 url: `/like/isliked/?postId=${postId}`,
             }),
-            providesTags: [{ type: "App" }],
+            providesTags: [{ type: "App", id: 'Post' }],
         }),
         getComments: build.query<IComment[], number>({
             query: (postId) => ({

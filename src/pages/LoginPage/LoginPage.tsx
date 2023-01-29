@@ -6,29 +6,13 @@ import { setCredentials } from "../../store/Slices/authSlice"
 import { IUserLogin } from "../../types/types"
 import { FC, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { useLogin } from "../../hooks/useLogin"
 
 const LoginPage: FC = () => {
-    const [userName, setUserName] = useState("")
-    const [password, setPassword] = useState("")
-    const dispatch = useAppDispatch()
-    const [auth] = useLoginMutation()
+
     const router = useNavigate()
 
-    async function handleAuth(user: IUserLogin) {
-        try {
-            const res = await auth({
-                userName: user.userName,
-                password: user.password,
-            }).unwrap()
-            if (res.token) {
-                localStorage.setItem("token", res.token)
-                dispatch(setCredentials({ token: res.token, isLogged: true }))
-                router("/")
-            }
-        } catch (e) {
-            console.log(e)
-        }
-    }
+    const {userName, password, handleAuth, handleChangeLogin, handleChangePassword} = useLogin()
 
     return (
         <form
@@ -42,13 +26,13 @@ const LoginPage: FC = () => {
                 type="text"
                 placeholder="your nickname..."
                 value={userName}
-                onChange={(e) => setUserName(e.target.value)}
+                onChange={handleChangeLogin}
             />
             <input
                 type="text"
                 placeholder="password..."
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handleChangePassword}
             />
             <div className={styles.buttons}>
                 <Button fontSize="1.5rem" type="submit">
