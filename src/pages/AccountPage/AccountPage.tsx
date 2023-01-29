@@ -11,7 +11,6 @@ const AccountPage: FC = () => {
     const { data: user } = useGetUserQuery(undefined)
     const dispatch = useAppDispatch()
     const router = useNavigate()
-    console.log(user);
     
 
     const logout = () => {
@@ -29,7 +28,7 @@ const AccountPage: FC = () => {
             </div>
             <div className={styles.postsLink}>
                 <ButtonLink
-                    route={`users/${user?.userName}/posts`}
+                    route={`users/${user?.userId}/posts`}
                     fontSize="1.5rem"
                 >
                     my posts

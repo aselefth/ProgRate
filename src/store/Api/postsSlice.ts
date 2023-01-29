@@ -3,11 +3,11 @@ import { apiSlice } from "./apiSlice"
 
 const postsSlice = apiSlice.injectEndpoints({
     endpoints: (build) => ({
-        getAllPosts: build.query<{page: IPost[], pages: number}, undefined>({
-            query: () => ({
-                url: "/post/selectall",
+        getAllPosts: build.query<{page: IPost[], pages: number}, number>({
+            query: (pageNum) => ({
+                url: `/post/selectall/?pageNum=${pageNum}`,
             }),
-            providesTags: [{ type: "App" }],
+            providesTags: [{ type: "App", id: 'Post' }],
         }),
         getUserPosts: build.query<IPost[], string>({
             query: (userId) => ({
