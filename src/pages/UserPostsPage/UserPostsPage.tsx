@@ -7,7 +7,7 @@ import styles from "./UserPostsPage.module.scss"
 export default function UserPostsPage() {
     const { userId } = useParams()
     const { data: posts } = useGetUserPostsQuery(String(userId))
-    const {data: user} = useGetUserByIdQuery(String(posts && posts[0].userId))
+    const {data: user} = useGetUserByIdQuery(String(userId))
 
     return (
         <div className={styles.pageWrapper}>

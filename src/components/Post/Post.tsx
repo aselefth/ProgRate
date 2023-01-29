@@ -21,6 +21,7 @@ export const Post: FC<PostProps> = ({ post }) => {
     const router = useNavigate()
     const [likePost] = useLikePostMutation()
     const { data: user } = useGetUserByIdQuery(post.userId)
+    
     const { data: isLiked } = useCheckLikeQuery(post.postId, {
         skip: !isLogged,
     })

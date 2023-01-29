@@ -3,7 +3,7 @@ import { apiSlice } from "./apiSlice"
 
 const postsSlice = apiSlice.injectEndpoints({
     endpoints: (build) => ({
-        getAllPosts: build.query<IPost[], undefined>({
+        getAllPosts: build.query<{page: IPost[], pages: number}, undefined>({
             query: () => ({
                 url: "/post/selectall",
             }),
