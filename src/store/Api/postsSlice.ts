@@ -21,6 +21,12 @@ const postsSlice = apiSlice.injectEndpoints({
             }),
             providesTags: ["App"],
         }),
+        getPostsByTitle: build.query<IPost[], string>({
+            query: (postTitle) => ({
+                url: `/post/selectbytitle/?querry=${postTitle}`
+            }),
+            providesTags: ['App']
+        }),
         createPost: build.mutation<ICreatePost, ICreatePost>({
             query: (body) => ({
                 url: "post/createpost",
@@ -68,6 +74,7 @@ const postsSlice = apiSlice.injectEndpoints({
 
 export const {
     useGetAllPostsQuery,
+    useGetPostsByTitleQuery,
     useGetPostByIdQuery,
     useCreatePostMutation,
     useLikePostMutation,

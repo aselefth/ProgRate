@@ -8,6 +8,7 @@ export interface ButtonProps {
     fontSize?: string
     onclick?: () => void
     type?: "submit" | "reset" | "button"
+    mainColor?: '--buttonBlue' | '--buttonGray'
 }
 
 const Button: FC<ButtonProps> = ({
@@ -16,13 +17,14 @@ const Button: FC<ButtonProps> = ({
     fontSize,
     height,
     onclick,
-    type
+    type,
+    mainColor
 }) => {
     return (
         <button
             type={type ? type : 'button'}
             className={styles.button}
-            style={{ width, fontSize, height }}
+            style={{ width, fontSize, height, background: `var(${mainColor})` }}
             onClick={() => {
                 onclick && onclick()
             }}

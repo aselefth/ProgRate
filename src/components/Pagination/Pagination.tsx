@@ -22,10 +22,10 @@ export default function Pagination({
     
     return (
         <div className="flex gap-8">
-            <Button fontSize="1.5rem" onclick={handlePreviousPage}>
+            <Button fontSize="1.5rem" onclick={handlePreviousPage} mainColor={currentPage < 2 ? "--buttonGray" : "--buttonBlue"}>
                 previous
             </Button>
-            <Button fontSize="1.5rem" onclick={handleNextPage}>
+            <Button fontSize="1.5rem" onclick={handleNextPage} mainColor={currentPage === totalPages ? "--buttonGray" : '--buttonBlue'}>
                 next
             </Button>
         </div>
