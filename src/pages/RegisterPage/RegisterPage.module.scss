@@ -1,8 +1,9 @@
-.loginForm {
+.registerForm {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
+    position: relative;
 
     input {
         background-color: rgb(126, 126, 209);
@@ -23,4 +24,25 @@
         display: flex;
         gap: 2rem;
     }
+}
+
+.validationError {
+    position: fixed;
+    right: 0;
+    top: 10rem;
+    z-index: 15;
+    font-size: 1.25rem;
+    display: flex;
+    padding: 1rem 1.5rem;
+    background-color: var(--error);
+    border-left: 5px solid var(--errorDark);
+    transition: .3s;
+}
+
+.validationErrorClosed {
+    transform: translateX(100%);
+}
+
+.validationErrorOpened {
+    transform: translateX(0%);
 }
