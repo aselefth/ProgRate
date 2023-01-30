@@ -8,6 +8,7 @@ import CommentsPage from "./pages/CommentsPage/CommentsPage"
 import HomePage from "./pages/HomePage/HomePage"
 import LoginPage from "./pages/LoginPage/LoginPage"
 import RegisterPage from "./pages/RegisterPage/RegisterPage"
+import SearchPostsPage from "./pages/SearchPostsPage/SearchPostsPage"
 import UserPostsPage from "./pages/UserPostsPage/UserPostsPage"
 import store from "./store/store"
 
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
             {
                 path: '/users/:userId/posts',
                 element: <UserPostsPage />
+            },
+            {
+                path: '/search/:searchTitle',
+                element: <SearchPostsPage />
             }
         ],
     },

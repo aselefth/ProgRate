@@ -7,12 +7,12 @@ import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import Button from "../Button/Button"
 import { useNavigate } from "react-router-dom"
 import { setCredentials } from "../../store/Slices/authSlice"
+import { changeSearch } from "../../store/Slices/InterfaceSlice"
 
 export const Navigation: FC = () => {
     const router = useNavigate()
     const isLogged = useAppSelector((state) => state.authSlice.isLogged)
     const dispatch = useAppDispatch()
-    
 
     useEffect(() => {
         const token = localStorage.getItem("token")
@@ -22,7 +22,7 @@ export const Navigation: FC = () => {
     return (
         <nav className={styles.navBar}>
             <div className={styles.navContainer}>
-                <Link to="/">
+                <Link to="/" onClick={() => dispatch(changeSearch(""))}>
                     <img
                         src={laptop}
                         alt="logo"
@@ -32,9 +32,25 @@ export const Navigation: FC = () => {
                 </Link>
                 <Search />
                 {isLogged ? (
-                    <Button onclick={() => router("/account")} fontSize='1.5rem'>account</Button>
+                    <Button
+                        onclick={() => {
+                            router("/account")
+                            dispatch(changeSearch(""))
+                        }}
+                        fontSize="1.5rem"
+                    >
+                        account
+                    </Button>
                 ) : (
-                    <Button onclick={() => router("/login")} fontSize='1.5rem'>login</Button>
+                    <Button
+                        onclick={() => {
+                            router("/login")
+                            dispatch(changeSearch(""))
+                        }}
+                        fontSize="1.5rem"
+                    >
+                        login
+                    </Button>
                 )}
             </div>
         </nav>

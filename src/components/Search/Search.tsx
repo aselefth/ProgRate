@@ -1,4 +1,5 @@
 import { FC, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import search from "../../assets/search.svg"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { useDebounce } from "../../hooks/useDebounce"
@@ -10,6 +11,7 @@ import styles from "./Search.module.scss"
 
 export const Search: FC = () => {
     const dispatch = useAppDispatch()
+    const router = useNavigate()
     const isModalOpened = useAppSelector(
         (state) => state.InterfaceSlice.isAddPostModalOpened
     )
@@ -33,7 +35,7 @@ export const Search: FC = () => {
                 }}
                 onBlur={() => setTimeout(() => setIsSearching(false), 100)}
             />
-            <span className={styles.searchBtn}>
+            <span className={styles.searchBtn} onClick={() => router(`/search/${value}`)}>
                 <img src={search} alt="search" width="30" />
             </span>
 
@@ -44,14 +46,18 @@ export const Search: FC = () => {
                         : styles.searchModalClosed
                 }`}
             >
-                {posts && posts.length !== 0 ? (
-                    posts.map((post) => (
-                        <SearchPost key={post.postId} post={post} />
-                    ))
+                {posts ? (
+                    posts.length !== 0 ? (
+                        posts.map((post) => (
+                            <SearchPost key={post.postId} post={post} />
+                        ))
+                        
+                    ) : (
+                        <span className={styles.noResults}>no results</span>
+                    )
                 ) : (
                     <span className={styles.noResults}>no results</span>
                 )}
-                {<span className={styles.noResults}>no results</span>}
             </div>
         </div>
     )
