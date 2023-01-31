@@ -20,6 +20,7 @@ const LoginPage: FC = () => {
         handleAuth,
         handleChangeLogin,
         handleChangePassword,
+        error
     } = useLogin()
 
     return (
@@ -27,8 +28,13 @@ const LoginPage: FC = () => {
             className={styles.loginForm}
             onSubmit={(e) => {
                 e.preventDefault()
+
                 if (loginValidation({ userName, password })) {
-                    handleAuth({ userName, password })
+                    
+                    const res = handleAuth({ userName, password })
+                    if (error.length !== 0) {
+                        setIsValidationError(true)
+                    }
                 } else {
                     setIsValidationError(true)
                 }

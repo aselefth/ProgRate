@@ -5,10 +5,12 @@ import styles from "./CreatePostModal.module.scss"
 import { useCreatePostMutation } from "../../store/Api/postsSlice"
 import { ICreatePost } from "../../types/types"
 import Button from "../Button/Button"
+import Error from "../Error/Error"
 
 const CreatePostModal: FC = () => {
     const [title, setTitle] = useState("")
     const [plot, setPlot] = useState("")
+    const [isValidationError, setIsValidationError] = useState(false)
     const dispatch = useAppDispatch()
     const [createPost] = useCreatePostMutation()
     const isModalOpened = useAppSelector(
@@ -16,10 +18,18 @@ const CreatePostModal: FC = () => {
     )
 
     async function handleCreatePost(post: ICreatePost) {
-        await createPost(post)
-        dispatch(toggleModal())
-        setTitle("")
-        setPlot("")
+        try {
+            if (post.plot.length !== 0 || post.title.length > 2) {
+                await createPost(post)
+                dispatch(toggleModal())
+                setTitle("")
+                setPlot("")
+            } else {
+                setIsValidationError(true)
+            }
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     return (
@@ -35,6 +45,10 @@ const CreatePostModal: FC = () => {
                     : styles.modalWrapperClosed
             } ${styles.modalWrapper}`}
         >
+            <Error
+                isError={isValidationError}
+                setIsError={setIsValidationError}
+            />
             <form
                 onClick={(event) => {
                     event.stopPropagation()
