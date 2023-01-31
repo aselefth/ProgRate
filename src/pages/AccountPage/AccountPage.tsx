@@ -11,7 +11,6 @@ const AccountPage: FC = () => {
     const { data: user } = useGetUserQuery(undefined)
     const dispatch = useAppDispatch()
     const router = useNavigate()
-    
 
     const logout = () => {
         localStorage.removeItem("token")
@@ -41,14 +40,18 @@ const AccountPage: FC = () => {
                             <td>full name</td>
                             <td>{user?.fullName}</td>
                             <td>
-                                <Button fontSize="1.5rem">change</Button>
+                                <ButtonLink route="account/change">
+                                    change
+                                </ButtonLink>
                             </td>
                         </tr>
                         <tr>
                             <td>email</td>
                             <td>{user?.email}</td>
                             <td>
-                                <Button fontSize="1.5rem">change</Button>
+                                <ButtonLink route="account/change">
+                                    change
+                                </ButtonLink>
                             </td>
                         </tr>
                     </tbody>

@@ -16,6 +16,11 @@ export interface IUser {
     email: string
 }
 
+export interface IUserUpdate {
+    userName: string
+    fullName: string
+}
+
 export interface ICreatePost {
     title: string
     plot: string

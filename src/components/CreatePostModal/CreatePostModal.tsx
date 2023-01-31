@@ -6,6 +6,7 @@ import { useCreatePostMutation } from "../../store/Api/postsSlice"
 import { ICreatePost } from "../../types/types"
 import Button from "../Button/Button"
 import Error from "../Error/Error"
+import { postValidation } from "../../services/validation"
 
 const CreatePostModal: FC = () => {
     const [title, setTitle] = useState("")
@@ -19,7 +20,7 @@ const CreatePostModal: FC = () => {
 
     async function handleCreatePost(post: ICreatePost) {
         try {
-            if (post.plot.length !== 0 || post.title.length > 2) {
+            if (postValidation(post)) {
                 await createPost(post)
                 dispatch(toggleModal())
                 setTitle("")

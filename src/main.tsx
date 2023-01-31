@@ -9,6 +9,7 @@ import HomePage from "./pages/HomePage/HomePage"
 import LoginPage from "./pages/LoginPage/LoginPage"
 import RegisterPage from "./pages/RegisterPage/RegisterPage"
 import SearchPostsPage from "./pages/SearchPostsPage/SearchPostsPage"
+import UpdateUserPage from "./pages/UpdateUserPage/UpdateUserPage"
 import UserPostsPage from "./pages/UserPostsPage/UserPostsPage"
 import store from "./store/store"
 
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/account",
-                element: <AccountPage />,
+                element: <AccountPage />
             },
             {
                 path: "/register",
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
             {
                 path: '/search/:searchTitle',
                 element: <SearchPostsPage />
+            },
+            {
+                path: '/account/change',
+                element: <UpdateUserPage />
             }
         ],
     },

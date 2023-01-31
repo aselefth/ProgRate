@@ -1,4 +1,4 @@
-import { IUserLogin, IUserRegister } from "../types/types"
+import { ICreatePost, IUserLogin, IUserRegister } from "../types/types"
 
 export const loginValidation = ({ userName, password }: IUserLogin) => {
     let res = false
@@ -30,6 +30,15 @@ export const registerValidation = ({
         /[A-Za-z0-9]+@[A-Za-z0-9]+(.[A-z]{2,4}){1,2}/.test(email) &&
         /(^[A-Z]{1}[a-z]{2,10}) ([A-Z]{1}[a-z]{2,10})/.test(fullName)
     ) {
+        res = true
+    }
+
+    return res
+}
+
+export const postValidation = (post: ICreatePost) => {
+    let res = false
+    if (post.plot.length > 2 || post.title.length > 2) {
         res = true
     }
 
