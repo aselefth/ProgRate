@@ -8,7 +8,7 @@ export interface ButtonProps {
     fontSize?: string
     onclick?: () => void
     type?: "submit" | "reset" | "button"
-    mainColor?: '--buttonBlue' | '--buttonGray'
+    mainColor?: '--buttonBlue' | '--buttonGray' | '--error' | '--buttonHovered'
 }
 
 const Button: FC<ButtonProps> = ({

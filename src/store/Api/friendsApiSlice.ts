@@ -1,6 +1,6 @@
 import { apiSlice } from './apiSlice'
 
-export const friendsApiSlice = apiSlice.injectEndpoints({
+const friendsApiSlice = apiSlice.injectEndpoints({
     endpoints: (build) => ({
         getFriends: build.query({
             query: () => ({
@@ -16,7 +16,7 @@ export const friendsApiSlice = apiSlice.injectEndpoints({
         }),
         sendFriendRequest: build.mutation({
             query: (userId: string) => ({
-                url: `/request/addrequest/?targetUserId=${userId}`,
+                url: `/request/addrequest?targerUserId=${userId}`,
                 method: 'POST',
             }),
             invalidatesTags: ['App'],
@@ -30,7 +30,7 @@ export const friendsApiSlice = apiSlice.injectEndpoints({
         }),
         acceptFriendRequest: build.mutation({
             query: (requestId: number) => ({
-                url: `/request/accept/?requestId=${requestId}`,
+                url: `/request/accept?requestId=${requestId}`,
                 method: 'POST',
             }),
             invalidatesTags: ['App'],
@@ -43,5 +43,5 @@ export const {
     useRejectFriendRequestMutation,
     useAcceptFriendRequestMutation,
     useGetFriendRequestsQuery,
-    useGetFriendsQuery
+    useGetFriendsQuery,
 } = friendsApiSlice

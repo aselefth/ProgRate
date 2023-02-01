@@ -6,11 +6,14 @@ import { FC, useEffect, useState } from "react"
 import Button from "../../components/Button/Button"
 import { data } from "autoprefixer"
 import Pagination from "../../components/Pagination/Pagination"
+import { useAppSelector } from "../../hooks/redux"
 
 const HomePage: FC = () => {
     const [pageNum, setPageNum] = useState(1)
     const [isFetching, setIsFetching] = useState(true)
-    const { data } = useGetAllPostsQuery(pageNum)
+    const isLogged = useAppSelector(state => state.authSlice.isLogged)
+    const { data } = useGetAllPostsQuery(pageNum, {skip: !isLogged})
+    
 
     return (
         <div className={styles.homePageWrapper}>

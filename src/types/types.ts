@@ -46,3 +46,17 @@ export interface ICreateComment {
     postId: number
     comment: { message: string }
 }
+
+export interface IFriendRequest {
+    issuer_id: string
+    request_id: number
+    target_id: string
+}
+
+
+export interface IFriend {
+    email: string
+    fullName: string
+    userId: string
+    userName: string
+}

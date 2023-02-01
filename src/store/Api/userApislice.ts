@@ -29,7 +29,7 @@ const userApiSlice = apiSlice.injectEndpoints({
                 body
             }),
             invalidatesTags: ['App']
-        })
+        }),
     })
 })
 

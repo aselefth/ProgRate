@@ -5,9 +5,12 @@ import Layout from "./components/Layout/Layout"
 import "./index.scss"
 import AccountPage from "./pages/AccountPage/AccountPage"
 import CommentsPage from "./pages/CommentsPage/CommentsPage"
+import FriendsMainPage from "./pages/FriendsMainPage/FriendsMainPage"
+import FriendsPage from "./pages/FriendsPage/FriendsPage"
 import HomePage from "./pages/HomePage/HomePage"
 import LoginPage from "./pages/LoginPage/LoginPage"
 import RegisterPage from "./pages/RegisterPage/RegisterPage"
+import RequestsPage from "./pages/RequestsPage/RequestsPage"
 import SearchPostsPage from "./pages/SearchPostsPage/SearchPostsPage"
 import UpdateUserPage from "./pages/UpdateUserPage/UpdateUserPage"
 import UserPostsPage from "./pages/UserPostsPage/UserPostsPage"
@@ -49,6 +52,19 @@ const router = createBrowserRouter([
             {
                 path: '/account/change',
                 element: <UpdateUserPage />
+            }, {
+                path: '/account/friends',
+                element: <FriendsMainPage />,
+                children: [
+                    {
+                        path: '/account/friends',
+                        element: <FriendsPage />
+                    },
+                    {
+                        path: '/account/friends/requests',
+                        element: <RequestsPage />
+                    }
+                ]
             }
         ],
     },

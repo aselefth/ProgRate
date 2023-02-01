@@ -34,7 +34,7 @@ export const Post: FC<PostProps> = ({ post }) => {
     const { data: isLiked } = useCheckLikeQuery(post.postId, {
         skip: !isLogged,
     })
-    const { data: currentUser } = useGetUserQuery(undefined)
+    const { data: currentUser } = useGetUserQuery(undefined, {skip: !isLogged})
     const dispatch = useAppDispatch()
 
     async function handleLikePost(likeid: number) {

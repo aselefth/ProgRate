@@ -59,20 +59,7 @@ const postsSlice = apiSlice.injectEndpoints({
             }),
             providesTags: ["App"],
         }),
-        getComments: build.query<IComment[], number>({
-            query: (postId) => ({
-                url: `/comment/getpostcomments/?postId=${postId}`,
-            }),
-            providesTags: ["App"],
-        }),
-        addComment: build.mutation<IComment, ICreateComment>({
-            query: (body) => ({
-                url: `/comment/addcomment/?postId=${body.postId}`,
-                body: body.comment,
-                method: "POST",
-            }),
-            invalidatesTags: ["App"],
-        }),
+       
         deletePost: build.mutation({
             query: (postId: number) => ({
                 url: `post/deletepost/?postId=${postId}`,
@@ -90,8 +77,6 @@ export const {
     useCreatePostMutation,
     useLikePostMutation,
     useCheckLikeQuery,
-    useGetCommentsQuery,
-    useAddCommentMutation,
     useGetUserPostsQuery,
     useDeletePostMutation,
     useUpdatePostMutation,
