@@ -13,16 +13,18 @@ import styles from "./UpdateUserPage.module.scss"
 
 export default function UpdateUserPage() {
     const { data: user } = useGetUserQuery(undefined)
-    
+
     const [changeUser] = useChangeUserMutation()
-    const [userName, setUserName] = useState('')
-    const [fullName, setFullName] = useState('')
+    const [userName, setUserName] = useState("")
+    const [fullName, setFullName] = useState("")
+    const [email, setEmail] = useState("")
     const dispatch = useAppDispatch()
     const router = useNavigate()
 
     useEffect(() => {
         setUserName(String(user?.userName))
         setFullName(String(user?.fullName))
+        setEmail(String(user?.email))
     }, [user])
 
     async function handleUpdateUser(userUpdate: IUserUpdate) {
@@ -65,11 +67,22 @@ export default function UpdateUserPage() {
                                 />
                             </td>
                         </tr>
+                        <tr>
+                            <td>email</td>
+                            <td>
+                                <input
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
             <div className="flex gap-4">
-                <Button fontSize="1.5rem" onclick={() => router('/account')}>quit</Button>
+                <Button fontSize="1.5rem" onclick={() => router("/account")}>
+                    quit
+                </Button>
                 <Button
                     fontSize="1.5rem"
                     onclick={() => {
@@ -79,7 +92,7 @@ export default function UpdateUserPage() {
                             fullName &&
                             fullName.length > 5
                         ) {
-                            handleUpdateUser({ userName, fullName})
+                            handleUpdateUser({ userName, fullName, email })
                             router("/account")
                         }
                     }}

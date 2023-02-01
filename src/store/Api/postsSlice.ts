@@ -3,7 +3,7 @@ import { apiSlice } from "./apiSlice"
 
 const postsSlice = apiSlice.injectEndpoints({
     endpoints: (build) => ({
-        getAllPosts: build.query<{page: IPost[], pages: number}, number>({
+        getAllPosts: build.query<{ page: IPost[]; pages: number }, number>({
             query: (pageNum) => ({
                 url: `/post/selectall/?pageNum=${pageNum}`,
             }),
@@ -11,7 +11,7 @@ const postsSlice = apiSlice.injectEndpoints({
         }),
         getUserPosts: build.query<IPost[], string>({
             query: (userId) => ({
-                url: `/post/selectuserposts/?userId=${userId}`
+                url: `/post/selectuserposts/?userId=${userId}`,
             }),
             providesTags: ["App"],
         }),
@@ -23,15 +23,26 @@ const postsSlice = apiSlice.injectEndpoints({
         }),
         getPostsByTitle: build.query<IPost[], string>({
             query: (postTitle) => ({
-                url: `/post/selectbytitle/?querry=${postTitle}`
+                url: `/post/selectbytitle/?querry=${postTitle}`,
             }),
-            providesTags: ['App']
+            providesTags: ["App"],
         }),
         createPost: build.mutation<ICreatePost, ICreatePost>({
             query: (body) => ({
                 url: "post/createpost",
                 method: "POST",
                 body,
+            }),
+            invalidatesTags: ["App"],
+        }),
+        updatePost: build.mutation<
+            IPost,
+            { postId: number; body: ICreatePost }
+        >({
+            query: (body) => ({
+                url: `post/updatepost/?postId=${body.postId}`,
+                method: "POST",
+                body: body.body,
             }),
             invalidatesTags: ["App"],
         }),
@@ -65,10 +76,10 @@ const postsSlice = apiSlice.injectEndpoints({
         deletePost: build.mutation({
             query: (postId: number) => ({
                 url: `post/deletepost/?postId=${postId}`,
-                method: 'POST'
+                method: "POST",
             }),
             invalidatesTags: ["App"],
-        })
+        }),
     }),
 })
 
@@ -82,5 +93,6 @@ export const {
     useGetCommentsQuery,
     useAddCommentMutation,
     useGetUserPostsQuery,
-    useDeletePostMutation
+    useDeletePostMutation,
+    useUpdatePostMutation,
 } = postsSlice

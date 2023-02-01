@@ -19,6 +19,7 @@ export interface IUser {
 export interface IUserUpdate {
     userName: string
     fullName: string
+    email: string
 }
 
 export interface ICreatePost {
