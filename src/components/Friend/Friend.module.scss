@@ -1,0 +1,32 @@
+.friendWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--primary);
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    width: 700px;
+    padding: .5rem;
+
+    .friendLeft {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        span {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background-color: purple;
+        }
+
+        p {
+            font-weight: bold;
+        }
+    }
+
+    .friendRight {
+        display: flex;
+        gap: 1rem;
+    }
+}

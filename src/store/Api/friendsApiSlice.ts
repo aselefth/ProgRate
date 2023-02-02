@@ -1,14 +1,22 @@
+import { IFriend, IFriendRequest } from '../../types/types'
 import { apiSlice } from './apiSlice'
 
 const friendsApiSlice = apiSlice.injectEndpoints({
     endpoints: (build) => ({
-        getFriends: build.query({
+        getFriends: build.query<IFriend[], undefined>({
             query: () => ({
                 url: '/friend/getfriends'
             }),
             providesTags: ['App']
         }),
-        getFriendRequests: build.query({
+        deleteFriend: build.mutation({
+            query: (deletedId: string) => ({
+                url: `/friend/deletefriend?deletedId=${deletedId}`,
+                method: 'POST'
+            }),
+            invalidatesTags: ['App']
+        }),
+        getFriendRequests: build.query<IFriendRequest[], undefined>({
             query: () => ({
                 url: '/request/getrequests'
             }),
@@ -44,4 +52,5 @@ export const {
     useAcceptFriendRequestMutation,
     useGetFriendRequestsQuery,
     useGetFriendsQuery,
+    useDeleteFriendMutation
 } = friendsApiSlice

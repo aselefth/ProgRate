@@ -17,11 +17,11 @@ export const Navigation: FC = () => {
     const isLogged = useAppSelector((state) => state.authSlice.isLogged)
     const dispatch = useAppDispatch()
     const { data: user } = useGetUserQuery(undefined, {
-        skip: !isLogged
+        skip: !isLogged,
     })
-    const {data: requests} = useGetFriendRequestsQuery(undefined, {skip: !isLogged})
-    console.log(requests);
-    
+    const { data: requests } = useGetFriendRequestsQuery(undefined, {
+        skip: !isLogged,
+    })
 
     useEffect(() => {
         const token = localStorage.getItem('token')
@@ -42,12 +42,9 @@ export const Navigation: FC = () => {
                 <Search />
                 {user ? (
                     <div className="flex gap-2">
-                        <ButtonLink
-                            route={`account/friends`}
-                            fontSize="1.5rem"
-                        >
+                        <ButtonLink route={`account/friends`} fontSize="1.5rem">
                             <span>friends</span>
-                            { requests && requests.length !== 0 && (
+                            {requests && requests.length !== 0 && (
                                 <p
                                     style={{ background: 'var(--buttonGray)' }}
                                     className="rounded px-2"

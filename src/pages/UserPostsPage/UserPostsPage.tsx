@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import Post from '../../components/Post/Post'
 import { useGetUserPostsQuery } from '../../store/Api/postsSlice'
-import { useGetUserByIdQuery } from '../../store/Api/userApislice'
+import { useGetUserByIdQuery, useGetUserQuery } from '../../store/Api/userApislice'
 import {
     useAcceptFriendRequestMutation,
     useGetFriendRequestsQuery,
@@ -25,6 +25,9 @@ export default function UserPostsPage() {
     const [acceptFriendRequest] = useAcceptFriendRequestMutation()
     const { data: requests } = useGetFriendRequestsQuery(undefined)
     const { data: friends } = useGetFriendsQuery(undefined)
+    const {data: currentUser} = useGetUserQuery(undefined)
+    console.log(requests);
+    
 
     useEffect(() => {
         if (requests) {
@@ -68,24 +71,27 @@ export default function UserPostsPage() {
             <div className={styles.hero}>
                 <h1>
                     <span>@{user?.userName}</span>
-                    {!isFriend && (
-                        <Button
-                            fontSize="1.5rem"
-                            onclick={() => {
-                                if (friendRequest !== null) {
-                                    handleAcceptFriendRequest(
-                                        friendRequest.request_id
-                                    )
-                                } else if (friendRequest === null) {
-                                    handleSendFriendRequest(String(userId))
-                                }
-                            }}
-                        >
-                            {friendRequest === null
-                                ? 'send request'
-                                : 'add to friends'}
-                        </Button>
-                    )}
+                    {!isFriend &&
+                        user &&
+                        currentUser &&
+                        user.userName !== currentUser.userName && (
+                            <Button
+                                fontSize="1.5rem"
+                                onclick={() => {
+                                    if (friendRequest !== null) {
+                                        handleAcceptFriendRequest(
+                                            friendRequest.request_id
+                                        )
+                                    } else if (friendRequest === null) {
+                                        handleSendFriendRequest(String(userId))
+                                    }
+                                }}
+                            >
+                                {friendRequest === null
+                                    ? 'send request'
+                                    : 'add to friends'}
+                            </Button>
+                        )}
                     {isFriend && (
                         <Button fontSize="1.5rem" mainColor="--error">
                             delete from friends

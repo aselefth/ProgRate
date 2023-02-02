@@ -1,0 +1,68 @@
+import { useNavigate } from 'react-router-dom'
+import {
+    useAcceptFriendRequestMutation,
+    useRejectFriendRequestMutation,
+} from '../../store/Api/friendsApiSlice'
+import { useGetUserByIdQuery } from '../../store/Api/userApislice'
+import { IFriendRequest } from '../../types/types'
+import Button from '../Button/Button'
+import styles from './FriendRequest.module.scss'
+
+export interface FriendRequestProps {
+    request: IFriendRequest
+}
+
+export default function FriendRequest({ request }: FriendRequestProps) {
+    const { data: user } = useGetUserByIdQuery(request.issuer_id)
+    const [acceptFriendRequest] = useAcceptFriendRequestMutation()
+    const [declineFriendRequest] = useRejectFriendRequestMutation()
+    const router = useNavigate()
+
+    async function handleAcceptFriendRequest(requestId: number) {
+        try {
+            const res = await acceptFriendRequest(requestId)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    async function handleDeclineFriendRequest(requestId: number) {
+        try {
+            const res = await declineFriendRequest(requestId)
+            console.log(res)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    return (
+        <div className={styles.friendWrapper}>
+            <div className={styles.friendLeft}>
+                <span></span>
+                <p onClick={() => router(`/users/${request.issuer_id}/posts`)}>
+                    @{user?.userName}
+                </p>
+            </div>
+
+            <div className={styles.friendRight}>
+                <Button
+                    fontSize="1.5rem"
+                    onclick={() => {
+                        handleAcceptFriendRequest(request.request_id)
+                    }}
+                >
+                    accept
+                </Button>
+                <Button
+                    fontSize="1.5rem"
+                    mainColor="--error"
+                    onclick={() => {
+                        handleDeclineFriendRequest(request.request_id)
+                    }}
+                >
+                    decline
+                </Button>
+            </div>
+        </div>
+    )
+}

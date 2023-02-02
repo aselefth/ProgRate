@@ -2,7 +2,7 @@ import { FC } from "react"
 import styles from "./Button.module.scss"
 
 export interface ButtonProps {
-    children: string
+    children?: string
     width?: string
     height?: string
     fontSize?: string
