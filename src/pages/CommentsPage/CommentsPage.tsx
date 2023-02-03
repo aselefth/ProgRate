@@ -30,7 +30,7 @@ export default function CommentsPage() {
                 router('/login')
             }
         } catch (e) {
-            console.log(e, 'fghfghfdfghdfgh')
+            console.log(e)
         }
     }
 

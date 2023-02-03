@@ -1,26 +1,25 @@
-import { useNavigate } from "react-router-dom"
-import { FC, useEffect, useState } from "react"
-import Button from "../../components/Button/Button"
-import { useRegisterUserMutation } from "../../store/Api/userApislice"
-import { IUserRegister } from "../../types/types"
-import styles from "./RegisterPage.module.scss"
-import { registerValidation } from "../../services/validation"
-import Error from "../../components/Error/Error"
+import { useNavigate } from 'react-router-dom'
+import { FC, useState } from 'react'
+import Button from '../../components/Button/Button'
+import { useRegisterUserMutation } from '../../store/Api/userApislice'
+import { IUserRegister } from '../../types/types'
+import styles from './RegisterPage.module.scss'
+import { registerValidation } from '../../services/validation'
+import Error from '../../components/Error/Error'
 
 const RegisterPage: FC = () => {
-    const [userName, setUserName] = useState("")
-    const [password, setPassword] = useState("")
-    const [fullName, setFullName] = useState("")
-    const [email, setEmail] = useState("")
+    const [userName, setUserName] = useState('')
+    const [password, setPassword] = useState('')
+    const [fullName, setFullName] = useState('')
+    const [email, setEmail] = useState('')
     const [isValidationError, setIsValidationError] = useState(false)
     const [register] = useRegisterUserMutation()
     const router = useNavigate()
 
     async function handleRegister(user: IUserRegister) {
         try {
-            const res = await register(user)
-            console.log(res)
-            router("/login")
+            await register(user)
+            router('/login')
         } catch (e) {
             console.log(e)
         }
@@ -72,7 +71,7 @@ const RegisterPage: FC = () => {
                 <Button fontSize="1.5rem" type="submit">
                     register
                 </Button>
-                <Button fontSize="1.5rem" onclick={() => router("/login")}>
+                <Button fontSize="1.5rem" onclick={() => router('/login')}>
                     have account?
                 </Button>
             </div>

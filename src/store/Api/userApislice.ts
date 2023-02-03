@@ -20,7 +20,8 @@ const userApiSlice = apiSlice.injectEndpoints({
                 url: '/user/register',
                 body,
                 method: 'POST'
-            })
+            }),
+            invalidatesTags: ['App']
         }),
         changeUser: build.mutation<IUser, IUserUpdate>({
             query: (body) => ({
@@ -33,4 +34,4 @@ const userApiSlice = apiSlice.injectEndpoints({
     })
 })
 
-export const {useGetUserQuery, useGetUserByIdQuery, useRegisterUserMutation, useChangeUserMutation} = userApiSlice
+export const {useLazyGetUserQuery, useGetUserQuery, useGetUserByIdQuery, useRegisterUserMutation, useChangeUserMutation} = userApiSlice

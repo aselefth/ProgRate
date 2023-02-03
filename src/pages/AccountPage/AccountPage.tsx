@@ -1,21 +1,22 @@
-import styles from "./AccountPage.module.scss"
-import ButtonLink from "../../components/ButtonLink/ButtonLink"
-import Button from "../../components/Button/Button"
-import { useGetUserQuery } from "../../store/Api/userApislice"
-import { useAppDispatch } from "../../hooks/redux"
-import { setCredentials } from "../../store/Slices/authSlice"
-import { useNavigate } from "react-router-dom"
-import { FC } from "react"
+import styles from './AccountPage.module.scss'
+import ButtonLink from '../../components/ButtonLink/ButtonLink'
+import Button from '../../components/Button/Button'
+import { useGetUserQuery } from '../../store/Api/userApislice'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
+import { logOut } from '../../store/Slices/authSlice'
+import { useNavigate } from 'react-router-dom'
+import { FC } from 'react'
 
 const AccountPage: FC = () => {
-    const { data: user } = useGetUserQuery(undefined)
+    const isLogged = useAppSelector((state) => state.authSlice.isLogged)
+    const { data: user } = useGetUserQuery(undefined, { skip: !isLogged })
     const dispatch = useAppDispatch()
     const router = useNavigate()
 
     const logout = () => {
-        localStorage.removeItem("token")
-        dispatch(setCredentials({ token: null, isLogged: false }))
-        router("/login")
+        localStorage.removeItem('token')
+        dispatch(logOut())
+        router('/login')
     }
 
     return (

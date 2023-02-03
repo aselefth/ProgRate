@@ -43,6 +43,12 @@ const friendsApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ['App'],
         }),
+        deleteFriendRequest: build.mutation({
+            query: (requestId: number) => ({
+                url: `/request/deleterequest?requestId=${requestId}`,
+                method: 'POST'
+            })
+        })
     }),
 })
 
@@ -51,6 +57,8 @@ export const {
     useRejectFriendRequestMutation,
     useAcceptFriendRequestMutation,
     useGetFriendRequestsQuery,
+    useLazyGetFriendRequestsQuery,
     useGetFriendsQuery,
-    useDeleteFriendMutation
+    useDeleteFriendMutation,
+    useDeleteFriendRequestMutation
 } = friendsApiSlice

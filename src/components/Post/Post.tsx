@@ -1,24 +1,26 @@
-import { IPost } from "../../types/types"
-import dislike from "../../assets/like.svg"
-import like from "../../assets/likePressed.svg"
-import comment from "../../assets/comment.svg"
-import trash from "../../assets/trash.svg"
-import pen from "../../assets/pen.svg"
-import styles from "./post.module.scss"
+import { IPost } from '../../types/types'
+import dislike from '../../assets/like.svg'
+import like from '../../assets/likePressed.svg'
+import comment from '../../assets/comment.svg'
+import trash from '../../assets/trash.svg'
+import pen from '../../assets/pen.svg'
+import styles from './post.module.scss'
 import {
     useGetUserByIdQuery,
     useGetUserQuery,
-} from "../../store/Api/userApislice"
+} from '../../store/Api/userApislice'
 import {
     useCheckLikeQuery,
     useDeletePostMutation,
     useLikePostMutation,
-} from "../../store/Api/postsSlice"
-import { FC } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { useAppDispatch, useAppSelector } from "../../hooks/redux"
-import UpdatePostModal from "../UpdatePostModal/UpdatePostModal"
-import { setUpdatePostDto, toggleUpdateModal } from "../../store/Slices/InterfaceSlice"
+} from '../../store/Api/postsSlice'
+import { FC } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
+import {
+    setUpdatePostDto,
+    toggleUpdateModal,
+} from '../../store/Slices/InterfaceSlice'
 
 export interface PostProps {
     post: IPost
@@ -34,7 +36,9 @@ export const Post: FC<PostProps> = ({ post }) => {
     const { data: isLiked } = useCheckLikeQuery(post.postId, {
         skip: !isLogged,
     })
-    const { data: currentUser } = useGetUserQuery(undefined, {skip: !isLogged})
+    const { data: currentUser } = useGetUserQuery(undefined, {
+        skip: !isLogged,
+    })
     const dispatch = useAppDispatch()
 
     async function handleLikePost(likeid: number) {
@@ -42,7 +46,7 @@ export const Post: FC<PostProps> = ({ post }) => {
             if (isLogged) {
                 const res = await likePost(likeid)
             } else {
-                router("/login")
+                router('/login')
             }
         } catch (e) {
             console.log(e)
@@ -51,8 +55,8 @@ export const Post: FC<PostProps> = ({ post }) => {
 
     async function handleDeletePost(postId: number) {
         try {
-            if (confirm("delete post?")) await deletePost(postId)
-            router("/")
+            if (confirm('delete post?')) await deletePost(postId)
+            router('/')
         } catch (e) {
             console.log(e)
         }
@@ -106,7 +110,11 @@ export const Post: FC<PostProps> = ({ post }) => {
                                 width="24"
                                 alt="comment"
                                 onClick={() => {
-                                    dispatch(setUpdatePostDto({updatePostDto: post}))
+                                    dispatch(
+                                        setUpdatePostDto({
+                                            updatePostDto: post,
+                                        })
+                                    )
                                     dispatch(toggleUpdateModal())
                                 }}
                             />

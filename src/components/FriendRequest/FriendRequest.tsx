@@ -20,7 +20,7 @@ export default function FriendRequest({ request }: FriendRequestProps) {
 
     async function handleAcceptFriendRequest(requestId: number) {
         try {
-            const res = await acceptFriendRequest(requestId)
+            await acceptFriendRequest(requestId)
         } catch (e) {
             console.log(e)
         }
@@ -28,8 +28,7 @@ export default function FriendRequest({ request }: FriendRequestProps) {
 
     async function handleDeclineFriendRequest(requestId: number) {
         try {
-            const res = await declineFriendRequest(requestId)
-            console.log(res)
+            await declineFriendRequest(requestId)
         } catch (e) {
             console.log(e)
         }

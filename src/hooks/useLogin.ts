@@ -1,14 +1,14 @@
-import { ChangeEvent, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { useLoginMutation } from "../store/Api/authApiSlice"
-import { setCredentials } from "../store/Slices/authSlice"
-import { IUserLogin } from "../types/types"
-import { useAppDispatch } from "./redux"
+import { ChangeEvent, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useLoginMutation } from '../store/Api/authApiSlice'
+import { setCredentials } from '../store/Slices/authSlice'
+import { IUserLogin } from '../types/types'
+import { useAppDispatch } from './redux'
 
 export function useLogin() {
-    const [userName, setUserName] = useState("")
-    const [password, setPassword] = useState("")
-    const [error, setError] = useState("")
+    const [userName, setUserName] = useState('')
+    const [password, setPassword] = useState('')
+    const [error, setError] = useState('')
 
     const dispatch = useAppDispatch()
     const [auth] = useLoginMutation()
@@ -28,10 +28,12 @@ export function useLogin() {
             }).unwrap()
 
             if (res.token) {
-                localStorage.setItem("token", res.token)
+                localStorage.setItem('token', res.token)
                 dispatch(setCredentials({ token: res.token, isLogged: true }))
-                router("/")
-                setError("")
+                router('/')
+                setError('')
+                setUserName('')
+                setPassword('')
             }
         } catch (e: any) {
             setError(e.data)

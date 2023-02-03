@@ -1,14 +1,10 @@
-import Button from "../../components/Button/Button"
-import { useAppDispatch } from "../../hooks/redux"
-import styles from "./LoginPage.module.scss"
-import { useLoginMutation } from "../../store/Api/authApiSlice"
-import { setCredentials } from "../../store/Slices/authSlice"
-import { IUserLogin } from "../../types/types"
-import { FC, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { useLogin } from "../../hooks/useLogin"
-import { loginValidation } from "../../services/validation"
-import Error from "../../components/Error/Error"
+import Button from '../../components/Button/Button'
+import styles from './LoginPage.module.scss'
+import { FC, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useLogin } from '../../hooks/useLogin'
+import { loginValidation } from '../../services/validation'
+import Error from '../../components/Error/Error'
 
 const LoginPage: FC = () => {
     const router = useNavigate()
@@ -20,7 +16,7 @@ const LoginPage: FC = () => {
         handleAuth,
         handleChangeLogin,
         handleChangePassword,
-        error
+        error,
     } = useLogin()
 
     return (
@@ -30,8 +26,8 @@ const LoginPage: FC = () => {
                 e.preventDefault()
 
                 if (loginValidation({ userName, password })) {
-                    
-                    const res = handleAuth({ userName, password })
+                    handleAuth({ userName, password })
+
                     if (error.length !== 0) {
                         setIsValidationError(true)
                     }
@@ -63,7 +59,7 @@ const LoginPage: FC = () => {
                 <Button
                     fontSize="1.5rem"
                     onclick={() => {
-                        router("/register")
+                        router('/register')
                     }}
                 >
                     no account?

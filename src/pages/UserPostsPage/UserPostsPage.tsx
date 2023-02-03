@@ -2,9 +2,13 @@ import { useParams } from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import Post from '../../components/Post/Post'
 import { useGetUserPostsQuery } from '../../store/Api/postsSlice'
-import { useGetUserByIdQuery, useGetUserQuery } from '../../store/Api/userApislice'
+import {
+    useGetUserByIdQuery,
+    useGetUserQuery,
+} from '../../store/Api/userApislice'
 import {
     useAcceptFriendRequestMutation,
+    useDeleteFriendRequestMutation,
     useGetFriendRequestsQuery,
     useGetFriendsQuery,
     useSendFriendRequestMutation,
@@ -12,22 +16,25 @@ import {
 import styles from './UserPostsPage.module.scss'
 import { IFriend, IFriendRequest } from '../../types/types'
 import { useEffect, useState } from 'react'
+import { useAppSelector } from '../../hooks/redux'
 
 export default function UserPostsPage() {
     const [friendRequest, setFriendRequest] = useState<IFriendRequest | null>(
         null
     )
+    const isLogged = useAppSelector((state) => state.authSlice.isLogged)
     const [isFriend, setIsFriend] = useState(false)
     const { userId } = useParams()
     const { data: posts } = useGetUserPostsQuery(String(userId))
     const { data: user } = useGetUserByIdQuery(String(userId))
     const [sendFriendRequest] = useSendFriendRequestMutation()
     const [acceptFriendRequest] = useAcceptFriendRequestMutation()
+    const [deleteFriendRequest] = useDeleteFriendRequestMutation()
     const { data: requests } = useGetFriendRequestsQuery(undefined)
     const { data: friends } = useGetFriendsQuery(undefined)
-    const {data: currentUser} = useGetUserQuery(undefined)
-    console.log(requests);
-    
+    const { data: currentUser } = useGetUserQuery(undefined, {
+        skip: !isLogged,
+    })
 
     useEffect(() => {
         if (requests) {
@@ -51,8 +58,7 @@ export default function UserPostsPage() {
 
     async function handleSendFriendRequest(userId: string) {
         try {
-            const res = await sendFriendRequest(userId)
-            console.log(res)
+            await sendFriendRequest(userId)
         } catch (e) {
             console.log(e)
         }
@@ -60,7 +66,15 @@ export default function UserPostsPage() {
 
     async function handleAcceptFriendRequest(requestId: number) {
         try {
-            const res = await acceptFriendRequest(requestId)
+            await acceptFriendRequest(requestId)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    async function handleDeleteFriendRequest(requestId: number) {
+        try {
+            await deleteFriendRequest(requestId)
         } catch (e) {
             console.log(e)
         }

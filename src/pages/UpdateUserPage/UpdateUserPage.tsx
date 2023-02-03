@@ -1,24 +1,24 @@
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import Button from "../../components/Button/Button"
-import ButtonLink from "../../components/ButtonLink/ButtonLink"
-import { useAppDispatch } from "../../hooks/redux"
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import Button from '../../components/Button/Button'
+import ButtonLink from '../../components/ButtonLink/ButtonLink'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import {
     useChangeUserMutation,
     useGetUserQuery,
-} from "../../store/Api/userApislice"
-import { setCredentials } from "../../store/Slices/authSlice"
-import { IUserUpdate } from "../../types/types"
-import styles from "./UpdateUserPage.module.scss"
+} from '../../store/Api/userApislice'
+import { setCredentials } from '../../store/Slices/authSlice'
+import { setUpdatePostDto } from '../../store/Slices/InterfaceSlice'
+import { IUserUpdate } from '../../types/types'
+import styles from './UpdateUserPage.module.scss'
 
 export default function UpdateUserPage() {
-    const { data: user } = useGetUserQuery(undefined)
-
+    const isLogged = useAppSelector((state) => state.authSlice.isLogged)
+    const { data: user } = useGetUserQuery(undefined, { skip: !isLogged })
     const [changeUser] = useChangeUserMutation()
-    const [userName, setUserName] = useState("")
-    const [fullName, setFullName] = useState("")
-    const [email, setEmail] = useState("")
-    const dispatch = useAppDispatch()
+    const [userName, setUserName] = useState('')
+    const [fullName, setFullName] = useState('')
+    const [email, setEmail] = useState('')
     const router = useNavigate()
 
     useEffect(() => {
@@ -80,7 +80,7 @@ export default function UpdateUserPage() {
                 </table>
             </div>
             <div className="flex gap-4">
-                <Button fontSize="1.5rem" onclick={() => router("/account")}>
+                <Button fontSize="1.5rem" onclick={() => router('/account')}>
                     quit
                 </Button>
                 <Button
@@ -93,7 +93,7 @@ export default function UpdateUserPage() {
                             fullName.length > 5
                         ) {
                             handleUpdateUser({ userName, fullName, email })
-                            router("/account")
+                            router('/account')
                         }
                     }}
                 >

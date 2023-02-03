@@ -14,6 +14,7 @@ export interface IUser {
     userName: string
     fullName: string
     email: string
+    userId: string
 }
 
 export interface IUserUpdate {

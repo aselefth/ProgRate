@@ -21,6 +21,7 @@ export const authSlice = createSlice({
         },
         logOut: function (state) {
             state.token = null
+            state.isLogged = false
         }
     }
 })

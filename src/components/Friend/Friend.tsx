@@ -13,7 +13,7 @@ export default function Friend({ friend }: FriendProps) {
 
     async function handleDeleteFriend(friendId: string) {
         try {
-            const res = await deleteFriend(friendId)
+            await deleteFriend(friendId)
         } catch (e) {
             console.log(e)
         }

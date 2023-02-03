@@ -1,18 +1,18 @@
-import { FC, useEffect, useState } from "react"
-import { useAppDispatch, useAppSelector } from "../../hooks/redux"
-import { toggleModal, toggleUpdateModal } from "../../store/Slices/InterfaceSlice"
-import styles from "./UpdatePostModal.module.scss"
-import { useUpdatePostMutation } from "../../store/Api/postsSlice"
-import { ICreatePost, IPost } from "../../types/types"
-import Button from "../Button/Button"
-import Error from "../Error/Error"
-import { postValidation } from "../../services/validation"
+import { FC, useEffect, useState } from 'react'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
+import { toggleUpdateModal } from '../../store/Slices/InterfaceSlice'
+import styles from './UpdatePostModal.module.scss'
+import { useUpdatePostMutation } from '../../store/Api/postsSlice'
+import { ICreatePost, IPost } from '../../types/types'
+import Button from '../Button/Button'
+import Error from '../Error/Error'
+import { postValidation } from '../../services/validation'
 
 export interface CreatePostModalProps {
     post: IPost
 }
 
-const UpdatePostModal: FC<CreatePostModalProps> = ({post}) => {
+const UpdatePostModal: FC<CreatePostModalProps> = ({ post }) => {
     const [title, setTitle] = useState('')
     const [plot, setPlot] = useState('')
     const [isValidationError, setIsValidationError] = useState(false)
@@ -22,17 +22,16 @@ const UpdatePostModal: FC<CreatePostModalProps> = ({post}) => {
         (state) => state.InterfaceSlice.isUpdatePostModalOpened
     )
 
-    useEffect(() => {        
+    useEffect(() => {
         setTitle(post.title)
         setPlot(post.plot)
     }, [isModalOpened])
-    
 
     async function handleUpdatePost(updatePostDto: ICreatePost) {
         try {
             if (postValidation(post)) {
-               await updatePost({postId: post.postId, body: updatePostDto})
-               dispatch(toggleUpdateModal())
+                await updatePost({ postId: post.postId, body: updatePostDto })
+                dispatch(toggleUpdateModal())
             } else {
                 setIsValidationError(true)
             }
@@ -62,7 +61,7 @@ const UpdatePostModal: FC<CreatePostModalProps> = ({post}) => {
                 }}
                 onSubmit={(e) => {
                     e.preventDefault()
-                    handleUpdatePost({plot, title})
+                    handleUpdatePost({ plot, title })
                 }}
                 className={`${
                     isModalOpened ? styles.modalOpened : styles.modalClosed

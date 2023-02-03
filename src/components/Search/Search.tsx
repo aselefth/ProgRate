@@ -1,13 +1,12 @@
-import { FC, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import search from "../../assets/search.svg"
-import { useAppDispatch, useAppSelector } from "../../hooks/redux"
-import { useDebounce } from "../../hooks/useDebounce"
-import { useGetPostsByTitleQuery } from "../../store/Api/postsSlice"
-import { changeSearch, toggleModal } from "../../store/Slices/InterfaceSlice"
-import Button from "../Button/Button"
-import SearchPost from "../SearchPost/SearchPost"
-import styles from "./Search.module.scss"
+import { FC, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import search from '../../assets/search.svg'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
+import { useDebounce } from '../../hooks/useDebounce'
+import { useGetPostsByTitleQuery } from '../../store/Api/postsSlice'
+import { changeSearch, toggleModal } from '../../store/Slices/InterfaceSlice'
+import SearchPost from '../SearchPost/SearchPost'
+import styles from './Search.module.scss'
 
 export const Search: FC = () => {
     const dispatch = useAppDispatch()
@@ -35,7 +34,10 @@ export const Search: FC = () => {
                 }}
                 onBlur={() => setTimeout(() => setIsSearching(false), 100)}
             />
-            <span className={styles.searchBtn} onClick={() => router(`/search/${value}`)}>
+            <span
+                className={styles.searchBtn}
+                onClick={() => router(`/search/${value}`)}
+            >
                 <img src={search} alt="search" width="30" />
             </span>
 
@@ -51,7 +53,6 @@ export const Search: FC = () => {
                         posts.map((post) => (
                             <SearchPost key={post.postId} post={post} />
                         ))
-                        
                     ) : (
                         <span className={styles.noResults}>no results</span>
                     )
