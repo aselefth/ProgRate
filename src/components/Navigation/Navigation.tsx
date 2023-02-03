@@ -11,6 +11,7 @@ export const Navigation: FC = () => {
     const isLogged = useAppSelector((state) => state.authSlice.isLogged)
     const dispatch = useAppDispatch()
 
+
     return (
         <nav className={styles.navBar}>
             <div className={styles.navContainer}>
@@ -23,7 +24,7 @@ export const Navigation: FC = () => {
                     />
                 </Link>
                 <Search />
-                <TopBarNavigation isLogged={isLogged}/>
+                <TopBarNavigation />
             </div>
         </nav>
     )

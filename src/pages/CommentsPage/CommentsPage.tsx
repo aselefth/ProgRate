@@ -49,12 +49,6 @@ export default function CommentsPage() {
                 className={styles.commentForm}
                 onSubmit={(e) => {
                     e.preventDefault()
-
-                    const r = {
-                        postId: Number(post?.postId),
-                        comment: { message: comment },
-                    }
-                    console.log(r)
                     handleComment({
                         postId: Number(postId),
                         comment: { message: comment },

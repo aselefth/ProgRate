@@ -9,31 +9,17 @@ import { changeSearch } from '../../store/Slices/InterfaceSlice'
 import { IFriendRequest } from '../../types/types'
 import Button from '../Button/Button'
 import ButtonLink from '../ButtonLink/ButtonLink'
+import SpecialButtonLink from '../SpecialButtonLink/SpecialButtonLink'
 
-export interface TopBarNavigationProps {
-    isLogged: boolean
-}
-
-export default function TopBarNavigation({ isLogged }: TopBarNavigationProps) {
+export default function TopBarNavigation() {
+    const { isLogged } = useAppSelector((state) => state.authSlice)
     const dispatch = useAppDispatch()
     const router = useNavigate()
-    // const {data: requests} = useGetFriendRequestsQuery(undefined, {skip: !isLogged})    
-
     return (
         <>
             {isLogged ? (
                 <div className="flex gap-2">
-                    <ButtonLink route={`account/friends`} fontSize="1.5rem">
-                        <span>friends</span>
-                        {/* {requests && requests.length !== 0 && (
-                            <p
-                                style={{ background: 'var(--buttonGray)' }}
-                                className="rounded px-2"
-                            >
-                                !
-                            </p>
-                        )} */}
-                    </ButtonLink>
+                    <SpecialButtonLink />
                     <Button
                         onclick={() => {
                             router('/account')
