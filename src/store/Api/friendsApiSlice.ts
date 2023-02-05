@@ -48,6 +48,12 @@ const friendsApiSlice = apiSlice.injectEndpoints({
                 url: `/request/deleterequest?requestId=${requestId}`,
                 method: 'POST'
             })
+        }),
+        getMyFriendRequests: build.query<IFriendRequest[], undefined>({
+            query: () => ({
+                url: '/request/getissuerrequests'
+            }),
+            providesTags: ['App']
         })
     }),
 })
@@ -60,5 +66,6 @@ export const {
     useLazyGetFriendRequestsQuery,
     useGetFriendsQuery,
     useDeleteFriendMutation,
-    useDeleteFriendRequestMutation
+    useDeleteFriendRequestMutation,
+    useGetMyFriendRequestsQuery
 } = friendsApiSlice

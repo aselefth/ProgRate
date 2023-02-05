@@ -11,15 +11,20 @@ import {
     useDeleteFriendRequestMutation,
     useGetFriendRequestsQuery,
     useGetFriendsQuery,
+    useGetMyFriendRequestsQuery,
     useSendFriendRequestMutation,
 } from '../../store/Api/friendsApiSlice'
 import styles from './UserPostsPage.module.scss'
 import { IFriend, IFriendRequest } from '../../types/types'
 import { useEffect, useState } from 'react'
 import { useAppSelector } from '../../hooks/redux'
+import { logOut } from '../../store/Slices/authSlice'
 
 export default function UserPostsPage() {
     const [friendRequest, setFriendRequest] = useState<IFriendRequest | null>(
+        null
+    )
+    const [myFriendRequest, setMyFriendRequest] = useState<IFriendRequest | null>(
         null
     )
     const isLogged = useAppSelector((state) => state.authSlice.isLogged)
@@ -30,11 +35,14 @@ export default function UserPostsPage() {
     const [sendFriendRequest] = useSendFriendRequestMutation()
     const [acceptFriendRequest] = useAcceptFriendRequestMutation()
     const [deleteFriendRequest] = useDeleteFriendRequestMutation()
-    const { data: requests } = useGetFriendRequestsQuery(undefined)
-    const { data: friends } = useGetFriendsQuery(undefined)
+    const { data: requests } = useGetFriendRequestsQuery(undefined, {
+        skip: !isLogged,
+    })
+    const { data: friends } = useGetFriendsQuery(undefined, { skip: !isLogged })
     const { data: currentUser } = useGetUserQuery(undefined, {
         skip: !isLogged,
     })
+    const { data: myFriendRequests } = useGetMyFriendRequestsQuery(undefined)
 
     useEffect(() => {
         if (requests) {
@@ -46,6 +54,19 @@ export default function UserPostsPage() {
             }
         }
     }, [requests])
+
+    useEffect(() => {
+        if (myFriendRequests) {
+            const req = myFriendRequests.find(
+                (request) => request.target_id === userId
+            )
+            if (req) {
+                setMyFriendRequest(req)
+            } else {
+                setMyFriendRequest(null)
+            }
+        }
+    }, [myFriendRequests])
 
     useEffect(() => {
         if (friends) {
@@ -75,6 +96,7 @@ export default function UserPostsPage() {
     async function handleDeleteFriendRequest(requestId: number) {
         try {
             await deleteFriendRequest(requestId)
+            setMyFriendRequest(null)
         } catch (e) {
             console.log(e)
         }
@@ -97,15 +119,31 @@ export default function UserPostsPage() {
                                             friendRequest.request_id
                                         )
                                     } else if (friendRequest === null) {
-                                        handleSendFriendRequest(String(userId))
+                                        if (myFriendRequest) {
+                                        } else {
+                                            handleSendFriendRequest(
+                                                String(userId)
+                                            )
+                                        }
                                     }
                                 }}
                             >
                                 {friendRequest === null
-                                    ? 'send request'
+                                    ? myFriendRequest
+                                        ? 'added'
+                                        : 'send request'
                                     : 'add to friends'}
                             </Button>
                         )}
+                    {myFriendRequest && (
+                        <Button
+                            fontSize="1.5rem"
+                            mainColor="--error"
+                            onclick={() => handleDeleteFriendRequest(myFriendRequest.request_id)}
+                        >
+                            delete request
+                        </Button>
+                    )}
                     {isFriend && (
                         <Button fontSize="1.5rem" mainColor="--error">
                             delete from friends
