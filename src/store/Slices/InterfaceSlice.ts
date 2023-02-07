@@ -19,7 +19,8 @@ const initialState: InitialState = {
         plot: '',
         userId: '',
         likes: 0,
-        postId: 0
+        postId: 0,
+        pictureBase: null
     }
 }
 

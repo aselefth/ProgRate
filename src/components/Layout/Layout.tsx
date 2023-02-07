@@ -14,17 +14,17 @@ const Layout: FC = () => {
     const post = useAppSelector((state) => state.InterfaceSlice.updatePostDto)
 
     return (
-        <>
+        <div className='flex mx-auto max-w-[1100px] mt-20 mb-24 justify-between relative'>
             <Loader />
             <Navigation />
             <LeftSide />
             <main className={`${styles.main}`}>
                 <Outlet />
             </main>
-            {isLogged && <AddWidget />}
+            {/* {isLogged && <AddWidget />} */}
             {/* <CreatePostModal />
             <UpdatePostModal post={post} />  */}
-        </>
+        </div>
     )
 }
 

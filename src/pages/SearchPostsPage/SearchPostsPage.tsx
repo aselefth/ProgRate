@@ -8,7 +8,7 @@ import styles from './SearchPostsPage.module.scss'
 
 export default function SearchPostsPage() {
     const { searchTitle } = useParams()
-    const { data: posts } = useGetPostsByTitleQuery(String(searchTitle))
+    const { data: posts } = useGetPostsByTitleQuery(String(searchTitle), {skip: String(searchTitle).length < 2})
     const dispatch = useAppDispatch()
 
     useEffect(() => {

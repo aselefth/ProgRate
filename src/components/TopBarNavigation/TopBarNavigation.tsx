@@ -17,20 +17,21 @@ export default function TopBarNavigation() {
     const router = useNavigate()
     return (
         <>
-            {isLogged ? (
-                <div className="flex gap-2">
-                    <SpecialButtonLink />
-                    <Button
-                        onclick={() => {
-                            router('/account')
-                            dispatch(changeSearch(''))
-                        }}
-                        fontSize="1.5rem"
-                    >
-                        account
-                    </Button>
-                </div>
-            ) : (
+            {!isLogged &&
+            // ? (
+            //     <div className="flex gap-2">
+            //         <SpecialButtonLink />
+            //         <Button
+            //             onclick={() => {
+            //                 router('/account')
+            //                 dispatch(changeSearch(''))
+            //             }}
+            //             fontSize="1.5rem"
+            //         >
+            //             account
+            //         </Button>
+            //     </div>
+            // ) : 
                 <Button
                     onclick={() => {
                         router('/login')
@@ -40,7 +41,7 @@ export default function TopBarNavigation() {
                 >
                     login
                 </Button>
-            )}
+            }
         </>
     )
 }

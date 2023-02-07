@@ -10,7 +10,7 @@ export default function RequestsPage() {
     })
 
     return (
-        <div className="flex flex-col items-center gap-3">
+        <div className="flex flex-col items-end gap-3">
             {requests?.map((request: IFriendRequest) => (
                 <FriendRequest key={request.request_id} request={request} />
             ))}

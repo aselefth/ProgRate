@@ -18,29 +18,24 @@ export default function FriendsMainPage() {
     return (
         <div className={styles.friendsMainPageWrapper}>
             <div className={styles.links}>
-                <div
-                    className={`${styles.selector} ${
-                        selector === 'left'
-                            ? styles.selectorLeft
-                            : styles.selectorRight
-                    }`}
-                ></div>
-                <p
+                <span
+                    className={selector === 'left' ? styles.active : ''}
                     onClick={() => {
                         setSelector('left')
                         router('/account/friends')
                     }}
                 >
                     friends list
-                </p>
-                <p
+                </span>
+                <span
+                className={selector === 'right' ? styles.active : ''}
                     onClick={() => {
                         setSelector('right')
                         router('/account/friends/requests')
                     }}
                 >
                     requests list
-                </p>
+                </span>
             </div>
             <Outlet />
         </div>

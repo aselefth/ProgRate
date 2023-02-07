@@ -36,7 +36,7 @@ export const Search: FC = () => {
             />
             <span
                 className={styles.searchBtn}
-                onClick={() => router(`/search/${value}`)}
+                onClick={() => value ? router(`/search/${value}`) : null}
             >
                 <img src={search} alt="search" width="30" />
             </span>
