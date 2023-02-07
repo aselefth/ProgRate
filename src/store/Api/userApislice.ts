@@ -3,7 +3,7 @@ import { apiSlice } from "./apiSlice";
 
 const userApiSlice = apiSlice.injectEndpoints({
     endpoints: (build) => ({
-        getUser: build.query<{fullName: string, userName: string, email: string, userId: string}, undefined>({
+        getUser: build.query<IUser, undefined>({
             query: () => ({
                 url: '/user/getuser'
             }),

@@ -13,6 +13,8 @@ const AccountPage: FC = () => {
     const dispatch = useAppDispatch()
     const router = useNavigate()
 
+    console.log(user)
+
     const logout = () => {
         localStorage.removeItem('token')
         dispatch(logOut())
@@ -21,6 +23,16 @@ const AccountPage: FC = () => {
 
     return (
         <div className={styles.accountPageWrapper}>
+            {user?.pictureBase ? (
+                <div className='flex items-center justify-center p-1 bg-purple-500 rounded-[50%]'>
+                    <img
+                        src={user?.pictureBase}
+                        className="w-60 h-60 rounded-[50%] object-cover"
+                    />
+                </div>
+            ) : (
+                <span className="w-60 h-60 bg-purple-500 rounded-[50%]"></span>
+            )}
             <div className={styles.hero}>
                 <h1>
                     <span>@{user?.userName}'s</span> page

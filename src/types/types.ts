@@ -15,12 +15,14 @@ export interface IUser {
     fullName: string
     email: string
     userId: string
+    pictureBase: string | null
 }
 
 export interface IUserUpdate {
     userName: string
     fullName: string
     email: string
+    pictureBase: string | null
 }
 
 export interface ICreatePost {

@@ -23,11 +23,11 @@ const HomePage: FC = () => {
             )}
             {data &&
                 data.page.map((post) => <Post key={post.postId} post={post} />)}
-            <Pagination
+            {Number(data?.pages) > 1 && <Pagination
                 totalPages={Number(data?.pages)}
                 currentPage={pageNum}
                 setPageNumber={setPageNum}
-            />
+            />}
         </div>
     )
 }

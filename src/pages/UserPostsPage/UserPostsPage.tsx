@@ -24,9 +24,8 @@ export default function UserPostsPage() {
     const [friendRequest, setFriendRequest] = useState<IFriendRequest | null>(
         null
     )
-    const [myFriendRequest, setMyFriendRequest] = useState<IFriendRequest | null>(
-        null
-    )
+    const [myFriendRequest, setMyFriendRequest] =
+        useState<IFriendRequest | null>(null)
     const isLogged = useAppSelector((state) => state.authSlice.isLogged)
     const [isFriend, setIsFriend] = useState(false)
     const { userId } = useParams()
@@ -105,6 +104,16 @@ export default function UserPostsPage() {
     return (
         <div className={styles.pageWrapper}>
             <div className={styles.hero}>
+                {user?.pictureBase ? (
+                    <div className="flex items-center justify-center p-1 bg-purple-500 rounded-[50%]">
+                        <img
+                            src={user?.pictureBase}
+                            className="w-60 h-60 rounded-[50%] object-cover"
+                        />
+                    </div>
+                ) : (
+                    <span className="w-60 h-60 bg-purple-500 rounded-[50%]"></span>
+                )}
                 <h1>
                     <span>@{user?.userName}</span>
                     {!isFriend &&
@@ -139,7 +148,11 @@ export default function UserPostsPage() {
                         <Button
                             fontSize="1.5rem"
                             mainColor="--error"
-                            onclick={() => handleDeleteFriendRequest(myFriendRequest.request_id)}
+                            onclick={() =>
+                                handleDeleteFriendRequest(
+                                    myFriendRequest.request_id
+                                )
+                            }
                         >
                             delete request
                         </Button>

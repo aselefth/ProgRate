@@ -65,7 +65,13 @@ export const Post: FC<PostProps> = ({ post }) => {
     return (
         <div className={styles.postWrapper}>
             <div className={styles.postHeader}>
-                <span></span>
+                {user?.pictureBase ? (
+                    <div className={styles.imageWrapper}>
+                        <img src={user?.pictureBase} />
+                    </div>
+                ) : (
+                    <span></span>
+                )}
                 <div className={styles.postTitle}>
                     <h1>{post.title}</h1>
                     <Link to={`/users/${post.userId}/posts`}>
