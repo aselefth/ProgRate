@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom'
 import { useAppSelector } from '../../hooks/redux'
 import AddWidget from '../AddWidget/AddWidget'
 import CreatePostModal from '../CreatePostModal/CreatePostModal'
+import LeftSide from '../LeftSide/LeftSide'
 import Loader from '../Loader/Loader'
 import Navigation from '../Navigation/Navigation'
 import UpdatePostModal from '../UpdatePostModal/UpdatePostModal'
@@ -21,7 +22,7 @@ const Layout: FC = () => {
             </main>
             {isLogged && <AddWidget />}
             <CreatePostModal />
-            <UpdatePostModal post={post} />
+            <UpdatePostModal post={post} /> 
         </>
     )
 }
