@@ -79,6 +79,7 @@ export const Post: FC<PostProps> = ({ post }) => {
                     </Link>
                 </div>
             </div>
+            {post?.pictureBase && <img src={post?.pictureBase} className='w-full max-h-[500px] object-cover rounded'/>}
             <div className={styles.postPlot}>{post.plot}</div>
             <div className={styles.postBottom}>
                 <div className={styles.buttonSection}>

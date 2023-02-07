@@ -7,6 +7,7 @@ import { ICreatePost, IPost } from '../../types/types'
 import Button from '../Button/Button'
 import Error from '../Error/Error'
 import { postValidation } from '../../services/validation'
+import { useImage } from '../../hooks/useImage'
 
 export interface CreatePostModalProps {
     post: IPost
@@ -16,6 +17,7 @@ const UpdatePostModal: FC<CreatePostModalProps> = ({ post }) => {
     const [title, setTitle] = useState('')
     const [plot, setPlot] = useState('')
     const [isValidationError, setIsValidationError] = useState(false)
+    const {avatar, handleSetAvatar, setAvatar} = useImage()
     const dispatch = useAppDispatch()
     const [updatePost] = useUpdatePostMutation()
     const isModalOpened = useAppSelector(
@@ -25,6 +27,7 @@ const UpdatePostModal: FC<CreatePostModalProps> = ({ post }) => {
     useEffect(() => {
         setTitle(post.title)
         setPlot(post.plot)
+        setAvatar(post.pictureBase ? post.pictureBase : '')
     }, [isModalOpened])
 
     async function handleUpdatePost(updatePostDto: ICreatePost) {
@@ -61,7 +64,7 @@ const UpdatePostModal: FC<CreatePostModalProps> = ({ post }) => {
                 }}
                 onSubmit={(e) => {
                     e.preventDefault()
-                    handleUpdatePost({ plot, title })
+                    handleUpdatePost({ plot, title, pictureBase: avatar })
                 }}
                 className={`${
                     isModalOpened ? styles.modalOpened : styles.modalClosed
@@ -77,6 +80,7 @@ const UpdatePostModal: FC<CreatePostModalProps> = ({ post }) => {
                     value={plot}
                     onChange={(e) => setPlot(e.target.value)}
                 />
+                <input type='file' onChange={handleSetAvatar}/>
                 <Button type="submit" fontSize="1.5rem">
                     update
                 </Button>

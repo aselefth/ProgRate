@@ -28,6 +28,7 @@ export interface IUserUpdate {
 export interface ICreatePost {
     title: string
     plot: string
+    pictureBase: string | null
 }
 
 export interface IPost {
@@ -36,6 +37,7 @@ export interface IPost {
     plot: string
     likes: number
     userId: string
+    pictureBase: string | null
 }
 
 export interface IComment {

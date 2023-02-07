@@ -1,8 +1,9 @@
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, SetStateAction, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import ButtonLink from '../../components/ButtonLink/ButtonLink'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
+import { useImage } from '../../hooks/useImage'
 import {
     useChangeUserMutation,
     useGetUserQuery,
@@ -18,15 +19,14 @@ export default function UpdateUserPage() {
     const [changeUser] = useChangeUserMutation()
     const [userName, setUserName] = useState('')
     const [fullName, setFullName] = useState('')
+    const {avatar, handleSetAvatar} = useImage()
     const [email, setEmail] = useState('')
-    const [avatar, setAvatar] = useState('')
     const router = useNavigate()
 
     useEffect(() => {
         setUserName(String(user?.userName))
         setFullName(String(user?.fullName))
         setEmail(String(user?.email))
-        setAvatar(String(user?.pictureBase))
     }, [user])
 
     async function handleUpdateUser(userUpdate: IUserUpdate) {
@@ -37,28 +37,6 @@ export default function UpdateUserPage() {
         }
     }
 
-    async function handleSetAvatar(e: ChangeEvent<HTMLInputElement>) {
-        const file = e.target.files && e.target.files[0]
-        console.log(file)
-
-        const base64 = file && (await convertBase64(file))
-        setAvatar(base64)
-    }
-
-    function convertBase64(file: File) {
-        return new Promise((res, rej) => {
-            const fileReader = new FileReader()
-            fileReader.readAsDataURL(file)
-
-            fileReader.onload = () => {
-                res(fileReader.result)
-            }
-
-            fileReader.onerror = (err) => {
-                rej(err)
-            }
-        })
-    }
 
     return (
         <div className={styles.accountPageWrapper}>

@@ -7,10 +7,12 @@ import { ICreatePost } from "../../types/types"
 import Button from "../Button/Button"
 import Error from "../Error/Error"
 import { postValidation } from "../../services/validation"
+import { useImage } from "../../hooks/useImage"
 
 const CreatePostModal: FC = () => {
     const [title, setTitle] = useState("")
     const [plot, setPlot] = useState("")
+    const {avatar, handleSetAvatar, setAvatar} = useImage()
     const [isValidationError, setIsValidationError] = useState(false)
     const dispatch = useAppDispatch()
     const [createPost] = useCreatePostMutation()
@@ -25,6 +27,7 @@ const CreatePostModal: FC = () => {
                 dispatch(toggleModal())
                 setTitle("")
                 setPlot("")
+                setAvatar('')
             } else {
                 setIsValidationError(true)
             }
@@ -56,7 +59,7 @@ const CreatePostModal: FC = () => {
                 }}
                 onSubmit={(e) => {
                     e.preventDefault()
-                    handleCreatePost({ title, plot })
+                    handleCreatePost({ title, plot, pictureBase: avatar })
                 }}
                 className={`${
                     isModalOpened ? styles.modalOpened : styles.modalClosed
@@ -72,6 +75,7 @@ const CreatePostModal: FC = () => {
                     value={plot}
                     onChange={(e) => setPlot(e.target.value)}
                 />
+                <input type='file' onChange={handleSetAvatar}/>
                 <Button type="submit" fontSize="1.5rem">
                     create post
                 </Button>
