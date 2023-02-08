@@ -14,6 +14,7 @@ export default function RequestsPage() {
             {requests?.map((request: IFriendRequest) => (
                 <FriendRequest key={request.request_id} request={request} />
             ))}
+            {requests && requests?.length < 1 && <h1>no requests</h1>}
         </div>
     )
 }

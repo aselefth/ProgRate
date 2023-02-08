@@ -12,6 +12,7 @@ export default function FriendsPage() {
             {friends?.map((friend: IFriend) => (
                 <Friend key={friend.userId} friend={friend} />
             ))}
+            {friends && friends?.length < 1 && <h1>no friends</h1>}
         </div>
     )
 }

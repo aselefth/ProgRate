@@ -1,8 +1,8 @@
-import { FC } from "react"
+import { FC, ReactNode } from "react"
 import styles from "./Button.module.scss"
 
 export interface ButtonProps {
-    children?: string
+    children?: string | ReactNode
     width?: string
     height?: string
     fontSize?: string

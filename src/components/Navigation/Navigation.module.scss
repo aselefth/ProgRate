@@ -7,7 +7,8 @@
     left: 0;
     right: 0;
     height: 4rem;
-    background: rgb(216, 180, 254);
+    background: white;
+    box-shadow: 0 5px 5px rgba(30, 30, 30, .06);
 
     .navContainer {
         display: flex;
