@@ -3,7 +3,24 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+
+    .avatarWrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: .25rem;
+        background-color: var(--buttonBlue);
+        border-radius: 50%;
+
+        img {
+            width: 15rem;
+            height: 15rem;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    }
+
     .hero {
 
         h1 {

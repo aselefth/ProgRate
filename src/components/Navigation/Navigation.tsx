@@ -5,7 +5,7 @@ import Search from '../Search/Search'
 import styles from './Navigation.module.scss'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { changeSearch } from '../../store/Slices/InterfaceSlice'
-import TopBarNavigation from '../TopBarNavigation/TopBarNavigation'
+import LoginSection from '../TopBarNavigation/TopBarNavigation'
 
 export const Navigation: FC = () => {
     const isLogged = useAppSelector((state) => state.authSlice.isLogged)
@@ -24,7 +24,7 @@ export const Navigation: FC = () => {
                     />
                 </Link>
                 <Search />
-                <TopBarNavigation />
+                <LoginSection />
             </div>
         </nav>
     )

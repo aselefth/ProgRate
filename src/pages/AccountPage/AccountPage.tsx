@@ -22,14 +22,13 @@ const AccountPage: FC = () => {
     return (
         <div className={styles.accountPageWrapper}>
             {user?.pictureBase ? (
-                <div className="flex items-center justify-center p-1 bg-purple-500 rounded-[50%]">
+                <div className={styles.avatarWrapper}>
                     <img
                         src={user?.pictureBase}
-                        className="w-60 h-60 rounded-[50%] object-cover"
                     />
                 </div>
             ) : (
-                <span className="w-60 h-60 bg-purple-500 rounded-[50%]"></span>
+                <div className={styles.avatarWrapper}></div>
             )}
             <div className="flex flex-col items-center gap-4 bg-white p-4 rounded-lg">
                 <div className={styles.hero}>
@@ -40,7 +39,7 @@ const AccountPage: FC = () => {
                 <div className={styles.postsLink}>
                     <ButtonLink
                         route={`users/${user?.userId}/posts`}
-                        fontSize="1.5rem"
+                        fontSize="1.25rem"
                     >
                         my posts
                     </ButtonLink>
@@ -52,7 +51,7 @@ const AccountPage: FC = () => {
                                 <td>full name</td>
                                 <td>{user?.fullName}</td>
                                 <td>
-                                    <ButtonLink route="account/change">
+                                    <ButtonLink route="account/change" fontSize='1.25rem'>
                                         change
                                     </ButtonLink>
                                 </td>
@@ -61,7 +60,7 @@ const AccountPage: FC = () => {
                                 <td>email</td>
                                 <td>{user?.email}</td>
                                 <td>
-                                    <ButtonLink route="account/change">
+                                    <ButtonLink route="account/change" fontSize='1.25rem'>
                                         change
                                     </ButtonLink>
                                 </td>
@@ -71,7 +70,7 @@ const AccountPage: FC = () => {
                 </div>
 
                 <Button
-                    fontSize="1.5rem"
+                    fontSize="1.25rem"
                     onclick={() => {
                         logout()
                     }}

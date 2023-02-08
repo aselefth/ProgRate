@@ -5,7 +5,63 @@
 @tailwind utilities;
 @font-face {
 	font-family: Yanone Kaffeesatz;
-	src: url('./assets//fonts/YanoneKaffeesatz-VariableFont_wght.ttf');
+	src: url('src/assets/fonts/YanoneKaffeesatz-VariableFont_wght.ttf');
+}
+
+@font-face {
+	font-family: Ubuntu;
+	src: url('src/assets/fonts/Ubuntu-Regular.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: Ubuntu;
+	src: url('./assets/fonts/Ubuntu-Light.ttf');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: Ubuntu;
+	src: url('./assets/fonts/Ubuntu-Bold.ttf');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: Ubuntu;
+	src: url('./assets/fonts/Ubuntu-Medium.ttf');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: Ubuntu;
+	src: url('./assets/fonts/Ubuntu-MediumItalic.ttf');
+	font-weight: 500;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: Ubuntu;
+	src: url('./assets/fonts/Ubuntu-LightItalic.ttf');
+	font-weight: 300;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: Ubuntu;
+	src: url('./assets/fonts/Ubuntu-BoldItalic.ttf');
+	font-weight: bold;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: Ubuntu;
+	src: url('./assets/fonts/Ubuntu-Italic.ttf');
+	font-weight: normal;
+	font-style: italic;
 }
 
 :root {
@@ -21,7 +77,7 @@
 
 html {
     min-height: 100%;
-	font-family: 'Yanone Kaffeesatz' ;
+	font-family: 'Ubuntu' ;
 }
 
 body {
@@ -33,7 +89,7 @@ body {
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
-	font-family: 'Yanone Kaffeesatz' ;
+	font-family: 'Ubuntu' ;
 }
 
 

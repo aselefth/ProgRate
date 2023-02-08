@@ -1,14 +1,46 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserGroup, faHandshake, faNewspaper, faFileImport, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons'
-import { useNavigate } from 'react-router-dom'
+import {
+    faUserGroup,
+    faHandshake,
+    faNewspaper,
+    faFileImport,
+    faRightFromBracket,
+    faUser,
+} from '@fortawesome/free-solid-svg-icons'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { logOut } from '../../store/Slices/authSlice'
-import Button from '../Button/Button'
+import { useEffect, useState } from 'react'
+import styles from './LeftSide.module.scss'
+
+type TabsType = 'feed' | 'account' | 'new post' | 'friends' | 'requests'
 
 export default function LeftSide() {
     const { isLogged } = useAppSelector((state) => state.authSlice)
+    const [currentTab, setCurrentTab] = useState<TabsType>('feed')
     const router = useNavigate()
     const dispatch = useAppDispatch()
+    const location = useLocation()
+
+    useEffect(() => {
+        switch (location.pathname) {
+            case '/':
+                setCurrentTab('feed')
+                break
+            case '/account':
+                setCurrentTab('account')
+                break
+            case '/account/friends':
+                setCurrentTab('friends')
+                break
+            case '/account/friends/requests':
+                setCurrentTab('requests')
+                break
+            case '/createPost':
+                setCurrentTab('new post')
+                break
+        }
+    }, [location])
 
     const logout = () => {
         localStorage.removeItem('token')
@@ -18,56 +50,59 @@ export default function LeftSide() {
 
     return (
         <>
-            {isLogged && <div className="flex flex-col gap-2">
-                <div className="flex flex-col items-center w-40 bg-white rounded-lg shadow-md">
-                    <div
-                    className='cursor-pointer hover:bg-gray-50 w-full flex gap-4 text-xl items-center p-2 rounded-t-lg'
-                        onClick={() => router('/account')}
-                    >
-                        <FontAwesomeIcon icon={faUser}/>
-                        <span>account</span>
+            {isLogged && (
+                <div className={styles.sideNavigation}>
+                    <div className={styles.topSection}>
+                        <div
+                            className={`${styles.sideNavigationElement} ${currentTab === 'account' && styles.activeTab}`}
+                            onClick={() => router('/account')}
+                        >
+                            <FontAwesomeIcon icon={faUser} />
+                            <span>account</span>
+                        </div>
+                        <div
+                            className={`${styles.sideNavigationElement} ${currentTab === 'new post' && styles.activeTab}`}
+                            onClick={() => router('/createPost')}
+                        >
+                            <FontAwesomeIcon icon={faFileImport} />
+                            <span>new post</span>
+                        </div>
                     </div>
-                    <div
-                    className='cursor-pointer hover:bg-gray-50 w-full flex gap-4 text-xl items-center p-2 rounded-b-lg'
-                        onClick={() => router('/createPost')}
-                    >
-                        <FontAwesomeIcon icon={faFileImport}/>
-                        <span>new post</span>
-                    </div>
-                </div>
 
-                <div className="flex flex-col items-center w-40 bg-white rounded-lg shadow-md">
-                    <div
-                    className='cursor-pointer hover:bg-gray-50 w-full flex gap-4 text-xl items-center p-2 rounded-t-lg'
-                        onClick={() => router('/')}
-                    >
-                        <FontAwesomeIcon icon={faNewspaper}/>
-                        <span>feed</span>
-                    </div>
-                    <div
-                    className='cursor-pointer hover:bg-gray-50 w-full flex gap-4 text-xl items-center p-2'
-                        onClick={() => router('/account/friends')}
-                    >
-                        <FontAwesomeIcon icon={faUserGroup}/>
-                        <span>friends</span>
-                    </div>
-                    <div
-                    className='cursor-pointer hover:bg-gray-50 w-full flex gap-4 text-xl items-center p-2'
-                        onClick={() => router('/account/friends/requests')}
-                    >
-                        <FontAwesomeIcon icon={faHandshake}/>
-                        <span>requests</span>
-                    </div>
-                    <div className='cursor-pointer hover:bg-gray-50 w-full flex gap-4 text-xl items-center p-2 rounded-b-lg'
-                        onClick={() => {
-                            logout()
-                        }}
-                    >
-                        <FontAwesomeIcon icon={faRightFromBracket}/>
-                        <span>quit</span>
+                    <div className={styles.bottomSection}>
+                        <div
+                            className={`${styles.sideNavigationElement} ${currentTab === 'feed' && styles.activeTab}`}
+                            onClick={() => router('/')}
+                        >
+                            <FontAwesomeIcon icon={faNewspaper} />
+                            <span>feed</span>
+                        </div>
+                        <div
+                            className={`${styles.sideNavigationElement} ${currentTab === 'friends' && styles.activeTab}`}
+                            onClick={() => router('/account/friends')}
+                        >
+                            <FontAwesomeIcon icon={faUserGroup} />
+                            <span>friends</span>
+                        </div>
+                        <div
+                            className={`${styles.sideNavigationElement} ${currentTab === 'requests' && styles.activeTab}`}
+                            onClick={() => router('/account/friends/requests')}
+                        >
+                            <FontAwesomeIcon icon={faHandshake} />
+                            <span>requests</span>
+                        </div>
+                        <div
+                            className={`${styles.sideNavigationElement}`}
+                            onClick={() => {
+                                logout()
+                            }}
+                        >
+                            <FontAwesomeIcon icon={faRightFromBracket} />
+                            <span>quit</span>
+                        </div>
                     </div>
                 </div>
-            </div>}
+            )}
         </>
     )
 }
