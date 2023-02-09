@@ -68,10 +68,10 @@ const RegisterPage: FC = () => {
                 onChange={(e) => setUserName(e.target.value)}
             />
             <div className={styles.buttons}>
-                <Button fontSize="1.5rem" type="submit">
+                <Button fontSize="1.25rem" type="submit">
                     register
                 </Button>
-                <Button fontSize="1.5rem" onclick={() => router('/login')}>
+                <Button fontSize="1.25rem" onclick={() => router('/login')}>
                     have account?
                 </Button>
             </div>

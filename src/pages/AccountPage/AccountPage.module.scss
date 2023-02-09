@@ -10,6 +10,8 @@
         align-items: center;
         justify-content: center;
         padding: .25rem;
+        width: 15rem;
+        height: 15rem;
         background-color: var(--buttonBlue);
         border-radius: 50%;
 
@@ -22,7 +24,6 @@
     }
 
     .hero {
-
         h1 {
             font-size: 1.75rem;
             font-weight: normal;
@@ -41,7 +42,7 @@
     .info {
         table {
             tr {
-                border: .25rem solid transparent;
+                border: 0.25rem solid transparent;
                 td:nth-child(2n) {
                     padding: 0 2.5rem;
                 }

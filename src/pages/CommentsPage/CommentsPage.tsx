@@ -61,7 +61,7 @@ export default function CommentsPage() {
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
                 />
-                <Button fontSize="1.5rem" type="submit">
+                <Button fontSize="1.25rem" type="submit">
                     add
                 </Button>
             </form>

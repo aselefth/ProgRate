@@ -53,11 +53,11 @@ const LoginPage: FC = () => {
                 onChange={handleChangePassword}
             />
             <div className={styles.buttons}>
-                <Button fontSize="1.5rem" type="submit">
+                <Button fontSize="1.25rem" type="submit">
                     login
                 </Button>
                 <Button
-                    fontSize="1.5rem"
+                    fontSize="1.25rem"
                     onclick={() => {
                         router('/register')
                     }}

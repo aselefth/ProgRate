@@ -13,6 +13,7 @@ import LoginPage from './pages/LoginPage/LoginPage'
 import RegisterPage from './pages/RegisterPage/RegisterPage'
 import RequestsPage from './pages/RequestsPage/RequestsPage'
 import SearchPostsPage from './pages/SearchPostsPage/SearchPostsPage'
+import UpdatePostPage from './pages/UpdatePostPage/UpdatePostPage'
 import UpdateUserPage from './pages/UpdateUserPage/UpdateUserPage'
 import UserPostsPage from './pages/UserPostsPage/UserPostsPage'
 import store from './store/store'
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
             {
                 path: '/createPost',
                 element: <CreatePostPage />
+            },
+            {
+                path: '/posts/:postId/updatePost',
+                element: <UpdatePostPage />
             }
         ],
     },

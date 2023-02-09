@@ -89,11 +89,11 @@ export default function UpdateUserPage() {
                 </table>
             </div>
             <div className="flex gap-4">
-                <Button fontSize="1.5rem" onclick={() => router('/account')}>
+                <Button fontSize="1.25rem" onclick={() => router('/account')}>
                     quit
                 </Button>
                 <Button
-                    fontSize="1.5rem"
+                    fontSize="1.25rem"
                     onclick={() => {
                         if (
                             userName &&

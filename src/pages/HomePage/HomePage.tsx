@@ -24,10 +24,17 @@ const HomePage: FC = () => {
                     <PostSkeleton />
                 </>
             )}
-            {isLogged && <div className='flex w-full justify-between items-center rounded-lg p-2 bg-white shadow-sm text-xl'>
-                <span>wanna share something?</span>
-                <Button fontSize='1.5rem' onclick={() => router('/createPost')}>add</Button>
-            </div>}
+            {isLogged && (
+                <div className={styles.createPostWrapper}>
+                    <span>wanna share something?</span>
+                    <Button
+                        fontSize="1.25rem"
+                        onclick={() => router('/createPost')}
+                    >
+                        add
+                    </Button>
+                </div>
+            )}
             {data &&
                 data.page.map((post) => <Post key={post.postId} post={post} />)}
             {Number(data?.pages) > 1 && (

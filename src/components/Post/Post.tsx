@@ -105,7 +105,7 @@ export const Post: FC<PostProps> = ({ post }) => {
                             <img
                                 src={trash}
                                 width="24"
-                                alt="comment"
+                                alt="delete post"
                                 onClick={() => {
                                     handleDeletePost(post.postId)
                                 }}
@@ -115,14 +115,9 @@ export const Post: FC<PostProps> = ({ post }) => {
                             <img
                                 src={pen}
                                 width="24"
-                                alt="comment"
+                                alt="update post"
                                 onClick={() => {
-                                    dispatch(
-                                        setUpdatePostDto({
-                                            updatePostDto: post,
-                                        })
-                                    )
-                                    dispatch(toggleUpdateModal())
+                                    router(`/posts/${post.postId}/updatePost`)
                                 }}
                             />
                         </div>

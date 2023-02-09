@@ -52,7 +52,7 @@ export default function LeftSide() {
         <>
             {isLogged && (
                 <div className={styles.sideNavigation}>
-                    <div className={styles.topSection}>
+                    <div className={styles.sideNavigationSection}>
                         <div
                             className={`${styles.sideNavigationElement} ${currentTab === 'account' && styles.activeTab}`}
                             onClick={() => router('/account')}
@@ -69,7 +69,7 @@ export default function LeftSide() {
                         </div>
                     </div>
 
-                    <div className={styles.bottomSection}>
+                    <div className={styles.sideNavigationSection}>
                         <div
                             className={`${styles.sideNavigationElement} ${currentTab === 'feed' && styles.activeTab}`}
                             onClick={() => router('/')}

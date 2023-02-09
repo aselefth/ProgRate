@@ -3,14 +3,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@font-face {
-	font-family: Yanone Kaffeesatz;
-	src: url('src/assets/fonts/YanoneKaffeesatz-VariableFont_wght.ttf');
-}
 
 @font-face {
 	font-family: Ubuntu;
-	src: url('src/assets/fonts/Ubuntu-Regular.ttf');
+	src: url('./assets/fonts/Ubuntu-Regular.ttf');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -68,7 +64,7 @@
 	--primary: rgb(126, 126, 209);
 	--secondary: rgb(216, 180, 254);
 	--primaryDark: rgb(175, 175, 214);
-	--buttonBlue: rgb(219, 234, 254);
+	--buttonBlue: rgb(126, 182, 255);
 	--buttonHovered: rgb(231, 241, 254);
 	--buttonGray: rgb(173, 187, 206);
 	--error: rgb(253, 135, 135);

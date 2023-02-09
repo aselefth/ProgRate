@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import Button from '../../components/Button/Button'
 import { useImage } from '../../hooks/useImage'
 import { postValidation } from '../../services/validation'
@@ -15,6 +15,7 @@ export default function CreatePostPage() {
     const [isValidationError, setIsValidationError] = useState(false)
     const [createPost] = useCreatePostMutation()
     const router = useNavigate()
+    const ref = useRef<HTMLInputElement>(null)
 
     async function handleCreatePost(post: ICreatePost) {
         try {
@@ -53,12 +54,26 @@ export default function CreatePostPage() {
             {avatar && (
                 <div className={styles.imageStack}>
                     <div className={styles.imageContainer}>
-                        <span onClick={() => setAvatar('')}>x</span>
+                        <span
+                            onClick={() => {
+                                setAvatar('')
+                                if (ref.current && ref.current.value) {
+                                    ref.current.value = ''
+                                }
+                            }}
+                        >
+                            x
+                        </span>
                         <img src={avatar} />
                     </div>
                 </div>
             )}
-            <input type="file" onChange={handleSetAvatar} name={avatar}/>
+            <input
+                type="file"
+                onChange={handleSetAvatar}
+                name={avatar}
+                ref={ref}
+            />
             <Button type="submit" fontSize="1.25rem">
                 create post
             </Button>
