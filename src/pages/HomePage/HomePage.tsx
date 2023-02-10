@@ -26,12 +26,12 @@ const HomePage: FC = () => {
             )}
             {isLogged && (
                 <div className={styles.createPostWrapper}>
-                    <span>wanna share something?</span>
+                    <span>появилось что-то новое?</span>
                     <Button
                         fontSize="1.25rem"
                         onclick={() => router('/createPost')}
                     >
-                        add
+                        добавить
                     </Button>
                 </div>
             )}

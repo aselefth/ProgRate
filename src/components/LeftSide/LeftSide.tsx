@@ -58,14 +58,14 @@ export default function LeftSide() {
                             onClick={() => router('/account')}
                         >
                             <FontAwesomeIcon icon={faUser} />
-                            <span>account</span>
+                            <span>аккаунт</span>
                         </div>
                         <div
                             className={`${styles.sideNavigationElement} ${currentTab === 'new post' && styles.activeTab}`}
                             onClick={() => router('/createPost')}
                         >
                             <FontAwesomeIcon icon={faFileImport} />
-                            <span>new post</span>
+                            <span>создать пост</span>
                         </div>
                     </div>
 
@@ -75,21 +75,21 @@ export default function LeftSide() {
                             onClick={() => router('/')}
                         >
                             <FontAwesomeIcon icon={faNewspaper} />
-                            <span>feed</span>
+                            <span>лента</span>
                         </div>
                         <div
                             className={`${styles.sideNavigationElement} ${currentTab === 'friends' && styles.activeTab}`}
                             onClick={() => router('/account/friends')}
                         >
                             <FontAwesomeIcon icon={faUserGroup} />
-                            <span>friends</span>
+                            <span>друзья</span>
                         </div>
                         <div
                             className={`${styles.sideNavigationElement} ${currentTab === 'requests' && styles.activeTab}`}
                             onClick={() => router('/account/friends/requests')}
                         >
                             <FontAwesomeIcon icon={faHandshake} />
-                            <span>requests</span>
+                            <span>запросы</span>
                         </div>
                         <div
                             className={`${styles.sideNavigationElement}`}
@@ -98,7 +98,7 @@ export default function LeftSide() {
                             }}
                         >
                             <FontAwesomeIcon icon={faRightFromBracket} />
-                            <span>quit</span>
+                            <span>выйти</span>
                         </div>
                     </div>
                 </div>

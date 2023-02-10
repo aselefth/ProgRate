@@ -45,21 +45,21 @@ export default function FriendRequest({ request }: FriendRequestProps) {
 
             <div className={styles.friendRight}>
                 <Button
-                    fontSize="1.5rem"
+                    fontSize="1.25rem"
                     onclick={() => {
                         handleAcceptFriendRequest(request.request_id)
                     }}
                 >
-                    accept
+                    принять
                 </Button>
                 <Button
-                    fontSize="1.5rem"
+                    fontSize="1.25rem"
                     mainColor="--error"
                     onclick={() => {
                         handleDeclineFriendRequest(request.request_id)
                     }}
                 >
-                    decline
+                    отклонить
                 </Button>
             </div>
         </div>

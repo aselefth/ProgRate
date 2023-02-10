@@ -29,16 +29,16 @@ export default function Friend({ friend }: FriendProps) {
             <div className={styles.friendRight}>
                 <ButtonLink
                     route={`users/${friend.userId}/posts`}
-                    fontSize="1.5rem"
+                    fontSize="1.25rem"
                 >
-                    posts
+                    посты
                 </ButtonLink>
                 <Button
-                    fontSize="1.5rem"
+                    fontSize="1.25rem"
                     mainColor="--error"
                     onclick={() => handleDeleteFriend(friend.userId)}
                 >
-                    delete
+                    удалить
                 </Button>
             </div>
         </div>

@@ -10,7 +10,7 @@ export default function SpecialButtonLink() {
     return (
         <>
             <ButtonLink route={`account/friends`} fontSize="1.5rem">
-                <span>friends</span>
+                <span>друзья</span>
                 {requests && requests.length !== 0 && (
                     <p
                         style={{ background: 'var(--buttonGray)' }}

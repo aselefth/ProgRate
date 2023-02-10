@@ -10,11 +10,12 @@ export default function RequestsPage() {
     })
 
     return (
-        <div className="flex flex-col items-end gap-3">
+        <div className="flex flex-col items-center gap-3">
+            <h1>Запросы</h1>
             {requests?.map((request: IFriendRequest) => (
                 <FriendRequest key={request.request_id} request={request} />
             ))}
-            {requests && requests?.length < 1 && <h1>no requests</h1>}
+            {requests && requests?.length < 1 && <h2>нет запросов</h2>}
         </div>
     )
 }

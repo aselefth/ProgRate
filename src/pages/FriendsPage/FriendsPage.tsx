@@ -9,10 +9,11 @@ export default function FriendsPage() {
 
     return (
         <div className="flex flex-col items-center gap-3">
+            <h1>Друзья</h1>
             {friends?.map((friend: IFriend) => (
                 <Friend key={friend.userId} friend={friend} />
             ))}
-            {friends && friends?.length < 1 && <h1>no friends</h1>}
+            {friends && friends?.length < 1 && <h2>нет друзей (</h2>}
         </div>
     )
 }

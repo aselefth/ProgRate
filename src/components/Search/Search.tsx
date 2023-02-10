@@ -25,7 +25,7 @@ export const Search: FC = () => {
         <div className={styles.search}>
             <input
                 type="text"
-                placeholder="you interested in.."
+                placeholder="что вам интересно.."
                 value={value}
                 onChange={(e) => dispatch(changeSearch(e.target.value))}
                 onFocus={() => {
@@ -54,10 +54,10 @@ export const Search: FC = () => {
                             <SearchPost key={post.postId} post={post} />
                         ))
                     ) : (
-                        <span className={styles.noResults}>no results</span>
+                        <span className={styles.noResults}>нет результатов</span>
                     )
                 ) : (
-                    <span className={styles.noResults}>no results</span>
+                    <span className={styles.noResults}>нет результатов</span>
                 )}
             </div>
         </div>
