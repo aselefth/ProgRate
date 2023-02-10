@@ -32,7 +32,7 @@ export const Search: FC = () => {
                     setIsSearching(true)
                     isModalOpened === true && dispatch(toggleModal())
                 }}
-                onBlur={() => setTimeout(() => setIsSearching(false), 100)}
+                onBlur={() => setTimeout(() => setIsSearching(false), 200)}
             />
             <span
                 className={styles.searchBtn}

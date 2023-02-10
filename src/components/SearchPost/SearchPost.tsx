@@ -18,8 +18,10 @@ export default function SearchPost({ post }: SearchPostProps) {
         <div
             className={styles.postWrapper}
             onClick={() => {
+                console.log('hello');
+                
                 router(`/comments/${post.postId}`)
-                dispatch(toggleSearchModal())
+                setTimeout(() => dispatch(toggleSearchModal()), 1000)
             }}
         >
             <div className={styles.postHeader}>
@@ -30,9 +32,7 @@ export default function SearchPost({ post }: SearchPostProps) {
                             ? post.title.slice(0, 32) + '...'
                             : post.title}
                     </h1>
-                    <Link to={`/users/${post.userId}/posts`}>
-                        @{user?.userName}
-                    </Link>
+                    <p className='text-gray-300'>@{user?.userName}</p>
                 </div>
             </div>
         </div>

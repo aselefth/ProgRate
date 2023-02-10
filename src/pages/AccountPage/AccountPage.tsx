@@ -33,7 +33,7 @@ const AccountPage: FC = () => {
             <div className="flex flex-col items-center gap-4 bg-white p-4 rounded-lg">
                 <div className={styles.hero}>
                     <h1>
-                        <span>@{user?.userName}'s</span> page
+                        страница <span>@{user?.userName}</span>
                     </h1>
                 </div>
                 <div className={styles.postsLink}>
@@ -41,18 +41,18 @@ const AccountPage: FC = () => {
                         route={`users/${user?.userId}/posts`}
                         fontSize="1.25rem"
                     >
-                        my posts
+                        мои посты
                     </ButtonLink>
                 </div>
                 <div className={styles.info}>
                     <table>
                         <tbody>
                             <tr>
-                                <td>full name</td>
+                                <td>имя</td>
                                 <td>{user?.fullName}</td>
                                 <td>
                                     <ButtonLink route="account/change" fontSize='1.25rem'>
-                                        change
+                                        изменить
                                     </ButtonLink>
                                 </td>
                             </tr>
@@ -61,7 +61,7 @@ const AccountPage: FC = () => {
                                 <td>{user?.email}</td>
                                 <td>
                                     <ButtonLink route="account/change" fontSize='1.25rem'>
-                                        change
+                                        изменить
                                     </ButtonLink>
                                 </td>
                             </tr>
@@ -75,7 +75,7 @@ const AccountPage: FC = () => {
                         logout()
                     }}
                 >
-                    quit
+                    выйти
                 </Button>
             </div>
         </div>

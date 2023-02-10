@@ -46,7 +46,7 @@ export default function CreatePostPage() {
         >
             <input
                 type="text"
-                placeholder="title"
+                placeholder="заголовок"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
             />
@@ -75,7 +75,7 @@ export default function CreatePostPage() {
                 ref={ref}
             />
             <Button type="submit" fontSize="1.25rem">
-                create post
+                создать пост
             </Button>
             <Error
                 isError={isValidationError}
