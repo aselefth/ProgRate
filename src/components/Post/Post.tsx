@@ -16,11 +16,7 @@ import {
 } from '../../store/Api/postsSlice'
 import { FC } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import {
-    setUpdatePostDto,
-    toggleUpdateModal,
-} from '../../store/Slices/InterfaceSlice'
+import { useAppSelector } from '../../hooks/redux'
 
 export interface PostProps {
     post: IPost
@@ -39,7 +35,6 @@ export const Post: FC<PostProps> = ({ post }) => {
     const { data: currentUser } = useGetUserQuery(undefined, {
         skip: !isLogged,
     })
-    const dispatch = useAppDispatch()
 
     async function handleLikePost(likeid: number) {
         try {

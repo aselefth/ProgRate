@@ -1,3 +1,5 @@
+import { faArrowAltCircleLeft, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Dispatch, SetStateAction } from 'react'
 import usePagination from '../../hooks/usePagination'
 import Button from '../Button/Button'
@@ -26,7 +28,7 @@ export default function Pagination({
                 onclick={handlePreviousPage}
                 mainColor={currentPage < 2 ? '--buttonGray' : '--buttonBlue'}
             >
-                prev
+                <FontAwesomeIcon icon={faArrowAltCircleLeft} />
             </Button>
             <Button
                 fontSize="1.5rem"
@@ -35,7 +37,7 @@ export default function Pagination({
                     currentPage === totalPages ? '--buttonGray' : '--buttonBlue'
                 }
             >
-                next
+                <FontAwesomeIcon icon={faArrowAltCircleRight} />
             </Button>
         </div>
     )
