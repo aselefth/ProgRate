@@ -8,6 +8,7 @@
     input {
         font-size: 1.25rem;
         border-bottom: 2px solid var(--primary);
+        padding: .25rem;
     }
 
     .hero {
@@ -29,6 +30,23 @@
                 border: .25rem solid transparent;
                 td:nth-child(2n) {
                     padding: .2rem 2.5rem;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 500px) {
+
+        input {
+            width: 70vw;
+        }
+
+        .info {
+            table {
+                tr {
+                    td:nth-child(2n) {
+                        padding: .2rem .5rem;
+                    }
                 }
             }
         }

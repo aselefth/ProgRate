@@ -8,12 +8,34 @@
     right: 0;
     height: 4rem;
     background: white;
-    box-shadow: 0 5px 5px rgba(30, 30, 30, .06);
+    box-shadow: 0 5px 5px rgba(30, 30, 30, 0.06);
 
     .navContainer {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 1100px;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    @media screen and (max-width: 500px) {
+        .navContainer {
+            padding: 0 2rem;
+        }
+    }
+
+    @media screen and (min-width: 500px) and (max-width: 1100px) {
+        .navContainer {
+            padding: 0 2rem;
+        }
+    }
+
+    @media screen and (min-width: 1100px) {
+        .navContainer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 1100px;
+        }
     }
 }

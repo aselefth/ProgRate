@@ -104,24 +104,23 @@ export default function UserPostsPage() {
     return (
         <div className={styles.pageWrapper}>
             <div className={styles.hero}>
-                {user?.pictureBase ? (
-                    <div className="flex items-center justify-center p-1 bg-purple-500 rounded-[50%]">
-                        <img
-                            src={user?.pictureBase}
-                            className="w-60 h-60 rounded-[50%] object-cover"
-                        />
-                    </div>
-                ) : (
-                    <span className="w-60 h-60 bg-purple-500 rounded-[50%]"></span>
-                )}
-                <h1>
+            {user?.pictureBase ? (
+                <div className={styles.avatarWrapper}>
+                    <img
+                        src={user?.pictureBase}
+                    />
+                </div>
+            ) : (
+                <div className={styles.avatarWrapper}></div>
+            )}
+                <h1 className='flex flex-col'>
                     <span>@{user?.userName}</span>
                     {!isFriend &&
                         user &&
                         currentUser &&
                         user.userName !== currentUser.userName && (
                             <Button
-                                fontSize="1.5rem"
+                                fontSize="1.25rem"
                                 onclick={() => {
                                     if (friendRequest !== null) {
                                         handleAcceptFriendRequest(
@@ -139,14 +138,14 @@ export default function UserPostsPage() {
                             >
                                 {friendRequest === null
                                     ? myFriendRequest
-                                        ? 'added'
-                                        : 'send request'
-                                    : 'add to friends'}
+                                        ? 'отправлено'
+                                        : 'запросить'
+                                    : 'принять'}
                             </Button>
                         )}
                     {myFriendRequest && (
                         <Button
-                            fontSize="1.5rem"
+                            fontSize="1.25rem"
                             mainColor="--error"
                             onclick={() =>
                                 handleDeleteFriendRequest(
@@ -154,16 +153,16 @@ export default function UserPostsPage() {
                                 )
                             }
                         >
-                            delete request
+                            отклонить
                         </Button>
                     )}
                     {isFriend && (
                         <Button fontSize="1.5rem" mainColor="--error">
-                            delete from friends
+                            удалить
                         </Button>
                     )}
                 </h1>
-                <h2>{posts?.length} posts</h2>
+                <h2>{posts?.length} постов</h2>
             </div>
             {posts &&
                 [...posts]

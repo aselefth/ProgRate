@@ -1,3 +1,5 @@
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Button from '../../components/Button/Button'
@@ -57,12 +59,14 @@ export default function CommentsPage() {
                 }}
             >
                 <textarea
-                    placeholder="your comment"
+                    placeholder="ваша реакция..."
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
                 />
                 <Button fontSize="1.25rem" type="submit">
-                    add
+                <FontAwesomeIcon
+                        icon={faPaperPlane}
+                    />
                 </Button>
             </form>
         </div>

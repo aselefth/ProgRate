@@ -4,6 +4,24 @@
     align-items: center;
     gap: 1rem;
 
+    .avatarWrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.25rem;
+        width: 15rem;
+        height: 15rem;
+        background-color: var(--buttonBlue);
+        border-radius: 50%;
+
+        img {
+            width: 15rem;
+            height: 15rem;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    }
+
     .hero {
         display: flex;
         flex-direction: column;

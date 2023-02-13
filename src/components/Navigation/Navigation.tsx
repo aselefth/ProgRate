@@ -3,12 +3,11 @@ import { FC } from 'react'
 import laptop from '../../assets/laptop.svg'
 import Search from '../Search/Search'
 import styles from './Navigation.module.scss'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux'
+import { useAppDispatch } from '../../hooks/redux'
 import { changeSearch } from '../../store/Slices/InterfaceSlice'
 import LoginSection from '../TopBarNavigation/TopBarNavigation'
 
 export const Navigation: FC = () => {
-    const isLogged = useAppSelector((state) => state.authSlice.isLogged)
     const dispatch = useAppDispatch()
 
 

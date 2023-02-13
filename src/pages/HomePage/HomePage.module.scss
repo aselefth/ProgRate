@@ -7,13 +7,33 @@
     .createPostWrapper {
         @apply shadow-sm;
         display: flex;
-        min-width: 700px;
         justify-content: space-between;
         align-items: center;
-        border-radius: .5rem;
-        padding: .5rem;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
         background-color: white;
         font-size: 1.25rem;
     }
-}
 
+    @media screen and (max-width: 500px) {
+        .createPostWrapper {
+            width: 80vw;
+            min-width: 350px;
+            max-width: 450px;
+        }
+    }
+
+    @media screen and (min-width: 500px) and (max-width: 1100px) {
+        .createPostWrapper {
+            width: 80vw;
+            min-width: 500px;
+            max-width: 700px;
+        }
+    }
+
+    @media screen and (min-width: 1100px) {
+        .createPostWrapper {
+            min-width: 700px;
+        }
+    }
+}

@@ -64,4 +64,5 @@ export interface IFriend {
     fullName: string
     userId: string
     userName: string
+    pictureBase: string | null
 }

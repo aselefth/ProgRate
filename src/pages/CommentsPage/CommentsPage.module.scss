@@ -28,12 +28,21 @@
         textarea {
             font-size: 1.25rem;
             outline: none;
-            border: 2px solid rgb(126, 126, 209);
+            border: 2px solid var(--buttonBlue);
             width: 30rem;
             min-height: 1.5rem;
             resize: none;
             padding: .2rem;
             overflow-y: scroll;
         }
+    }
+
+    @media screen and (max-width: 500px) {
+        .commentForm {
+            width: 90vw;
+            min-width: 350px;
+        }
+
+        
     }
 }

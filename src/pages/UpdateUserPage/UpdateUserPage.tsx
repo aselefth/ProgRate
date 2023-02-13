@@ -1,15 +1,21 @@
-import { ChangeEvent, SetStateAction, useEffect, useRef, useState } from 'react'
+import {
+    faDoorOpen,
+    faEnvelope,
+    faImage,
+    faPassport,
+    faSave,
+    faUser,
+} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../../components/Button/Button'
-import ButtonLink from '../../components/ButtonLink/ButtonLink'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux'
+import { useAppSelector } from '../../hooks/redux'
 import { useImage } from '../../hooks/useImage'
 import {
     useChangeUserMutation,
     useGetUserQuery,
 } from '../../store/Api/userApislice'
-import { setCredentials } from '../../store/Slices/authSlice'
-import { setUpdatePostDto } from '../../store/Slices/InterfaceSlice'
 import { IUserUpdate } from '../../types/types'
 import styles from './UpdateUserPage.module.scss'
 
@@ -19,7 +25,7 @@ export default function UpdateUserPage() {
     const [changeUser] = useChangeUserMutation()
     const [userName, setUserName] = useState('')
     const [fullName, setFullName] = useState('')
-    const {avatar, handleSetAvatar} = useImage()
+    const { avatar, handleSetAvatar } = useImage()
     const [email, setEmail] = useState('')
     const router = useNavigate()
 
@@ -37,7 +43,6 @@ export default function UpdateUserPage() {
         }
     }
 
-
     return (
         <div className={styles.accountPageWrapper}>
             <div className={styles.hero}>
@@ -49,7 +54,9 @@ export default function UpdateUserPage() {
                 <table>
                     <tbody>
                         <tr>
-                            <td>full name</td>
+                            <td>
+                                <FontAwesomeIcon icon={faPassport} />
+                            </td>
                             <td>
                                 <input
                                     value={fullName}
@@ -60,7 +67,9 @@ export default function UpdateUserPage() {
                             </td>
                         </tr>
                         <tr>
-                            <td>username</td>
+                            <td>
+                                <FontAwesomeIcon icon={faUser} />
+                            </td>
                             <td>
                                 <input
                                     value={userName}
@@ -71,7 +80,9 @@ export default function UpdateUserPage() {
                             </td>
                         </tr>
                         <tr>
-                            <td>email</td>
+                            <td>
+                                <FontAwesomeIcon icon={faEnvelope} />
+                            </td>
                             <td>
                                 <input
                                     value={email}
@@ -80,27 +91,24 @@ export default function UpdateUserPage() {
                             </td>
                         </tr>
                         <tr>
-                            <td>avatar</td>
                             <td>
-                                <input type="file" onChange={handleSetAvatar} />
+                                <FontAwesomeIcon icon={faImage} />
+                            </td>
+                            <td>
+                                <input type='file' onChange={handleSetAvatar} />
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div className="flex gap-4">
-                <Button fontSize="1.25rem" onclick={() => router('/account')}>
-                    quit
+            <div className='flex gap-4'>
+                <Button fontSize='1.25rem' onclick={() => router('/account')}>
+                    <FontAwesomeIcon icon={faDoorOpen} />
                 </Button>
                 <Button
-                    fontSize="1.25rem"
+                    fontSize='1.25rem'
                     onclick={() => {
-                        if (
-                            userName &&
-                            userName.length > 5 &&
-                            fullName &&
-                            fullName.length > 5
-                        ) {
+                        
                             handleUpdateUser({
                                 userName,
                                 fullName,
@@ -108,10 +116,10 @@ export default function UpdateUserPage() {
                                 pictureBase: avatar ? avatar : null,
                             })
                             router('/account')
-                        }
+                        
                     }}
                 >
-                    save
+                    <FontAwesomeIcon icon={faSave} />
                 </Button>
             </div>
         </div>

@@ -2,11 +2,10 @@
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
-    background-color: rgb(126, 126, 209);
+    background-color: var(--white);
     width: 100%;
     border-radius: 1rem;
     padding: .8rem 1.2rem;
-    color: white;
     box-shadow: 0 0 15px rgba(126, 126, 209, .4);
     cursor: pointer;
     animation: .1s searchPost;
@@ -22,7 +21,7 @@
             width: 2rem;
             height: 2rem;
             border-radius: 50%;
-            background-color: purple;
+            background-color: var(--buttonBlue);
             display: inline-block;
         }
 
@@ -31,7 +30,7 @@
             flex-direction: column;
 
             h1 {
-                font-size: 1.5rem;
+                font-size: 1.25rem;
                 padding: 0;
                 margin: 0;
             }
@@ -39,7 +38,7 @@
             a {
                 font-size: 1rem;
                 font-style: italic;
-                opacity: .65;
+                color: black;
             }
         }
     }

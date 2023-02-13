@@ -1,8 +1,9 @@
 .friendWrapper {
+    @apply shadow-md;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--primary);
+    background-color: var(--white);
     font-size: 1.25rem;
     border-radius: 1rem;
     width: 700px;
@@ -29,5 +30,21 @@
     .friendRight {
         display: flex;
         gap: 1rem;
+    }
+
+    @media screen and (max-width: 500px) {
+        width: 80vw;
+        min-width: 350px;
+        max-width: 450px;
+    }
+
+    @media screen and (min-width: 500px) and (max-width: 1100px) {
+        width: 80vw;
+        min-width: 500px;
+        max-width: 700px;
+    }
+
+    @media screen and (min-width: 1100px) {
+        width: 700px;
     }
 }

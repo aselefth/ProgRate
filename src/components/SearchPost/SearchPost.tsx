@@ -32,7 +32,7 @@ export default function SearchPost({ post }: SearchPostProps) {
                             ? post.title.slice(0, 32) + '...'
                             : post.title}
                     </h1>
-                    <p className='text-gray-300'>@{user?.userName}</p>
+                    <p className='text-gray-500'>@{user?.userName}</p>
                 </div>
             </div>
         </div>

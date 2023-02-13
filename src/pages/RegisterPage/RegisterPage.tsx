@@ -45,34 +45,34 @@ const RegisterPage: FC = () => {
             />
             <input
                 type="text"
-                placeholder="your full name..."
+                placeholder="ваше имя..."
                 value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
+                onChange={(e) => setFullName((e.target.value))}
             />
             <input
                 type="email"
-                placeholder="your email..."
+                placeholder="ваша почта..."
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
             />
             <input
                 type="password"
-                placeholder="password..."
+                placeholder="пароль..."
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
             <input
                 type="text"
-                placeholder="username..."
+                placeholder="никнейм..."
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
             />
             <div className={styles.buttons}>
                 <Button fontSize="1.25rem" type="submit">
-                    register
+                    зарегистрироваться
                 </Button>
                 <Button fontSize="1.25rem" onclick={() => router('/login')}>
-                    have account?
+                    есть аккаунт?
                 </Button>
             </div>
         </form>

@@ -64,4 +64,12 @@
             }
         }
     }
+
+    @media screen and (max-width: 500px) {
+        input,
+        textarea {
+            width: 90vw;
+            min-width: 350px;
+        }
+    }
 }

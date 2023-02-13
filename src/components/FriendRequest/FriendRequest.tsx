@@ -1,3 +1,5 @@
+import { faCheck, faCross, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from 'react-router-dom'
 import {
     useAcceptFriendRequestMutation,
@@ -50,7 +52,7 @@ export default function FriendRequest({ request }: FriendRequestProps) {
                         handleAcceptFriendRequest(request.request_id)
                     }}
                 >
-                    принять
+                    <FontAwesomeIcon icon={faCheck} />
                 </Button>
                 <Button
                     fontSize="1.25rem"
@@ -59,7 +61,7 @@ export default function FriendRequest({ request }: FriendRequestProps) {
                         handleDeclineFriendRequest(request.request_id)
                     }}
                 >
-                    отклонить
+                    <FontAwesomeIcon icon={faXmark} />
                 </Button>
             </div>
         </div>

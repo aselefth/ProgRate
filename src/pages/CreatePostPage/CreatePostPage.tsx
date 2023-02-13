@@ -45,8 +45,8 @@ export default function CreatePostPage() {
             }}
         >
             <input
-                type="text"
-                placeholder="заголовок"
+                type='text'
+                placeholder='заголовок'
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
             />
@@ -69,13 +69,13 @@ export default function CreatePostPage() {
                 </div>
             )}
             <input
-                type="file"
+                type='file'
                 onChange={handleSetAvatar}
                 name={avatar}
                 ref={ref}
             />
-            <Button type="submit" fontSize="1.25rem">
-                создать пост
+            <Button type='submit' fontSize='1.25rem'>
+                поделиться
             </Button>
             <Error
                 isError={isValidationError}

@@ -6,6 +6,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { logOut } from '../../store/Slices/authSlice'
 import { useNavigate } from 'react-router-dom'
 import { FC } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPen } from '@fortawesome/free-solid-svg-icons'
 
 const AccountPage: FC = () => {
     const isLogged = useAppSelector((state) => state.authSlice.isLogged)
@@ -30,7 +32,7 @@ const AccountPage: FC = () => {
             ) : (
                 <div className={styles.avatarWrapper}></div>
             )}
-            <div className="flex flex-col items-center gap-4 bg-white p-4 rounded-lg">
+            <div className={styles.userInfoWrapper}>
                 <div className={styles.hero}>
                     <h1>
                         страница <span>@{user?.userName}</span>
@@ -52,7 +54,7 @@ const AccountPage: FC = () => {
                                 <td>{user?.fullName}</td>
                                 <td>
                                     <ButtonLink route="account/change" fontSize='1.25rem'>
-                                        изменить
+                                    <FontAwesomeIcon icon={faPen} />
                                     </ButtonLink>
                                 </td>
                             </tr>
@@ -61,7 +63,7 @@ const AccountPage: FC = () => {
                                 <td>{user?.email}</td>
                                 <td>
                                     <ButtonLink route="account/change" fontSize='1.25rem'>
-                                        изменить
+                                    <FontAwesomeIcon icon={faPen} />
                                     </ButtonLink>
                                 </td>
                             </tr>

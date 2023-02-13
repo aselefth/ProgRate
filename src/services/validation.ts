@@ -22,13 +22,15 @@ export const registerValidation = ({
     fullName,
 }: IUserRegister) => {
     let res = false
+    const regExpEmail = /[A-Za-z0-9]+@[A-Za-z0-9]+(.[A-z]{2,4}){1,2}/
+    const regExpName = /(^[A-Z]{1}[a-z]{2,10}) ([A-Z]{1}[a-z]{2,10})/
     if (
         userName.trim().length >= 5 &&
         userName.trim().length <= 30 &&
         password.trim().length >= 8 &&
         password.trim().length <= 30 && 
-        /[A-Za-z0-9]+@[A-Za-z0-9]+(.[A-z]{2,4}){1,2}/.test(email) &&
-        /(^[A-Z]{1}[a-z]{2,10}) ([A-Z]{1}[a-z]{2,10})/.test(fullName)
+        regExpEmail.test(email) &&
+        regExpName.test(fullName)
     ) {
         res = true
     }

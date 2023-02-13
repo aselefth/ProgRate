@@ -17,6 +17,13 @@ import {
 import { FC } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../../hooks/redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+    faPen,
+    faThumbsUp,
+    faMessage,
+    faTrashCan,
+} from '@fortawesome/free-solid-svg-icons'
 
 export interface PostProps {
     post: IPost
@@ -74,43 +81,41 @@ export const Post: FC<PostProps> = ({ post }) => {
                     </Link>
                 </div>
             </div>
-            {post?.pictureBase && <img src={post?.pictureBase} className='w-full max-h-[500px] object-cover rounded'/>}
+            {post?.pictureBase && (
+                <img
+                    src={post?.pictureBase}
+                    className='w-full max-h-[500px] object-cover rounded'
+                />
+            )}
             <div className={styles.postPlot}>{post.plot}</div>
             <div className={styles.postBottom}>
                 <div className={styles.buttonSection}>
                     <span>{post.likes}</span>
-                    <img
-                        src={isLiked ? like : dislike}
-                        width="24"
-                        alt="like"
+                    <FontAwesomeIcon
+                        icon={faThumbsUp}
                         onClick={() => handleLikePost(post.postId)}
+                        color={`${isLiked ? 'var(--buttonBlue)' : 'black'}`}
                     />
                 </div>
                 <div className={styles.buttonSection}>
-                    <img
-                        src={comment}
-                        width="24"
-                        alt="comment"
+                    <FontAwesomeIcon
+                        icon={faMessage}
                         onClick={() => router(`/comments/${post.postId}`)}
                     />
                 </div>
                 {currentUser?.userName === user?.userName && (
                     <>
                         <div className={styles.buttonSection}>
-                            <img
-                                src={trash}
-                                width="24"
-                                alt="delete post"
+                            <FontAwesomeIcon
+                                icon={faTrashCan}
                                 onClick={() => {
                                     handleDeletePost(post.postId)
                                 }}
                             />
                         </div>
                         <div className={styles.buttonSection}>
-                            <img
-                                src={pen}
-                                width="24"
-                                alt="update post"
+                            <FontAwesomeIcon
+                                icon={faPen}
                                 onClick={() => {
                                     router(`/posts/${post.postId}/updatePost`)
                                 }}

@@ -42,19 +42,19 @@ const LoginPage: FC = () => {
             />
             <input
                 type="text"
-                placeholder="your nickname..."
+                placeholder="ваш никнейм..."
                 value={userName}
                 onChange={handleChangeLogin}
             />
             <input
                 type="text"
-                placeholder="password..."
+                placeholder="ваш пароль..."
                 value={password}
                 onChange={handleChangePassword}
             />
             <div className={styles.buttons}>
                 <Button fontSize="1.25rem" type="submit">
-                    login
+                    войти
                 </Button>
                 <Button
                     fontSize="1.25rem"
@@ -62,7 +62,7 @@ const LoginPage: FC = () => {
                         router('/register')
                     }}
                 >
-                    no account?
+                    нет аккаунта?
                 </Button>
             </div>
         </form>

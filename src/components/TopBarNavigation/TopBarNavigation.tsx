@@ -1,3 +1,5 @@
+import { faRightToBracket } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { changeSearch } from '../../store/Slices/InterfaceSlice'
@@ -15,9 +17,9 @@ export default function LoginSection() {
                         router('/login')
                         dispatch(changeSearch(''))
                     }}
-                    fontSize="1.25rem"
+                    fontSize="1.5rem"
                 >
-                    войти
+                    <FontAwesomeIcon icon={faRightToBracket} />
                 </Button>
             }
         </>

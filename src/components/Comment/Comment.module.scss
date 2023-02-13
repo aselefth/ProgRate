@@ -3,12 +3,11 @@
     flex-direction: column;
     gap: 1rem;
     font-size: 1rem;
-    background-color: var(--primaryDark);
+    background-color: var(--white);
     width: 700px;
     border-radius: 1rem;
     padding: 0.8rem 1.2rem;
-    color: white;
-    box-shadow: 0 0 15px rgba(126, 126, 209, 0.4);
+    box-shadow: 0 5px 10px rgba(30, 30, 30, 0.1);
     animation: ease-in 0.25s openComment;
 
     .commentTop {
@@ -39,8 +38,25 @@
         }
 
         p {
+            font-weight: 500;
             font-style: italic;
         }
+    }
+
+    @media screen and (max-width: 500px) {
+        width: 80vw;
+        min-width: 350px;
+        max-width: 450px;
+    }
+
+    @media screen and (min-width: 500px) and (max-width: 1100px) {
+        width: 80vw;
+        min-width: 500px;
+        max-width: 700px;
+    }
+
+    @media screen and (min-width: 1100px) {
+        width: 700px;
     }
 }
 
