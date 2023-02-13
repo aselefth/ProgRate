@@ -54,38 +54,46 @@ export default function LeftSide() {
                 <div className={styles.sideNavigation}>
                     <div className={styles.sideNavigationSection}>
                         <div
-                            className={`${styles.sideNavigationElement} ${currentTab === 'account' && styles.activeTab}`}
+                            className={`${styles.sideNavigationElement} ${
+                                currentTab === 'account' && styles.activeTab
+                            }`}
                             onClick={() => router('/account')}
                         >
                             <FontAwesomeIcon icon={faUser} />
                             <span>аккаунт</span>
                         </div>
                         <div
-                            className={`${styles.sideNavigationElement} ${currentTab === 'new post' && styles.activeTab}`}
+                            className={`${styles.sideNavigationElement} ${
+                                currentTab === 'new post' && styles.activeTab
+                            }`}
                             onClick={() => router('/createPost')}
                         >
                             <FontAwesomeIcon icon={faFileImport} />
-                            <span>создать пост</span>
+                            <span>поделиться</span>
                         </div>
-                    </div>
 
-                    <div className={styles.sideNavigationSection}>
                         <div
-                            className={`${styles.sideNavigationElement} ${currentTab === 'feed' && styles.activeTab}`}
+                            className={`${styles.sideNavigationElement} ${
+                                currentTab === 'feed' && styles.activeTab
+                            }`}
                             onClick={() => router('/')}
                         >
                             <FontAwesomeIcon icon={faNewspaper} />
                             <span>лента</span>
                         </div>
                         <div
-                            className={`${styles.sideNavigationElement} ${currentTab === 'friends' && styles.activeTab}`}
+                            className={`${styles.sideNavigationElement} ${
+                                currentTab === 'friends' && styles.activeTab
+                            }`}
                             onClick={() => router('/account/friends')}
                         >
                             <FontAwesomeIcon icon={faUserGroup} />
                             <span>друзья</span>
                         </div>
                         <div
-                            className={`${styles.sideNavigationElement} ${currentTab === 'requests' && styles.activeTab}`}
+                            className={`${styles.sideNavigationElement} ${
+                                currentTab === 'requests' && styles.activeTab
+                            }`}
                             onClick={() => router('/account/friends/requests')}
                         >
                             <FontAwesomeIcon icon={faHandshake} />
