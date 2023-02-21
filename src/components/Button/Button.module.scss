@@ -1,6 +1,6 @@
 .button {
   cursor: pointer;
-  background-color: rgb(219, 234, 254);
+  background-color: var(--buttonBlue);
   text-transform: capitalize;
   display: flex;
   align-items: center;
@@ -12,6 +12,6 @@
 
   &:hover {
     border-radius: 0.45rem;
-    background-color: rgb(231, 241, 254);
+    background-color: var(--buttonHovered);
   }
 }

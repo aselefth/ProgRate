@@ -4,61 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-	font-family: Ubuntu;
-	src: url('./assets/fonts/Ubuntu-Regular.ttf');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: Ubuntu;
-	src: url('./assets/fonts/Ubuntu-Light.ttf');
-	font-weight: 300;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: Ubuntu;
-	src: url('./assets/fonts/Ubuntu-Bold.ttf');
-	font-weight: bold;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: Ubuntu;
-	src: url('./assets/fonts/Ubuntu-Medium.ttf');
-	font-weight: 500;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: Ubuntu;
-	src: url('./assets/fonts/Ubuntu-MediumItalic.ttf');
-	font-weight: 500;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: Ubuntu;
-	src: url('./assets/fonts/Ubuntu-LightItalic.ttf');
-	font-weight: 300;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: Ubuntu;
-	src: url('./assets/fonts/Ubuntu-BoldItalic.ttf');
-	font-weight: bold;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: Ubuntu;
-	src: url('./assets/fonts/Ubuntu-Italic.ttf');
-	font-weight: normal;
-	font-style: italic;
-}
 
 :root {
 	--white: rgb(249, 250, 251);
@@ -66,7 +11,7 @@
 	--secondary: rgb(216, 180, 254);
 	--primaryDark: rgb(175, 175, 214);
 	--buttonBlue: rgb(126, 182, 255);
-	--buttonHovered: rgb(231, 241, 254);
+	--buttonHovered: rgb(140, 195, 255);
 	--buttonGray: rgb(173, 187, 206);
 	--error: rgb(253, 135, 135);
 	--errorDark: rgb(206, 67, 67);
@@ -74,7 +19,7 @@
 
 html {
     min-height: 100%;
-	font-family: 'Ubuntu' ;
+	
 }
 
 body {
@@ -86,7 +31,7 @@ body {
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
-	font-family: 'Ubuntu' ;
+	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 
@@ -96,5 +41,6 @@ a {
 }
 
 button, input {
+	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	border: none;
 }

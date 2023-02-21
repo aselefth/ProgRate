@@ -22,15 +22,15 @@
     .searchModal {
         display: flex;
         flex-direction: column;
-        gap: .8rem;
+        gap: .5rem;
         position: absolute;
         left: -4rem;
         right: 0rem;
         top: 100%;
         margin-top: .5rem;
         z-index: 10;
-        padding: .8rem;
-        border-radius: 1rem;
+        padding: .5rem;
+        border-radius: .5rem;
         background-color: var(--buttonBlue);
         box-shadow: 0 0 30px rgba(0, 0, 0, .4);
         transition: .15s;

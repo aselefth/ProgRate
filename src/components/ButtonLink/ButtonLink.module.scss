@@ -1,5 +1,5 @@
 .buttonLink {
-  background-color: rgb(219, 234, 254);
+  background-color: var(--buttonBlue);
   height: 2rem;
   text-transform: capitalize;
   display: flex;
@@ -19,6 +19,6 @@
 
   &:hover {
     border-radius: 0.45rem;
-    background-color: rgb(231, 241, 254);
+    background-color: var(--buttonHovered);
   }
 }

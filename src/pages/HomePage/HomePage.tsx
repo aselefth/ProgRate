@@ -36,7 +36,7 @@ const HomePage: FC = () => {
                 </div>
             )}
             {data &&
-                data.page.map((post) => <Post key={post.postId} post={post} />)}
+                data?.page?.map((post) => <Post key={post.postId} post={post} />)}
             {Number(data?.pages) > 1 && (
                 <Pagination
                     totalPages={Number(data?.pages)}
