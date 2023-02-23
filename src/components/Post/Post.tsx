@@ -1,9 +1,4 @@
 import { IPost } from '../../types/types'
-import dislike from '../../assets/like.svg'
-import like from '../../assets/likePressed.svg'
-import comment from '../../assets/comment.svg'
-import trash from '../../assets/trash.svg'
-import pen from '../../assets/pen.svg'
 import styles from './post.module.scss'
 import {
     useGetUserByIdQuery,

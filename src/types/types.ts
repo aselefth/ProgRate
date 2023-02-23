@@ -66,3 +66,9 @@ export interface IFriend {
     userName: string
     pictureBase: string | null
 }
+
+export interface IMessage {
+    id: number
+    user: string
+    message: string
+}

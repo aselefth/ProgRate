@@ -10,6 +10,7 @@ import FriendsMainPage from './pages/FriendsMainPage/FriendsMainPage'
 import FriendsPage from './pages/FriendsPage/FriendsPage'
 import HomePage from './pages/HomePage/HomePage'
 import LoginPage from './pages/LoginPage/LoginPage'
+import MessengerPage from './pages/MessengerPage/MessengerPage'
 import RegisterPage from './pages/RegisterPage/RegisterPage'
 import RequestsPage from './pages/RequestsPage/RequestsPage'
 import SearchPostsPage from './pages/SearchPostsPage/SearchPostsPage'
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <HomePage />,
+            },
+            {
+                path: '/messages',
+                element: <MessengerPage />
             },
             {
                 path: '/account',

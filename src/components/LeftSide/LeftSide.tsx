@@ -6,6 +6,7 @@ import {
     faFileImport,
     faRightFromBracket,
     faUser,
+    faEnvelope,
 } from '@fortawesome/free-solid-svg-icons'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
@@ -13,7 +14,7 @@ import { logOut } from '../../store/Slices/authSlice'
 import { useEffect, useState } from 'react'
 import styles from './LeftSide.module.scss'
 
-type TabsType = 'feed' | 'account' | 'new post' | 'friends' | 'requests'
+type TabsType = 'feed' | 'account' | 'new post' | 'friends' | 'requests' | 'messages'
 
 export default function LeftSide() {
     const { isLogged } = useAppSelector((state) => state.authSlice)
@@ -38,6 +39,9 @@ export default function LeftSide() {
                 break
             case '/createPost':
                 setCurrentTab('new post')
+                break
+            case '/messages':
+                setCurrentTab('messages')
                 break
         }
     }, [location])
@@ -89,6 +93,15 @@ export default function LeftSide() {
                         >
                             <FontAwesomeIcon icon={faUserGroup} />
                             <span>друзья</span>
+                        </div>
+                        <div
+                            className={`${styles.sideNavigationElement} ${
+                                currentTab === 'messages' && styles.activeTab
+                            }`}
+                            onClick={() => router('/messages')}
+                        >
+                            <FontAwesomeIcon icon={faEnvelope} />
+                            <span>сообщения</span>
                         </div>
                         <div
                             className={`${styles.sideNavigationElement} ${
