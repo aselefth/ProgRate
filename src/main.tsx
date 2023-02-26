@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './components/Layout/Layout'
 import './index.scss'
 import AccountPage from './pages/AccountPage/AccountPage'
+import ChatHomePage from './pages/ChatHomePage/ChatHomePage'
+import ChatPage from './pages/ChatPage/ChatPage'
 import CommentsPage from './pages/CommentsPage/CommentsPage'
 import CreatePostPage from './pages/CreatePostPage/CreatePostPage'
 import FriendsMainPage from './pages/FriendsMainPage/FriendsMainPage'
@@ -34,7 +36,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/messages',
-                element: <MessengerPage />
+                element: <ChatHomePage />
+            },
+            {
+                path: '/messages/:groupName',
+                element: <ChatPage />
             },
             {
                 path: '/account',
@@ -82,6 +88,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <Provider store={store}>
-        <RouterProvider router={router} />{' '}
+        <RouterProvider router={router} />
     </Provider>
 )

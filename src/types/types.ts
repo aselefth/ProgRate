@@ -69,6 +69,7 @@ export interface IFriend {
 
 export interface IMessage {
     id: number
-    user: string
+    userId: string
     message: string
+    groupName: string
 }

@@ -7,7 +7,7 @@ interface MessageProps {
 }
 
 export default function Message({ chat }: MessageProps) {
-    const { data: user } = useGetUserByIdQuery(chat.user)
+    const { data: user } = useGetUserByIdQuery(chat.userId)
 
     return (
         <div className={styles.messageWrapper}>

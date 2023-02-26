@@ -13,8 +13,15 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { logOut } from '../../store/Slices/authSlice'
 import { useEffect, useState } from 'react'
 import styles from './LeftSide.module.scss'
+import { setGroupName } from '../../store/Slices/connectionSlice'
 
-type TabsType = 'feed' | 'account' | 'new post' | 'friends' | 'requests' | 'messages'
+type TabsType =
+    | 'feed'
+    | 'account'
+    | 'new post'
+    | 'friends'
+    | 'requests'
+    | 'messages'
 
 export default function LeftSide() {
     const { isLogged } = useAppSelector((state) => state.authSlice)
@@ -22,6 +29,18 @@ export default function LeftSide() {
     const router = useNavigate()
     const dispatch = useAppDispatch()
     const location = useLocation()
+    const { connection } = useAppSelector((state) => state.connectionSlice)
+    const { groupName } = useAppSelector((state) => state.connectionSlice)
+
+    useEffect(() => {
+        if (!groupName) {
+            return
+        }
+        if (location.pathname !== `/messages/${groupName}`) {
+            connection.stop()
+            dispatch(setGroupName({groupName: ''}))
+        }
+    })
 
     useEffect(() => {
         switch (location.pathname) {
@@ -41,6 +60,9 @@ export default function LeftSide() {
                 setCurrentTab('new post')
                 break
             case '/messages':
+                setCurrentTab('messages')
+                break
+            case `/messages/${groupName}`:
                 setCurrentTab('messages')
                 break
         }
