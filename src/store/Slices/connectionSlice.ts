@@ -1,4 +1,8 @@
-import { HttpTransportType, HubConnection, HubConnectionBuilder } from '@microsoft/signalr'
+import {
+    HttpTransportType,
+    HubConnection,
+    HubConnectionBuilder,
+} from '@microsoft/signalr'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface InitialState {
@@ -8,10 +12,7 @@ interface InitialState {
 
 const initialState: InitialState = {
     connection: new HubConnectionBuilder()
-        .withUrl('https://192.168.0.21:62518/hubs/chat', {
-            // skipNegotiation: true,
-            // transport: HttpTransportType.WebSockets
-        })
+        .withUrl('https://192.168.0.21:59337/hubs/chat')
         .withAutomaticReconnect()
         .build(),
     groupName: '',
@@ -27,5 +28,5 @@ export const connectionSlice = createSlice({
     },
 })
 
-export const {setGroupName} = connectionSlice.actions
+export const { setGroupName } = connectionSlice.actions
 export default connectionSlice.reducer

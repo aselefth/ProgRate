@@ -1,11 +1,13 @@
-import { faEnvelopesBulk } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Button from '../../components/Button/Button'
 import {
     useCreateGroupMutation,
     useGetGroupsQuery,
 } from '../../store/Api/groupsApiSlice'
+import styles from './ChatHomePage.module.scss'
 
 export default function ChatHomePage() {
     const groupName = useRef<HTMLInputElement>(null)
@@ -23,27 +25,25 @@ export default function ChatHomePage() {
     }
 
     return (
-        <div className="flex flex-col gap-2">
-            <section className="flex flex-col gap-2">
+        <div className={styles.chatHomePageWrapper}>
+            <section className={styles.createGroupWrapper}>
+                <span>не нашли нужную тему?</span>
                 <div>
-                    <label>название беседы</label>
-                    <input
-                        type="text"
-                        ref={groupName}
-                    />
-                </div>
-                <div
-                    onClick={() => handleCreateChat(String(groupName?.current?.value))}
-                    className="flex items-center px-4 py-2 bg-blue-300 shadow-md justify-center cursor-pointer"
-                >
-                    <FontAwesomeIcon icon={faEnvelopesBulk} />
-                    <span>создать</span>
+                    <input type="text" ref={groupName} />
+                    <Button
+                        onclick={() =>
+                            handleCreateChat(String(groupName?.current?.value))
+                        }
+                    >
+                        <FontAwesomeIcon icon={faPlus} />
+                        <span></span>
+                    </Button>
                 </div>
             </section>
-            <section className="flex flex-col gap-4">
-                {chats?.map((chat: {id: number, groupName: string}) => (
+            <section className={styles.chatsContainer}>
+                {chats?.map((chat: { id: number; groupName: string }) => (
                     <div
-                        className="flex items-center justify-center p-4 bg-blue-300 shadow-md cursor-pointer"
+                        className={styles.chat}
                         key={Math.random()}
                         onClick={() => navigate(`/messages/${chat.groupName}`)}
                     >

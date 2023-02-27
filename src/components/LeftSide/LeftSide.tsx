@@ -66,7 +66,7 @@ export default function LeftSide() {
                 setCurrentTab('messages')
                 break
         }
-    }, [location])
+    }, [location, groupName])
 
     const logout = () => {
         localStorage.removeItem('token')

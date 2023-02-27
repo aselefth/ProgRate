@@ -1,20 +1,23 @@
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useRef, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import Button from '../../components/Button/Button'
 import Message from '../../components/Message/Message'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { joinGroup, sendMessage } from '../../services/chatsService'
 import {
-    useGetMessagesQuery,
     useLazyGetMessagesQuery,
     useSendMessageMutation,
 } from '../../store/Api/messagesApiSlice'
 import { useGetUserQuery } from '../../store/Api/userApislice'
 import { setGroupName } from '../../store/Slices/connectionSlice'
 import { IMessage } from '../../types/types'
+import styles from './ChatPage.module.scss'
 
 export default function ChatPage() {
     const { isLogged } = useAppSelector((state) => state.authSlice)
-    const { groupName } = useParams()
+    const { groupName } = useParams<{ groupName: string }>()
     const [chat, setChat] = useState<IMessage[]>([])
     const msg = useRef<HTMLInputElement>(null)
     const { connection } = useAppSelector((state) => state.connectionSlice)
@@ -32,9 +35,9 @@ export default function ChatPage() {
         if (connection) {
             connection
                 .start()
-                .then((result) => {
+                .then(() => {
                     console.log('Connected!')
-                    joinGroup(connection, String(groupName))
+                    joinGroup(connection, `${groupName}`)
                     connection.on('ReceiveMessage', (message: IMessage) => {
                         setChat((prev) => [...prev, message])
                     })
@@ -51,31 +54,45 @@ export default function ChatPage() {
     async function handleSendMessage() {
         await sendMessage(
             connection,
-            String(msg?.current?.value),
-            String(user?.userId),
-            String(groupName)
+            `${msg?.current?.value}`,
+            `${user?.userId}`,
+            `${groupName}`
         )
         await addMessage({
-            message: String(msg?.current?.value),
-            groupName: String(groupName),
+            message: `${msg?.current?.value}`,
+            groupName: `${groupName}`,
         })
     }
 
     return (
-        <div className="flex flex-col gap-2">
-            {chat?.map((msg) => (
-                <Message key={Math.random()} chat={msg}/>
-            ))}
-            <div className="flex gap-2">
+        <div className={styles.chatPageWrapper}>
+            {chat?.map((msg) =>
+                msg.userId === user?.userId ? (
+                    <Message
+                        key={Math.random()}
+                        chat={msg}
+                        selfPosition="right"
+                    />
+                ) : (
+                    <Message
+                        key={Math.random()}
+                        chat={msg}
+                        selfPosition="left"
+                    />
+                )
+            )}
+            <form
+                className={styles.messageForm}
+                onSubmit={(e) => {
+                    e.preventDefault()
+                    handleSendMessage()
+                }}
+            >
                 <input ref={msg} />
-                <button
-                    className="px-4 py-2 bg-blue-300 shadow-md"
-                    onClick={() => handleSendMessage()}
-                >
-                    send
-                </button>
-            </div>
+                <Button type='submit'>
+                    <FontAwesomeIcon icon={faPaperPlane} />
+                </Button>
+            </form>
         </div>
     )
 }
-

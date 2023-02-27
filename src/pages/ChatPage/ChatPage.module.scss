@@ -1,0 +1,18 @@
+.chatPageWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+    position: relative;
+
+    .messageForm {
+        width: 700px;
+        display: flex;
+        gap: .5rem;
+        align-items: flex-start;
+
+        input {
+            width: 70%;
+        }
+    }
+}
