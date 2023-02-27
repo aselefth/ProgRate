@@ -28,7 +28,7 @@ export default function ChatHomePage() {
         <div className={styles.chatHomePageWrapper}>
             <section className={styles.createGroupWrapper}>
                 <span>не нашли нужную тему?</span>
-                <div>
+                <div className={styles.inpContainer}>
                     <input type="text" ref={groupName} />
                     <Button
                         onclick={() =>

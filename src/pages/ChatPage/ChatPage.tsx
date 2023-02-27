@@ -19,7 +19,7 @@ export default function ChatPage() {
     const { isLogged } = useAppSelector((state) => state.authSlice)
     const { groupName } = useParams<{ groupName: string }>()
     const [chat, setChat] = useState<IMessage[]>([])
-    const msg = useRef<HTMLInputElement>(null)
+    const msg = useRef<HTMLTextAreaElement>(null)
     const { connection } = useAppSelector((state) => state.connectionSlice)
     const { data: user } = useGetUserQuery(undefined, {
         skip: !isLogged,
@@ -88,7 +88,7 @@ export default function ChatPage() {
                     handleSendMessage()
                 }}
             >
-                <input ref={msg} />
+                <textarea ref={msg} />
                 <Button type='submit'>
                     <FontAwesomeIcon icon={faPaperPlane} />
                 </Button>
