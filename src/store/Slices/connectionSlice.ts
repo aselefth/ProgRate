@@ -12,7 +12,7 @@ interface InitialState {
 
 const initialState: InitialState = {
     connection: new HubConnectionBuilder()
-        .withUrl('https://192.168.0.21:59337/hubs/chat')
+        .withUrl('http://localhost:8080/hubs/chat')
         .withAutomaticReconnect()
         .build(),
     groupName: '',

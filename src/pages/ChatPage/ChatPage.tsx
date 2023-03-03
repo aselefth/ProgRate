@@ -20,6 +20,7 @@ export default function ChatPage() {
     const { groupName } = useParams<{ groupName: string }>()
     const [chat, setChat] = useState<IMessage[]>([])
     const msg = useRef<HTMLTextAreaElement>(null)
+    const scroller = useRef<HTMLSpanElement>(null)
     const { connection } = useAppSelector((state) => state.connectionSlice)
     const { data: user } = useGetUserQuery(undefined, {
         skip: !isLogged,
@@ -49,19 +50,27 @@ export default function ChatPage() {
     async function handleGetMessages() {
         const res = await getMessages(String(groupName))
         res?.data && setChat(res?.data)
+        window.scrollTo(0, document.body.scrollHeight)
     }
 
     async function handleSendMessage() {
-        await sendMessage(
-            connection,
-            `${msg?.current?.value}`,
-            `${user?.userId}`,
-            `${groupName}`
-        )
-        await addMessage({
-            message: `${msg?.current?.value}`,
-            groupName: `${groupName}`,
-        })
+        try {
+            await sendMessage(
+                connection,
+                `${msg?.current?.value}`,
+                `${user?.userId}`,
+                `${groupName}`
+            )
+            await addMessage({
+                message: `${msg?.current?.value}`,
+                groupName: `${groupName}`,
+            })
+        } catch (e) {
+            console.log(e)
+        } finally {
+            if (msg.current) msg.current.value = ''
+            scroller.current?.scrollIntoView({behavior: 'smooth', block: 'center'})
+        }
     }
 
     return (
@@ -81,6 +90,7 @@ export default function ChatPage() {
                     />
                 )
             )}
+            <span ref={scroller}></span>
             <form
                 className={styles.messageForm}
                 onSubmit={(e) => {
@@ -89,7 +99,7 @@ export default function ChatPage() {
                 }}
             >
                 <textarea ref={msg} />
-                <Button type='submit'>
+                <Button type="submit">
                     <FontAwesomeIcon icon={faPaperPlane} />
                 </Button>
             </form>

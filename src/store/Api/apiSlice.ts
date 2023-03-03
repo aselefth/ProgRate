@@ -4,7 +4,7 @@ import { logOut, setCredentials } from "../Slices/authSlice"
 import { RootState } from "../store"
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: "https://192.168.0.21:59337/api",
+    baseUrl: "http://localhost:8080/api",
     mode: "cors",
     credentials: "include",
     prepareHeaders: (headers, { getState }: Pick<BaseQueryApi, "getState">) => {
