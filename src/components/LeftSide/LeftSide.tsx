@@ -38,7 +38,7 @@ export default function LeftSide() {
         }
         if (location.pathname !== `/messages/${groupName}`) {
             connection.stop()
-            dispatch(setGroupName({groupName: ''}))
+            dispatch(setGroupName({ groupName: '' }))
         }
     })
 
@@ -64,6 +64,9 @@ export default function LeftSide() {
                 break
             case `/messages/${groupName}`:
                 setCurrentTab('messages')
+                break
+            default:
+                setCurrentTab('feed')
                 break
         }
     }, [location, groupName])

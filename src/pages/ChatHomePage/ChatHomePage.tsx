@@ -10,7 +10,7 @@ import {
 import styles from './ChatHomePage.module.scss'
 
 export default function ChatHomePage() {
-    const groupName = useRef<HTMLInputElement>(null)
+    const grpName = useRef<HTMLInputElement>(null)
     const { data: chats } = useGetGroupsQuery(undefined)
     const navigate = useNavigate()
     const [createChat] = useCreateGroupMutation()
@@ -18,7 +18,7 @@ export default function ChatHomePage() {
     async function handleCreateChat(groupName: string) {
         try {
             const res = await createChat(groupName)
-            console.log(res)
+            if (grpName.current) grpName.current.value = ''
         } catch (e) {
             console.log(e)
         }
@@ -29,10 +29,10 @@ export default function ChatHomePage() {
             <section className={styles.createGroupWrapper}>
                 <span>не нашли нужную тему?</span>
                 <div className={styles.inpContainer}>
-                    <input type="text" ref={groupName} />
+                    <input type="text" ref={grpName} />
                     <Button
                         onclick={() =>
-                            handleCreateChat(String(groupName?.current?.value))
+                            handleCreateChat(String(grpName?.current?.value))
                         }
                     >
                         <FontAwesomeIcon icon={faPlus} />
