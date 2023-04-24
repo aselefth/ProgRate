@@ -1,18 +1,18 @@
-import Post from '../../components/Post/Post'
-import { useGetAllPostsQuery } from '../../store/Api/postsSlice'
-import styles from './HomePage.module.scss'
-import { FC, useState, useRef, useEffect } from 'react'
-import Pagination from '../../components/Pagination/Pagination'
-import { useAppSelector } from '../../hooks/redux'
-import PostSkeleton from '../../skeletons/PostSkeleton/PostSkeleton'
-import Button from '../../components/Button/Button'
-import { useNavigate } from 'react-router-dom'
+import Post from '../../components/Post/Post';
+import { useGetAllPostsQuery } from '../../store/Api/postsSlice';
+import styles from './HomePage.module.scss';
+import { FC, useState, useRef, useEffect } from 'react';
+import Pagination from '../../components/Pagination/Pagination';
+import { useAppSelector } from '../../hooks/redux';
+import PostSkeleton from '../../skeletons/PostSkeleton/PostSkeleton';
+import Button from '../../components/Button/Button';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage: FC = () => {
-	const [pageNum, setPageNum] = useState(1)
-	const isLogged = useAppSelector((state) => state.authSlice.isLogged)
-	const { data, isLoading } = useGetAllPostsQuery(pageNum)
-	const router = useNavigate()
+	const [pageNum, setPageNum] = useState(1);
+	const isLogged = useAppSelector((state) => state.authSlice.isLogged);
+	const { data, isLoading } = useGetAllPostsQuery(pageNum);
+	const router = useNavigate();
 
 	return (
 		<div className={styles.homePageWrapper}>
@@ -36,11 +36,9 @@ const HomePage: FC = () => {
 				</div>
 			)}
 			<>
-				{data?.page.filter((post, i) => {
-					if (data?.page.length - 1 !== i)
-						return <Post postId={post.postId} />
-				})}
-				{data && <Post postId={Number(data.page.at(-1)?.postId)} />}
+				{data?.page?.map((post) => (
+					<Post postId={post?.postId} key={post?.postId} />
+				))}
 			</>
 			{Number(data?.pages) > 1 && (
 				<Pagination
@@ -50,7 +48,7 @@ const HomePage: FC = () => {
 				/>
 			)}
 		</div>
-	)
-}
+	);
+};
 
-export default HomePage
+export default HomePage;

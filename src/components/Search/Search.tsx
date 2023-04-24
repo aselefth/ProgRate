@@ -4,16 +4,14 @@ import search from '../../assets/search.svg'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { useDebounce } from '../../hooks/useDebounce'
 import { useGetPostsByTitleQuery } from '../../store/Api/postsSlice'
-import { changeSearch, toggleModal } from '../../store/Slices/InterfaceSlice'
+import { changeSearch } from '../../store/Slices/InterfaceSlice'
 import SearchPost from '../SearchPost/SearchPost'
 import styles from './Search.module.scss'
 
 export const Search: FC = () => {
     const dispatch = useAppDispatch()
     const router = useNavigate()
-    const isModalOpened = useAppSelector(
-        (state) => state.InterfaceSlice.isAddPostModalOpened
-    )
+    
     const value = useAppSelector((state) => state.InterfaceSlice.searchValue)
     const [isSearching, setIsSearching] = useState(false)
     const debouncedValue = useDebounce(value, 400)
@@ -30,7 +28,6 @@ export const Search: FC = () => {
                 onChange={(e) => dispatch(changeSearch(e.target.value))}
                 onFocus={() => {
                     setIsSearching(true)
-                    isModalOpened === true && dispatch(toggleModal())
                 }}
                 onBlur={() => setTimeout(() => setIsSearching(false), 200)}
             />

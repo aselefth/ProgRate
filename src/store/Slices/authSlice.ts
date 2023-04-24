@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { IUser, IUserLogin } from "../../types/types"
 
 export interface InitialState {
     token: string | null
