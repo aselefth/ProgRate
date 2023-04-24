@@ -3,33 +3,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@font-face {
-	font-family: Yanone Kaffeesatz;
-	src: url('./assets//fonts/YanoneKaffeesatz-VariableFont_wght.ttf');
-}
+
 
 :root {
+	--white: rgb(249, 250, 251);
 	--primary: rgb(126, 126, 209);
 	--secondary: rgb(216, 180, 254);
 	--primaryDark: rgb(175, 175, 214);
-	--buttonBlue: rgb(219, 234, 254);
+	--buttonBlue: rgb(147,197, 253);
+	--buttonHovered: rgb(140, 195, 255);
 	--buttonGray: rgb(173, 187, 206);
+	--error: rgb(253, 135, 135);
+	--errorDark: rgb(206, 67, 67);
 }
 
 html {
     min-height: 100%;
-	font-family: 'Yanone Kaffeesatz' ;
+	
 }
 
 body {
     min-height: 100%;
+	background-color: rgb(233, 234, 241);
 }
 
 *, *::before, *::after {
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
-	font-family: 'Yanone Kaffeesatz' ;
+	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 
@@ -39,5 +41,6 @@ a {
 }
 
 button, input {
+	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	border: none;
 }

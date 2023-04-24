@@ -1,33 +1,41 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { ICreatePost, IPost } from "../../types/types";
 
 export interface InitialState {
-    isAddPostModalOpened: boolean
     isSearchModal: boolean
     searchValue: string
+    updatePostDto: IPost
 }
 
 const initialState: InitialState = {
-    isAddPostModalOpened: false,
     isSearchModal: false,
-    searchValue: ''
+    searchValue: '',
+    updatePostDto: {
+        title: '',
+        plot: '',
+        userId: '',
+        likes: 0,
+        postId: 0,
+        pictureBase: null
+    }
 }
 
 export const InterfaceSLice = createSlice({
     name: 'interfaceSlice',
     initialState,
     reducers: {
-        toggleModal: (state) => {
-            state.isAddPostModalOpened = !state.isAddPostModalOpened;
-        },
         toggleSearchModal: (state) => {
             state.isSearchModal = !state.isSearchModal
             state.searchValue = ''
         },
         changeSearch: (state, action) => {
             state.searchValue = action.payload
+        },
+        setUpdatePostDto: (state, action) => {
+            state.updatePostDto = action.payload.updatePostDto
         }
     }
 })
 
-export const {toggleModal, toggleSearchModal, changeSearch} = InterfaceSLice.actions;
+export const {toggleSearchModal, changeSearch, setUpdatePostDto} = InterfaceSLice.actions;
 export default InterfaceSLice.reducer;

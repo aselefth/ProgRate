@@ -7,13 +7,14 @@
         padding: 0 .5rem;
         height: 2rem;
         border-radius: .6rem 0 0 .6rem;
-        font-size: 1.5rem;
+        font-size: 1.25rem;
+        background-color: rgb(232, 232, 232);
     }
 
     .searchBtn {
         cursor: pointer;
         height: 2rem;
-        background-color: rgb(219,234,254);
+        background-color: var(--buttonBlue);
         padding: 0 .7rem;
         border-radius: 0 .6rem .6rem 0;
     }
@@ -21,15 +22,15 @@
     .searchModal {
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: .5rem;
         position: absolute;
-        left: -5rem;
-        right: -5rem;
+        left: -4rem;
+        right: 0rem;
         top: 100%;
         margin-top: .5rem;
         z-index: 10;
-        padding: 1rem;
-        border-radius: 1rem;
+        padding: .5rem;
+        border-radius: .5rem;
         background-color: var(--buttonBlue);
         box-shadow: 0 0 30px rgba(0, 0, 0, .4);
         transition: .15s;
@@ -47,5 +48,39 @@
         font-size: 1.25rem;
         display: flex;
         justify-content: center;
+    }
+
+    @media screen and (max-width: 500px) {
+        margin-left: 2rem;
+        input {
+            width: 90%;
+        }
+
+    }
+
+    @media screen and (min-width: 500px) and (max-width: 1100px) {
+        input {
+            width: 90%;
+        }
+
+        .searchModal {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            position: absolute;
+            left: -2rem;
+            right: 0rem;
+            top: 100%;
+            margin-top: .5rem;
+            z-index: 10;
+            padding: 1rem;
+            border-radius: 1rem;
+            background-color: var(--buttonBlue);
+            box-shadow: 0 0 30px rgba(0, 0, 0, .4);
+            transition: .15s;
+        }
+    }
+
+    @media screen and (min-width: 1100px) {
     }
 }

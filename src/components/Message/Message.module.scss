@@ -1,0 +1,54 @@
+.messageWrapper {
+
+    @apply shadow-md;
+    display: flex;
+    gap: 1rem;
+    padding: 0.25rem .5rem;
+    border-radius: 0.5rem;
+    background-color: var(--white);
+
+    .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: var(--buttonBlue);
+        width: 2.3rem;
+        height: 2.3rem;
+
+        img {
+            width: 2rem;
+            height: 2rem;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    }
+
+    .contentSide {
+
+        display: flex;
+        flex-direction: column;
+        gap: .25rem;
+        max-width: 90%;
+
+        h2 {
+            font-size: 1.2rem;
+        }
+    }
+
+    @media screen and (max-width: 500px) {
+        width: 80vw;
+        min-width: 350px;
+        max-width: 450px;
+    }
+
+    @media screen and (min-width: 500px) and (max-width: 1100px) {
+        width: 80vw;
+        min-width: 500px;
+        max-width: 700px;
+    }
+
+    @media screen and (min-width: 1100px) {
+        width: 700px;
+    }
+}

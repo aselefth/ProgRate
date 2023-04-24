@@ -2,15 +2,17 @@ import { configureStore } from "@reduxjs/toolkit";
 import InterfaceSlice from "./Slices/InterfaceSlice";
 import authSlice from "./Slices/authSlice";
 import { apiSlice } from "./Api/apiSlice";
+import connectionSlice from "./Slices/connectionSlice";
 
 const store = configureStore({
     reducer: {
         InterfaceSlice,
         authSlice,
+        connectionSlice,
         [apiSlice.reducerPath]: apiSlice.reducer,
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(apiSlice.middleware),
+        getDefaultMiddleware({serializableCheck: false}).concat(apiSlice.middleware),
     devTools: true,
 });
 

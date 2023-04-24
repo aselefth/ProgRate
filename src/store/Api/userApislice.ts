@@ -1,9 +1,9 @@
-import { IUser, IUserLogin } from "../../types/types";
+import { IUser, IUserLogin, IUserUpdate } from "../../types/types";
 import { apiSlice } from "./apiSlice";
 
 const userApiSlice = apiSlice.injectEndpoints({
     endpoints: (build) => ({
-        getUser: build.query<{fullName: string, userName: string, email: string, userId: string}, undefined>({
+        getUser: build.query<IUser, undefined>({
             query: () => ({
                 url: '/user/getuser'
             }),
@@ -20,9 +20,18 @@ const userApiSlice = apiSlice.injectEndpoints({
                 url: '/user/register',
                 body,
                 method: 'POST'
-            })
-        })
+            }),
+            invalidatesTags: ['App']
+        }),
+        changeUser: build.mutation<IUser, IUserUpdate>({
+            query: (body) => ({
+                url: `user/updateuser`,
+                method: 'POST',
+                body
+            }),
+            invalidatesTags: ['App']
+        }),
     })
 })
 
-export const {useGetUserQuery, useGetUserByIdQuery, useRegisterUserMutation} = userApiSlice
+export const {useLazyGetUserQuery, useGetUserQuery, useGetUserByIdQuery, useRegisterUserMutation, useChangeUserMutation} = userApiSlice

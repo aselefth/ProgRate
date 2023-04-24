@@ -1,0 +1,54 @@
+.accountPageWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.25rem;
+
+    input {
+        font-size: 1.25rem;
+        border-bottom: 2px solid var(--primary);
+        padding: .25rem;
+    }
+
+    .hero {
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: normal;
+            span {
+                font-weight: bold;
+                font-style: italic;
+            }
+        }
+    }
+
+    .info {
+        table {
+            margin: 0 auto;
+            tr {
+                border: .25rem solid transparent;
+                td:nth-child(2n) {
+                    padding: .2rem 2.5rem;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 500px) {
+
+        input {
+            width: 70vw;
+        }
+
+        .info {
+            table {
+                tr {
+                    td:nth-child(2n) {
+                        padding: .2rem .5rem;
+                    }
+                }
+            }
+        }
+    }
+}

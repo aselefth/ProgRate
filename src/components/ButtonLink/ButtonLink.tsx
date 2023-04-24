@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import styles from "./ButtonLink.module.scss";
 
 export interface ButtonLinkProps {
     route: string;
-    children: string;
+    children: string | ReactNode;
     width?: string;
     height?: string;
     fontSize?: string;

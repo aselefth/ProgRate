@@ -1,67 +1,85 @@
-import styles from "./AccountPage.module.scss"
-import ButtonLink from "../../components/ButtonLink/ButtonLink"
-import Button from "../../components/Button/Button"
-import { useGetUserQuery } from "../../store/Api/userApislice"
-import { useAppDispatch } from "../../hooks/redux"
-import { setCredentials } from "../../store/Slices/authSlice"
-import { useNavigate } from "react-router-dom"
-import { FC } from "react"
+import styles from './AccountPage.module.scss'
+import ButtonLink from '../../components/ButtonLink/ButtonLink'
+import Button from '../../components/Button/Button'
+import { useGetUserQuery } from '../../store/Api/userApislice'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
+import { logOut } from '../../store/Slices/authSlice'
+import { useNavigate } from 'react-router-dom'
+import { FC } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPen } from '@fortawesome/free-solid-svg-icons'
 
 const AccountPage: FC = () => {
-    const { data: user } = useGetUserQuery(undefined)
+    const isLogged = useAppSelector((state) => state.authSlice.isLogged)
+    const { data: user } = useGetUserQuery(undefined, { skip: !isLogged })
     const dispatch = useAppDispatch()
     const router = useNavigate()
-    
 
     const logout = () => {
-        localStorage.removeItem("token")
-        dispatch(setCredentials({ token: null, isLogged: false }))
-        router("/login")
+        localStorage.removeItem('token')
+        dispatch(logOut())
+        router('/login')
     }
 
     return (
         <div className={styles.accountPageWrapper}>
-            <div className={styles.hero}>
-                <h1>
-                    <span>@{user?.userName}'s</span> page
-                </h1>
-            </div>
-            <div className={styles.postsLink}>
-                <ButtonLink
-                    route={`users/${user?.userId}/posts`}
-                    fontSize="1.5rem"
+            {user?.pictureBase ? (
+                <div className={styles.avatarWrapper}>
+                    <img
+                        src={user?.pictureBase}
+                    />
+                </div>
+            ) : (
+                <div className={styles.avatarWrapper}></div>
+            )}
+            <div className={styles.userInfoWrapper}>
+                <div className={styles.hero}>
+                    <h1>
+                        страница <span>@{user?.userName}</span>
+                    </h1>
+                </div>
+                <div className={styles.postsLink}>
+                    <ButtonLink
+                        route={`users/${user?.userId}/posts`}
+                        fontSize="1.25rem"
+                    >
+                        мои посты
+                    </ButtonLink>
+                </div>
+                <div className={styles.info}>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>имя</td>
+                                <td>{user?.fullName}</td>
+                                <td>
+                                    <ButtonLink route="account/change" fontSize='1.25rem'>
+                                    <FontAwesomeIcon icon={faPen} />
+                                    </ButtonLink>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>email</td>
+                                <td>{user?.email}</td>
+                                <td>
+                                    <ButtonLink route="account/change" fontSize='1.25rem'>
+                                    <FontAwesomeIcon icon={faPen} />
+                                    </ButtonLink>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <Button
+                    fontSize="1.25rem"
+                    onclick={() => {
+                        logout()
+                    }}
                 >
-                    my posts
-                </ButtonLink>
+                    выйти
+                </Button>
             </div>
-            <div className={styles.info}>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>full name</td>
-                            <td>{user?.fullName}</td>
-                            <td>
-                                <Button fontSize="1.5rem">change</Button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>email</td>
-                            <td>{user?.email}</td>
-                            <td>
-                                <Button fontSize="1.5rem">change</Button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <Button
-                fontSize="1.5rem"
-                onclick={() => {
-                    logout()
-                }}
-            >
-                quit
-            </Button>
         </div>
     )
 }

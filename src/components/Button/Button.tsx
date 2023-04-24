@@ -1,14 +1,14 @@
-import { FC } from "react"
+import { FC, ReactNode } from "react"
 import styles from "./Button.module.scss"
 
 export interface ButtonProps {
-    children: string
+    children?: string | ReactNode
     width?: string
     height?: string
     fontSize?: string
     onclick?: () => void
     type?: "submit" | "reset" | "button"
-    mainColor?: '--buttonBlue' | '--buttonGray'
+    mainColor?: '--buttonBlue' | '--buttonGray' | '--error' | '--buttonHovered'
 }
 
 const Button: FC<ButtonProps> = ({

@@ -1,28 +1,20 @@
-import { Link } from "react-router-dom"
-import { FC, useEffect } from "react"
-import laptop from "../../assets/laptop.svg"
-import Search from "../Search/Search"
-import styles from "./Navigation.module.scss"
-import { useAppDispatch, useAppSelector } from "../../hooks/redux"
-import Button from "../Button/Button"
-import { useNavigate } from "react-router-dom"
-import { setCredentials } from "../../store/Slices/authSlice"
-import { changeSearch } from "../../store/Slices/InterfaceSlice"
+import { Link } from 'react-router-dom'
+import { FC } from 'react'
+import laptop from '../../assets/laptop.svg'
+import Search from '../Search/Search'
+import styles from './Navigation.module.scss'
+import { useAppDispatch } from '../../hooks/redux'
+import { changeSearch } from '../../store/Slices/InterfaceSlice'
+import LoginSection from '../TopBarNavigation/TopBarNavigation'
 
 export const Navigation: FC = () => {
-    const router = useNavigate()
-    const isLogged = useAppSelector((state) => state.authSlice.isLogged)
     const dispatch = useAppDispatch()
 
-    useEffect(() => {
-        const token = localStorage.getItem("token")
-        dispatch(setCredentials({ token, isLogged: token ? true : false }))
-    }, [])
 
     return (
         <nav className={styles.navBar}>
             <div className={styles.navContainer}>
-                <Link to="/" onClick={() => dispatch(changeSearch(""))}>
+                <Link to="/" onClick={() => dispatch(changeSearch(''))}>
                     <img
                         src={laptop}
                         alt="logo"
@@ -31,27 +23,7 @@ export const Navigation: FC = () => {
                     />
                 </Link>
                 <Search />
-                {isLogged ? (
-                    <Button
-                        onclick={() => {
-                            router("/account")
-                            dispatch(changeSearch(""))
-                        }}
-                        fontSize="1.5rem"
-                    >
-                        account
-                    </Button>
-                ) : (
-                    <Button
-                        onclick={() => {
-                            router("/login")
-                            dispatch(changeSearch(""))
-                        }}
-                        fontSize="1.5rem"
-                    >
-                        login
-                    </Button>
-                )}
+                <LoginSection />
             </div>
         </nav>
     )

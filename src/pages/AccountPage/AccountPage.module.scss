@@ -3,25 +3,59 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    font-size: 1.5rem;
-    .hero {
+    font-size: 1.25rem;
 
-        h1 {
-            font-size: 1.75rem;
-            font-weight: normal;
-            span {
-                font-weight: bold;
-                font-style: italic;
-            }
+    .avatarWrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.25rem;
+        width: 15rem;
+        height: 15rem;
+        background-color: var(--buttonBlue);
+        border-radius: 50%;
+
+        img {
+            width: 15rem;
+            height: 15rem;
+            object-fit: cover;
+            border-radius: 50%;
         }
     }
 
-    .info {
-        table {
-            tr {
-                border: .25rem solid transparent;
-                td:nth-child(2n) {
-                    padding: 0 2.5rem;
+    .userInfoWrapper {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        background-color: var(--white);
+        padding: 1rem;
+        border-radius: .5rem;
+
+        .hero {
+            h1 {
+                font-size: 1.75rem;
+                font-weight: normal;
+                span {
+                    font-weight: bold;
+                    font-style: italic;
+                }
+            }
+        }
+
+        .postsLink {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .info {
+            table {
+                tr {
+                    border: 0.25rem solid transparent;
+                    td:nth-child(2n) {
+                        padding: 0 2.5rem;
+                    }
                 }
             }
         }

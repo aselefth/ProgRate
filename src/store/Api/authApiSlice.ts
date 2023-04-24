@@ -9,7 +9,7 @@ const authApiSlice = apiSlice.injectEndpoints({
                 method: "POST",
                 body: JSON.stringify(credentials),
             }),
-            invalidatesTags: [{type: 'App' }]
+            invalidatesTags: ['App']
         }),
     }),
 })

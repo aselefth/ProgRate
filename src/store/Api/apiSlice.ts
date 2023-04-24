@@ -4,7 +4,7 @@ import { logOut, setCredentials } from "../Slices/authSlice"
 import { RootState } from "../store"
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: "http://localhost:8080/api",
+    baseUrl: "http://172.20.10.2:8080/api",
     mode: "cors",
     credentials: "include",
     prepareHeaders: (headers, { getState }: Pick<BaseQueryApi, "getState">) => {
@@ -17,31 +17,30 @@ const baseQuery = fetchBaseQuery({
     },
 })
 
-// const baseQueryReauth = async (args: any, api: any, extraOptions: any) => {
-//     let result = await baseQuery(args, api, extraOptions)
-
-//     if (result?.error?.status === "FETCH_ERROR") {
-//         console.log("sending refresh token")
-//         const refreshResult = await baseQuery(
-//             "http://localhost:8080/api/user/login",
-//             api,
-//             extraOptions
-//         )
-//         console.log(refreshResult)
-//         if (refreshResult?.data) {
-//             console.log(refreshResult)
-//             api.dispatch(setCredentials({ ...refreshResult.data }))
-//             result = await baseQuery(args, api, extraOptions)
-//         } else {
-//             api.dispatch(logOut())
-//         }
-//     }
-//     return result
-// }
+const baseQueryReauth = async (args: any, api: any, extraOptions: any) => {
+    let result = await baseQuery(args, api, extraOptions)
+    if (result?.error?.status === "FETCH_ERROR") {
+        console.log("sending refresh token")
+        const refreshResult = await baseQuery(
+            "http://localhost:8080/api/user/login",
+            api,
+            extraOptions
+        )
+        console.log(refreshResult)
+        if (refreshResult?.data) {
+            console.log(refreshResult)
+            api.dispatch(setCredentials({ ...refreshResult.data }))
+            result = await baseQuery(args, api, extraOptions)
+        } else {
+            api.dispatch(logOut())
+        }
+    }
+    return result
+}
 
 export const apiSlice = createApi({
     reducerPath: "apiSlice",
-    tagTypes: ["App"],
+    tagTypes: ["App", 'Chat'],
     baseQuery: baseQuery,
     endpoints: () => ({}),
 })

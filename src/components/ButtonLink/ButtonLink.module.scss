@@ -1,5 +1,5 @@
 .buttonLink {
-  background-color: rgb(219, 234, 254);
+  background-color: var(--buttonBlue);
   height: 2rem;
   text-transform: capitalize;
   display: flex;
@@ -7,13 +7,18 @@
   justify-content: center;
   border-radius: 0.6rem;
   transition: all 0.2s;
+  
 
   a {
+    color: black;
+    display: flex;
+    align-items: center;
+    gap: .75rem;
     padding: 0 1rem;
   }
 
   &:hover {
     border-radius: 0.45rem;
-    background-color: rgb(231, 241, 254);
+    background-color: var(--buttonHovered);
   }
 }

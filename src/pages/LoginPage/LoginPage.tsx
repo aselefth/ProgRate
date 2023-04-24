@@ -1,50 +1,68 @@
-import Button from "../../components/Button/Button"
-import { useAppDispatch } from "../../hooks/redux"
-import styles from "./LoginPage.module.scss"
-import { useLoginMutation } from "../../store/Api/authApiSlice"
-import { setCredentials } from "../../store/Slices/authSlice"
-import { IUserLogin } from "../../types/types"
-import { FC, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { useLogin } from "../../hooks/useLogin"
+import Button from '../../components/Button/Button'
+import styles from './LoginPage.module.scss'
+import { FC, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useLogin } from '../../hooks/useLogin'
+import { loginValidation } from '../../services/validation'
+import Error from '../../components/Error/Error'
 
 const LoginPage: FC = () => {
-
     const router = useNavigate()
+    const [isValidationError, setIsValidationError] = useState(false)
 
-    const {userName, password, handleAuth, handleChangeLogin, handleChangePassword} = useLogin()
+    const {
+        userName,
+        password,
+        handleAuth,
+        handleChangeLogin,
+        handleChangePassword,
+        error,
+    } = useLogin()
 
     return (
         <form
             className={styles.loginForm}
             onSubmit={(e) => {
                 e.preventDefault()
-                handleAuth({ userName, password })
+
+                if (loginValidation({ userName, password })) {
+                    handleAuth({ userName, password })
+
+                    if (error.length !== 0) {
+                        setIsValidationError(true)
+                    }
+                } else {
+                    setIsValidationError(true)
+                }
             }}
         >
+            <Error
+                isError={isValidationError}
+                setIsError={setIsValidationError}
+            />
             <input
                 type="text"
-                placeholder="your nickname..."
+                placeholder="ваш никнейм..."
                 value={userName}
                 onChange={handleChangeLogin}
             />
             <input
                 type="text"
-                placeholder="password..."
+                placeholder="ваш пароль..."
                 value={password}
                 onChange={handleChangePassword}
             />
             <div className={styles.buttons}>
-                <Button fontSize="1.5rem" type="submit">
-                    login
+                <Button fontSize="1.25rem" type="submit">
+                    войти
                 </Button>
                 <Button
-                    fontSize="1.5rem"
+                    fontSize="1.25rem"
                     onclick={() => {
-                        router("/register")
+                        router('/register')
                     }}
                 >
-                    no account?
+                    нет аккаунта?
                 </Button>
             </div>
         </form>

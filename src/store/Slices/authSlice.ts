@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { IUserLogin } from "../../types/types"
 
 export interface InitialState {
     token: string | null
@@ -8,7 +7,7 @@ export interface InitialState {
 
 const initialState: InitialState = {
     token: null,
-    isLogged: false
+    isLogged: false,
 }
 
 export const authSlice = createSlice({
@@ -21,6 +20,7 @@ export const authSlice = createSlice({
         },
         logOut: function (state) {
             state.token = null
+            state.isLogged = false
         }
     }
 })

@@ -1,35 +1,47 @@
-import { IPost } from "../../types/types"
-import dislike from "../../assets/like.svg"
-import like from "../../assets/likePressed.svg"
-import comment from "../../assets/comment.svg"
-import trash from '../../assets/trash.svg'
-import styles from "./post.module.scss"
-import { useGetUserByIdQuery, useGetUserQuery } from "../../store/Api/userApislice"
+import { IPost } from '../../types/types'
+import styles from './post.module.scss'
+import {
+    useGetUserByIdQuery,
+    useGetUserQuery,
+} from '../../store/Api/userApislice'
 import {
     useCheckLikeQuery,
     useDeletePostMutation,
+    useGetPostByIdQuery,
     useLikePostMutation,
-} from "../../store/Api/postsSlice"
-import { FC } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { useAppSelector } from "../../hooks/redux"
+} from '../../store/Api/postsSlice'
+import { FC } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAppSelector } from '../../hooks/redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+    faPen,
+    faThumbsUp,
+    faMessage,
+    faTrashCan,
+} from '@fortawesome/free-solid-svg-icons'
 
 export interface PostProps {
-    post: IPost
+    postId: number
 }
 
-export const Post: FC<PostProps> = ({ post }) => {
+export const Post: FC<PostProps> = ({ postId }) => {
     const isLogged = useAppSelector((state) => state.authSlice.isLogged)
     const router = useNavigate()
     const [likePost] = useLikePostMutation()
+    const {data: post} = useGetPostByIdQuery(postId, {
+        skip: !isLogged
+    })
     const [deletePost] = useDeletePostMutation()
-    const { data: user } = useGetUserByIdQuery(post.userId)    
-    
-    const { data: isLiked } = useCheckLikeQuery(post.postId, {
+    const { data: user } = useGetUserByIdQuery(`${post?.userId}`, {skip: !post})
+
+    const { data: isLiked } = useCheckLikeQuery(postId, {
+        skip: !post,
+    })
+    const { data: currentUser } = useGetUserQuery(undefined, {
         skip: !isLogged,
     })
 
-    const {data: currentUser} = useGetUserQuery(undefined)
 
     async function handleLikePost(likeid: number) {
         try {
@@ -45,51 +57,72 @@ export const Post: FC<PostProps> = ({ post }) => {
 
     async function handleDeletePost(postId: number) {
         try {
-            if (confirm('delete post?'))
-            await deletePost(postId)
+            if (confirm('delete post?')) await deletePost(postId)
             router('/')
         } catch (e) {
-            console.log(e);
-            
+            console.log(e)
         }
     }
 
     return (
         <div className={styles.postWrapper}>
             <div className={styles.postHeader}>
-                <span></span>
+                {user?.pictureBase ? (
+                    <div className={styles.imageWrapper}>
+                        <img src={user?.pictureBase} />
+                    </div>
+                ) : (
+                    <span></span>
+                )}
                 <div className={styles.postTitle}>
-                    <h1>{post.title}</h1>
-                    <Link to={`/users/${post.userId}/posts`}>@{user?.userName}</Link>
+                    <h1>{post?.title}</h1>
+                    <Link to={`/users/${post?.userId}/posts`}>
+                        @{user?.userName}
+                    </Link>
                 </div>
             </div>
-            <div className={styles.postPlot}>{post.plot}</div>
+            {post?.pictureBase && (
+                <img
+                    src={post?.pictureBase}
+                    className='w-full max-h-[500px] object-cover rounded'
+                />
+            )}
+            <div className={styles.postPlot}>{post?.plot}</div>
             <div className={styles.postBottom}>
                 <div className={styles.buttonSection}>
-                    <span>{post.likes}</span>
-                    <img
-                        src={isLiked ? like : dislike}
-                        width="24"
-                        alt="like"
-                        onClick={() => handleLikePost(post.postId)}
+                    <span>{post?.likes}</span>
+                    <FontAwesomeIcon
+                        icon={faThumbsUp}
+                        onClick={() => handleLikePost(postId)}
+                        color={`${isLiked ? 'var(--buttonBlue)' : 'black'}`}
                     />
                 </div>
                 <div className={styles.buttonSection}>
-                    <img
-                        src={comment}
-                        width="24"
-                        alt="comment"
-                        onClick={() => router(`/comments/${post.postId}`)}
+                    <FontAwesomeIcon
+                        icon={faMessage}
+                        onClick={() => router(`/comments/${post?.postId}`)}
                     />
                 </div>
-                {currentUser?.userName === user?.userName && <div className={styles.buttonSection}>
-                    <img
-                        src={trash}
-                        width="24"
-                        alt="comment"
-                        onClick={() => {handleDeletePost(post.postId)}}
-                    />
-                </div>}
+                {currentUser?.userName === user?.userName && (
+                    <>
+                        <div className={styles.buttonSection}>
+                            <FontAwesomeIcon
+                                icon={faTrashCan}
+                                onClick={() => {
+                                    handleDeletePost(postId)
+                                }}
+                            />
+                        </div>
+                        <div className={styles.buttonSection}>
+                            <FontAwesomeIcon
+                                icon={faPen}
+                                onClick={() => {
+                                    router(`/posts/${postId}/updatePost`)
+                                }}
+                            />
+                        </div>
+                    </>
+                )}
             </div>
         </div>
     )

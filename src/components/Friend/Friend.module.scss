@@ -1,0 +1,64 @@
+.friendWrapper {
+
+    @apply shadow-md;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--white);
+    font-size: 1.2rem;
+    border-radius: .5rem;
+    width: 700px;
+    padding: .5rem;
+
+    .friendLeft {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        .imageWrapper {
+            padding: 0.25rem;
+            background-color: var(--buttonBlue);
+            border-radius: 50%;
+            display: flex;
+
+            img {
+                width: 2rem;
+                height: 2rem;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        }
+
+        span {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background-color: purple;
+        }
+
+        p {
+            font-weight: bold;
+        }
+    }
+
+    .friendRight {
+        display: flex;
+        gap: 1rem;
+    }
+
+    @media screen and (max-width: 500px) {
+        width: 80vw;
+        min-width: 350px;
+        max-width: 450px;
+    }
+
+    @media screen and (min-width: 500px) and (max-width: 1100px) {
+        width: 80vw;
+        min-width: 500px;
+        max-width: 700px;
+    }
+
+    @media screen and (min-width: 1100px) {
+        width: 700px;
+    }
+}
