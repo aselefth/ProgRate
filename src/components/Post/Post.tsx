@@ -7,6 +7,7 @@ import {
 import {
     useCheckLikeQuery,
     useDeletePostMutation,
+    useGetPostByIdQuery,
     useLikePostMutation,
 } from '../../store/Api/postsSlice'
 import { FC } from 'react'
@@ -21,22 +22,26 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 export interface PostProps {
-    post: IPost
+    postId: number
 }
 
-export const Post: FC<PostProps> = ({ post }) => {
+export const Post: FC<PostProps> = ({ postId }) => {
     const isLogged = useAppSelector((state) => state.authSlice.isLogged)
     const router = useNavigate()
     const [likePost] = useLikePostMutation()
+    const {data: post} = useGetPostByIdQuery(postId, {
+        skip: !isLogged
+    })
     const [deletePost] = useDeletePostMutation()
-    const { data: user } = useGetUserByIdQuery(post.userId)
+    const { data: user } = useGetUserByIdQuery(`${post?.userId}`, {skip: !post})
 
-    const { data: isLiked } = useCheckLikeQuery(post.postId, {
-        skip: !isLogged,
+    const { data: isLiked } = useCheckLikeQuery(postId, {
+        skip: !post,
     })
     const { data: currentUser } = useGetUserQuery(undefined, {
         skip: !isLogged,
     })
+
 
     async function handleLikePost(likeid: number) {
         try {
@@ -70,8 +75,8 @@ export const Post: FC<PostProps> = ({ post }) => {
                     <span></span>
                 )}
                 <div className={styles.postTitle}>
-                    <h1>{post.title}</h1>
-                    <Link to={`/users/${post.userId}/posts`}>
+                    <h1>{post?.title}</h1>
+                    <Link to={`/users/${post?.userId}/posts`}>
                         @{user?.userName}
                     </Link>
                 </div>
@@ -82,20 +87,20 @@ export const Post: FC<PostProps> = ({ post }) => {
                     className='w-full max-h-[500px] object-cover rounded'
                 />
             )}
-            <div className={styles.postPlot}>{post.plot}</div>
+            <div className={styles.postPlot}>{post?.plot}</div>
             <div className={styles.postBottom}>
                 <div className={styles.buttonSection}>
-                    <span>{post.likes}</span>
+                    <span>{post?.likes}</span>
                     <FontAwesomeIcon
                         icon={faThumbsUp}
-                        onClick={() => handleLikePost(post.postId)}
+                        onClick={() => handleLikePost(postId)}
                         color={`${isLiked ? 'var(--buttonBlue)' : 'black'}`}
                     />
                 </div>
                 <div className={styles.buttonSection}>
                     <FontAwesomeIcon
                         icon={faMessage}
-                        onClick={() => router(`/comments/${post.postId}`)}
+                        onClick={() => router(`/comments/${post?.postId}`)}
                     />
                 </div>
                 {currentUser?.userName === user?.userName && (
@@ -104,7 +109,7 @@ export const Post: FC<PostProps> = ({ post }) => {
                             <FontAwesomeIcon
                                 icon={faTrashCan}
                                 onClick={() => {
-                                    handleDeletePost(post.postId)
+                                    handleDeletePost(postId)
                                 }}
                             />
                         </div>
@@ -112,7 +117,7 @@ export const Post: FC<PostProps> = ({ post }) => {
                             <FontAwesomeIcon
                                 icon={faPen}
                                 onClick={() => {
-                                    router(`/posts/${post.postId}/updatePost`)
+                                    router(`/posts/${postId}/updatePost`)
                                 }}
                             />
                         </div>

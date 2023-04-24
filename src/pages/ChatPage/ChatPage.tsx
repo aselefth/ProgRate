@@ -16,12 +16,12 @@ import { IMessage } from '../../types/types'
 import styles from './ChatPage.module.scss'
 
 export default function ChatPage() {
-    const { isLogged } = useAppSelector((state) => state.authSlice)
+    const isLogged = useAppSelector((state) => state.authSlice.isLogged)
     const { groupName } = useParams<{ groupName: string }>()
     const [chat, setChat] = useState<IMessage[]>([])
     const msg = useRef<HTMLTextAreaElement>(null)
     const scroller = useRef<HTMLSpanElement>(null)
-    const { connection } = useAppSelector((state) => state.connectionSlice)
+    const connection = useAppSelector((state) => state.connectionSlice.connection)
     const { data: user } = useGetUserQuery(undefined, {
         skip: !isLogged,
     })

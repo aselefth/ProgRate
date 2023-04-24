@@ -15,13 +15,13 @@ import { ICreateComment } from '../../types/types'
 import styles from './CommentsPage.module.scss'
 
 export default function CommentsPage() {
+    const isLogged = useAppSelector((state) => state.authSlice.isLogged)
     const [comment, setComment] = useState('')
     const { postId } = useParams()
     const { data: comments, isLoading: isCommentsLoading } =
         useGetCommentsQuery(Number(postId))
-    const { data: post } = useGetPostByIdQuery(Number(postId))
+    const { data: post } = useGetPostByIdQuery(Number(postId), {skip: !postId})
     const [addComment] = useAddCommentMutation()
-    const isLogged = useAppSelector((state) => state.authSlice.isLogged)
     const router = useNavigate()
 
     async function handleComment(body: ICreateComment) {
@@ -38,7 +38,7 @@ export default function CommentsPage() {
 
     return (
         <div className={styles.pageWrapper}>
-            {post && <Post post={post} />}
+            {post && <Post postId={Number(postId)} />}
             <div className={styles.commentsSection}>
                 {comments?.map((com) => (
                     <Comment key={com.commentId} comment={com} />

@@ -12,7 +12,7 @@ interface InitialState {
 
 const initialState: InitialState = {
     connection: new HubConnectionBuilder()
-        .withUrl('http://localhost:8080/hubs/chat', {
+        .withUrl('http://192.168.0.21:8080/hubs/chat', {
             // skipNegotiation: true,
             // transport: HttpTransportType.WebSockets
         })

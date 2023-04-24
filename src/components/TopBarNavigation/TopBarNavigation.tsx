@@ -6,7 +6,7 @@ import { changeSearch } from '../../store/Slices/InterfaceSlice'
 import Button from '../Button/Button'
 
 export default function LoginSection() {
-    const { isLogged } = useAppSelector((state) => state.authSlice)
+    const isLogged = useAppSelector((state) => state.authSlice.isLogged)
     const dispatch = useAppDispatch()
     const router = useNavigate()
     return (

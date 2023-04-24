@@ -24,7 +24,7 @@ type TabsType =
     | 'messages'
 
 export default function LeftSide() {
-    const { isLogged } = useAppSelector((state) => state.authSlice)
+    const isLogged = useAppSelector((state) => state.authSlice.isLogged)
     const [currentTab, setCurrentTab] = useState<TabsType>('feed')
     const router = useNavigate()
     const dispatch = useAppDispatch()

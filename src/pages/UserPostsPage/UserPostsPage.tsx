@@ -167,7 +167,7 @@ export default function UserPostsPage() {
             {posts &&
                 [...posts]
                     .reverse()
-                    .map((post) => <Post post={post} key={post.postId} />)}
+                    .map((post) => <Post postId={post.postId} key={post.postId} />)}
         </div>
     )
 }
