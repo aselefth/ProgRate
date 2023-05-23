@@ -1,54 +1,83 @@
 .accountPageWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    font-size: 1.25rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+	font-size: 1.25rem;
 
-    input {
-        font-size: 1.25rem;
-        border-bottom: 2px solid var(--primary);
-        padding: .25rem;
-    }
+	input {
+		font-size: 1.25rem;
+		border-bottom: 2px solid var(--primary);
+		padding: 0.25rem;
+	}
 
-    .hero {
+	.hero {
+		h1 {
+			font-size: 1.5rem;
+			font-weight: normal;
+			span {
+				font-weight: bold;
+				font-style: italic;
+			}
+		}
+	}
 
-        h1 {
-            font-size: 1.5rem;
-            font-weight: normal;
-            span {
-                font-weight: bold;
-                font-style: italic;
-            }
-        }
-    }
+	.info {
+		table {
+			margin: 0 auto;
+			tr {
+				border: 0.25rem solid transparent;
+				td:nth-child(2n) {
+					padding: 0.2rem 2.5rem;
+				}
 
-    .info {
-        table {
-            margin: 0 auto;
-            tr {
-                border: .25rem solid transparent;
-                td:nth-child(2n) {
-                    padding: .2rem 2.5rem;
-                }
-            }
-        }
-    }
+				.imageContainer {
+					width: 8rem;
+					height: 8rem;
+					position: relative;
+					display: flex;
+					align-items: center;
+					justify-content: center;
 
-    @media screen and (max-width: 500px) {
+					img {
+						width: 100%;
+						height: 100%;
+						object-fit: cover;
+					}
 
-        input {
-            width: 70vw;
-        }
+					svg {
+						cursor: pointer;
+						position: absolute;
+						color: black;
+						width: 0.75rem;
+						height: 0.75rem;
+						padding: 3px;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						background-color: var(--buttonBlue);
+						border-radius: 50%;
+						top: 5%;
+						right: 5%;
+					}
+				}
+			}
+		}
+	}
 
-        .info {
-            table {
-                tr {
-                    td:nth-child(2n) {
-                        padding: .2rem .5rem;
-                    }
-                }
-            }
-        }
-    }
+	@media screen and (max-width: 500px) {
+		input {
+			width: 70vw;
+		}
+
+		.info {
+			table {
+				tr {
+					td:nth-child(2n) {
+						padding: 0.2rem 0.5rem;
+					}
+				}
+			}
+		}
+	}
 }

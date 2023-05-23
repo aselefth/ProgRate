@@ -1,6 +1,7 @@
 import { HubConnection } from '@microsoft/signalr'
 import { useSendMessageMutation } from '../store/Api/messagesApiSlice'
 
+
 export async function sendMessage(
     connection: HubConnection,
     message: string,

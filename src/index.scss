@@ -1,10 +1,10 @@
-
+//импортируем компоненты библиотеки Tailwind
 /* @import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@200;300;400;500;600;700&display=swap'); */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
+//задаем в корневом псевдо-элементе переменные для цветов
 :root {
 	--white: rgb(249, 250, 251);
 	--primary: rgb(126, 126, 209);
@@ -17,6 +17,7 @@
 	--errorDark: rgb(206, 67, 67);
 }
 
+//задаем обнуления стилей для базовой разметки
 html {
     min-height: 100%;
 	

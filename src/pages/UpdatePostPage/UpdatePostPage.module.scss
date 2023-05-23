@@ -49,18 +49,20 @@
                 object-fit: cover;
             }
 
-            span {
+            svg {
                 cursor: pointer;
                 position: absolute;
                 color: black;
-                padding: 1px 5px;
+                width: .75rem;
+                height: .75rem;
+                padding: 3px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 background-color: var(--buttonBlue);
                 border-radius: 50%;
-                top: 10px;
-                right: 10%;
+                top: 5%;
+                right: 5%;
             }
         }
     }
